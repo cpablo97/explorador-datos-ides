@@ -1,0 +1,93 @@
+:root {
+    /* ============================================
+	   COLOR — Primitivos
+	   Valores crudos, tal como salen del Figma.
+	   No se usan directamente en componentes.
+	   ============================================ */
+
+
+    /*Naranja*/
+    --naranja-100: #FDE3D1;
+    --naranja-200: #F2986C;
+    --naranja-300: #EA5825;
+    --naranja-400: #B73508;
+
+    /*Azul*/
+    --azul-100: #C2D6E0;
+    --azul-200: #8BC0C7;
+    --azul-300: #5D9EB6;
+    --azul-400: #2B72A1;
+
+    /*Verde*/
+    --verde-100: #D3DEC9;
+    --verde-200: #ABC5B5;
+    --verde-300: #32814B;
+    --verde-400: #98BC66;
+    --verde-500: #7DA450;
+
+    /*Primitivos generales*/
+    --verde-gris-100: #D3DEC9;
+    --verde-gris-200: #CED9C4;
+    --verde-gris-300: #C3CCB5;
+    --verde-gris-400: #AFBB9A;
+
+    --crema: #FFF3E4;
+    --verde-fuerte: #083D00;
+
+    --negro: #000000;
+    --blanco: #ffffff;
+
+    /*Colores con opacidad*/
+    --gris-100-20: color-mix(in srgb, #6E6E6E 20%, transparent);
+    --gris-200-20: color-mix(in srgb, #7DA450 20%, transparent);
+    --gris-300-20: color-mix(in srgb, #E2E2E2 20%, transparent);
+
+    /* ============================================
+	   COLOR — Semánticos
+	   Con propósito. Referencian a los primitivos.
+	   Estos SÍ se usan en los componentes.
+	   ============================================ */
+
+
+    /*Fondo*/
+    --color-bg: var(--verde-gris-100);
+
+    /*Interactive*/
+    --color-primary-hover: var(--crema);
+
+    /*Textos*/
+    --color-text-primary: var(--verde-fuerte);
+    --color-text-secondary: var(--negro);
+
+    --color-text-decoration-salud: var(--azul-300);
+    --color-text-decoration-justicia: var(--naranja-300);
+    --color-text-decoration-determinantes: var(--verde-300);
+    --color-text-decoration-generico: var(--verde-200);
+
+    /* Verde exclusivo de las vistas compuestas (Patrón F + anillo
+       compuesto) — confirmado contra Figma real, distinto de
+       --verde-300/determinantes que usan las vistas de una sola dimensión. */
+    --color-dimension-compuesto-determinantes: var(--verde-500);
+
+    /*Decorativos*/
+    --color-decorative-grid: var(--verde-fuerte);
+
+    /*Bordes*/
+    --color-callout-border: color-mix(in srgb, var(--verde-fuerte) 30%, transparent);
+
+    /*Fondo callout — override puntual para mejor contraste, solo determinantes*/
+    --color-callout-bg-determinantes: var(--verde-400);
+
+    /* ============================================
+       TIPOGRAFÍA
+       ============================================ */
+
+    --font-primary: 'Sora', sans-serif;
+
+    --text-data-1: 600 2.5rem/1 var(--font-primary);
+    --text-body-primary: 400 1.5rem/1.625rem var(--font-primary);
+    --text-caption-source: 400 0.75rem/1.625rem var(--font-primary);
+    --text-heading-1: 600 4rem/1 var(--font-primary);
+    --text-heading-1-tracking: -3.84px;
+
+}

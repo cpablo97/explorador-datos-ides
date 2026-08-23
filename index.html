@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Explorador de Datos (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li class="is-active"><a href="#">Explorador de Datos</a></li>
+          <li><a href="#">Indicadores</a></li>
+          <li><a href="#">Metodología</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <header class="header">
+        <div class="header__grid">
+          <div class="header__title-cell">
+            <h1 class="header__title">Índice de Derecho a la Salud – IDES</h1>
+            <p class="header__subtitle">Pediatría Bogotá</p>
+          </div>
+          <div class="header__stat-cell header__stat-cell--mark" id="mark-localidades"></div>
+          <div class="header__stat-cell header__stat-cell--mark" id="mark-indicadores"></div>
+          <div class="header__stat-cell header__stat-cell--mark" id="mark-fuentes"></div>
+          <div class="header__stat-cell" id="info-localidades"></div>
+          <div class="header__stat-cell" id="info-indicadores"></div>
+          <div class="header__stat-cell" id="info-fuentes"></div>
+        </div>
+      </header>
+
+      <main>
+        <div class="tabs-row">
+          <div class="timeline-controls">
+            <button class="year-pill" data-año="2022" type="button">2022</button>
+            <button class="year-pill" data-año="2023" type="button">2023</button>
+            <button class="year-pill is-active" data-año="2024" type="button">2024</button>
+            <button class="play-btn" id="play-btn" type="button">▶ Reproducir evolución</button>
+            <label class="trail-toggle">
+              <input type="checkbox" id="toggle-estelas" checked />
+              <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
+              <span class="trail-toggle__label">Estelas</span>
+            </label>
+          </div>
+          <select class="tabs-row__filtro" id="filtro-localidad">
+            <option value="">Filtrar por localidad</option>
+          </select>
+        </div>
+
+        <div class="dashboard">
+          <div class="dashboard__chart-col">
+            <div id="chart-main"></div>
+            <!-- Panel de detalle anclado a la esquina superior derecha del
+                 gráfico — no reserva columna propia, así el gráfico se
+                 queda a todo el ancho. -->
+            <div class="locality-modal" id="locality-modal">
+              <button class="locality-modal__close" id="locality-modal-close" type="button" aria-label="Cerrar">×</button>
+              <div id="locality-modal-content"></div>
+            </div>
+          </div>
+        </div>
+
+        <section class="diagrama-explicativo">
+          <div id="chart-secundario"></div>
+          <div class="diagrama-explicativo__texto">
+            <h2>Cómo leer el gráfico</h2>
+            <p id="explicativo-texto-1"></p>
+            <p id="explicativo-texto-2"></p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/radial-chart.js"></script>
+    <script src="js/locality-card.js"></script>
+    <script src="js/stats-donuts.js"></script>
+    <script src="js/timeline-control.js"></script>
+    <script>
+      // Portado tal cual de scrolly/index.html (montarGridFondo) — mismo
+      // patrón usado como fondo fijo de toda la página.
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      function renderStatCell({ markId, infoId, valor, etiqueta, colorVar, rotaciones }) {
+        const { renderStatMark } = window.IDESStatsDonuts;
+        renderStatMark(document.getElementById(markId), colorVar, rotaciones);
+        document.getElementById(infoId).innerHTML = `
+          <div class="stat-info">
+            <p class="stat-info__valor">${valor}</p>
+            <p class="stat-info__etiqueta">${etiqueta}</p>
+          </div>`;
+      }
+
+      (async function () {
+        const { crearGraficoRadial, getAñoData, DIM_LABELS } = window.IDESRadialChart;
+        const { renderLocalityCard } = window.IDESLocalityCard;
+        const { AÑOS, reproducirEvolucion } = window.IDESTimeline;
+
+        const data = await fetch("data/localidades.json").then((r) => r.json());
+
+        renderStatCell({
+          markId: "mark-localidades",
+          infoId: "info-localidades",
+          valor: data.length,
+          etiqueta: "Localidades analizadas",
+          colorVar: "--naranja-300",
+          rotaciones: [20, 180, 95],
+        });
+        renderStatCell({
+          markId: "mark-indicadores",
+          infoId: "info-indicadores",
+          valor: 30,
+          etiqueta: "Indicadores integrados",
+          colorVar: "--azul-300",
+          rotaciones: [360, 192, 132],
+        });
+        renderStatCell({
+          markId: "mark-fuentes",
+          infoId: "info-fuentes",
+          valor: 5,
+          etiqueta: "Fuentes oficiales de datos",
+          colorVar: "--verde-300",
+          rotaciones: [360, 192, 132],
+        });
+
+        const filtroSelect = document.getElementById("filtro-localidad");
+        data
+          .slice()
+          .sort((a, b) => a.nombre.localeCompare(b.nombre, "es"))
+          .forEach((loc) => {
+            const option = document.createElement("option");
+            option.value = loc.id;
+            option.textContent = loc.nombre;
+            filtroSelect.appendChild(option);
+          });
+
+        const modal = document.getElementById("locality-modal");
+        const modalContent = document.getElementById("locality-modal-content");
+        const modalClose = document.getElementById("locality-modal-close");
+        const chartMainEl = document.getElementById("chart-main");
+
+        let pinnedId = null;
+        let ultimaPosModal = null;
+
+        function centroChart() {
+          const r = chartMainEl.getBoundingClientRect();
+          return { clientX: r.left + r.width / 2, clientY: r.top + r.height / 2 };
+        }
+
+        function posicionarModal(pos) {
+          const margen = 16;
+          const w = modal.offsetWidth;
+          const h = modal.offsetHeight;
+          let x = pos.clientX + 20;
+          let y = pos.clientY - h / 2;
+          x = Math.min(Math.max(x, margen), window.innerWidth - w - margen);
+          y = Math.min(Math.max(y, margen), window.innerHeight - h - margen);
+          modal.style.left = `${x}px`;
+          modal.style.top = `${y}px`;
+        }
+
+        // El modal se posiciona sobre el punto donde se hizo clic (o el
+        // centro del gráfico si se seleccionó por el dropdown, sin evento
+        // de mouse). Se reusa la última posición al refrescar contenido
+        // por cambio de año, para no reposicionarlo de golpe.
+        function mostrarModal(id, año, pos) {
+          if (pos) ultimaPosModal = pos;
+          const localidad = data.find((d) => d.id === id);
+          renderLocalityCard(modalContent, localidad, año);
+          chart.highlight(id);
+          modal.classList.add("is-visible");
+          posicionarModal(ultimaPosModal || centroChart());
+        }
+
+        function ocultarModal() {
+          modal.classList.remove("is-visible");
+          chart.highlight(null);
+        }
+
+        // Fija/despina una localidad — usado tanto al hacer clic sobre una
+        // elipse del gráfico como al elegirla en el dropdown "Filtrar por
+        // localidad", para que ambos caminos repliquen el mismo
+        // comportamiento (modal, atenuado de las demás, estela propia).
+        function seleccionarLocalidad(id, pos) {
+          if (id === null || id === "") {
+            pinnedId = null;
+            chart.setSeleccion(null);
+            ocultarModal();
+            filtroSelect.value = "";
+            return;
+          }
+          pinnedId = pinnedId === id ? null : id;
+          chart.setSeleccion(pinnedId);
+          if (pinnedId) {
+            mostrarModal(pinnedId, chart.getCurrentYear(), pos);
+          } else {
+            ocultarModal();
+          }
+          filtroSelect.value = pinnedId || "";
+        }
+
+        const chart = crearGraficoRadial("#chart-main", {
+          data,
+          size: 850,
+          radioMax: 425,
+          dotRadius: 25,
+          hoverDotRadius: 32,
+          interactive: true,
+          showAxisLabels: true,
+          showRingLabels: true,
+          axisOpacity: 0.5,
+          axisLabelOffset: 20,
+          margin: 170,
+          onHover(id) {
+            if (pinnedId) return;
+            chart.highlight(id);
+          },
+          onSelect(id, año, pos) {
+            seleccionarLocalidad(id, pos);
+          },
+        });
+
+        filtroSelect.addEventListener("change", () => {
+          seleccionarLocalidad(filtroSelect.value || null);
+        });
+
+        modalClose.addEventListener("click", () => seleccionarLocalidad(null));
+        document.addEventListener("click", (e) => {
+          if (!pinnedId) return;
+          if (modal.contains(e.target) || chartMainEl.contains(e.target)) return;
+          seleccionarLocalidad(null);
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && pinnedId) seleccionarLocalidad(null);
+        });
+
+        crearGraficoRadial("#chart-secundario", {
+          data,
+          size: 320,
+          radioMax: 120,
+          dotRadius: 12,
+          interactive: false,
+          filterIds: ["usme"],
+          showAxisLabels: true,
+          showRingLabels: false,
+          axisOpacity: 0.35,
+          axisLabelOffset: 30,
+          margin: 60,
+        });
+
+        const usme = data.find((d) => d.id === "usme");
+        const usmeDims = getAñoData(usme, 2024).dims;
+        const dominanteUsme = Object.keys(usmeDims).reduce((mejor, key) =>
+          usmeDims[key] > usmeDims[mejor] ? key : mejor,
+        );
+        document.getElementById("explicativo-texto-1").textContent =
+          "Cada punto representa una localidad. Cuanto más lejos del centro, mayor es su índice compuesto (IDES) — el centro equivale a 0 y el borde exterior del círculo a 100. La dirección hacia la que se inclina el punto muestra cuál dimensión pesa más en su resultado.";
+        document.getElementById("explicativo-texto-2").textContent =
+          `En el ejemplo de Usme (2024): Justicia=${usmeDims.justicia}, Salud=${usmeDims.salud}, Determinantes Sociales=${usmeDims.determinantes}. Como ${DIM_LABELS[dominanteUsme]} tiene el puntaje más alto, el punto se inclina hacia ese eje.`;
+
+        const yearPills = Array.from(document.querySelectorAll(".year-pill"));
+        function marcarAñoActivo(año) {
+          yearPills.forEach((btn) =>
+            btn.classList.toggle("is-active", Number(btn.dataset.año) === año),
+          );
+        }
+        yearPills.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const año = Number(btn.dataset.año);
+            chart.setYear(año);
+            marcarAñoActivo(año);
+            if (pinnedId) mostrarModal(pinnedId, año);
+          });
+        });
+
+        document.getElementById("play-btn").addEventListener("click", () => {
+          reproducirEvolucion(chart, {
+            playBtn: document.getElementById("play-btn"),
+            onYearChange(año) {
+              marcarAñoActivo(año);
+              if (pinnedId) mostrarModal(pinnedId, año);
+            },
+          });
+        });
+
+        document.getElementById("toggle-estelas").addEventListener("change", (e) => {
+          chart.setEstelasActivas(e.target.checked);
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,456 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Fondo fijo de toda la página — portado tal cual de scrolly/styles.css
+   (.grid-fondo), dibujado por montarGridFondo() en index.html. */
+.grid-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* ---------- Nav ---------- */
+
+#nav-real {
+  display: flex;
+  padding-block: 1.5rem;
+}
+#nav-real ul {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#nav-real li {
+  flex: 1;
+  border: 1px solid color-mix(in srgb, var(--color-text-primary) 55%, transparent);
+  padding: 0.9rem 0;
+  text-align: center;
+}
+#nav-real li.is-active {
+  background: var(--color-text-primary);
+}
+#nav-real li.is-active a {
+  color: var(--blanco);
+}
+#nav-real a {
+  color: var(--color-text-primary);
+  font: 300 14px/1 var(--font-primary);
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  position: relative;
+  margin-top: 1.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+.header__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) repeat(3, minmax(140px, 180px));
+  grid-template-rows: auto auto;
+}
+
+.header__title-cell {
+  grid-row: 1 / 3;
+  grid-column: 1;
+  padding: 3rem 2.5rem;
+  border-right: 1px solid var(--color-callout-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Subrayado-resaltador: técnica exacta portada de scrolly/styles.css
+   (.paso-texto[data-bloque="hero"] .paso-texto__heading) — un underline
+   nativo grueso y con offset negativo hace de marcador bajo el texto. */
+.header__title {
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  max-width: 545px;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.header__subtitle {
+  margin-top: 1rem;
+  font: 400 1.75rem/1.2 var(--font-primary);
+  color: var(--color-text-secondary);
+}
+
+.header__stat-cell {
+  border-left: 1px solid var(--color-callout-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+}
+.header__stat-cell--mark {
+  border-bottom: 1px solid var(--color-callout-border);
+}
+
+/* Brandmark — portado tal cual de scrolly/styles.css (.brand-mark,
+   .half-circle): 3 semicírculos del mismo color en distintas rotaciones,
+   combinados con mix-blend-mode:multiply. */
+.stat-mark {
+  width: 108px;
+  aspect-ratio: 1;
+}
+.stat-mark svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+.half-circle {
+  mix-blend-mode: multiply;
+}
+
+.stat-info {
+  text-align: center;
+}
+.stat-info__valor {
+  font: var(--text-data-1);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+.stat-info__etiqueta {
+  margin-top: 0.35rem;
+  font: 400 0.95rem/1.25 var(--font-primary);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Tabs ---------- */
+
+.tabs-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0 1rem 0;
+  border-bottom: 1px solid var(--color-callout-border);
+  margin-bottom: 1.5rem;
+}
+
+.tabs-row__filtro {
+  margin-left: auto;
+  font: 400 0.9rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-callout-border);
+  border-radius: 0.25rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--blanco);
+}
+
+/* ---------- Dashboard ---------- */
+/* Prueba reversible: el dashboard ya no reserva una columna lateral para
+   la tarjeta — el gráfico ocupa todo el ancho de .page (1280px) y el
+   detalle de localidad vive en #locality-modal (ver más abajo). Backup
+   de la versión anterior (sidebar fija) en explorador.css.bak-sidebar. */
+.dashboard {
+  display: block;
+}
+
+.dashboard__chart-col {
+  display: flex;
+  flex-direction: column;
+}
+
+#chart-main {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1;
+}
+#chart-main svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fondo decorativo del gráfico radial y las localidades — mismo
+   mix-blend-mode:multiply que el brandmark del header (.half-circle en
+   stats-donuts.js), extraído de la captura de Figma del gráfico real. */
+.chart-fondo__sector {
+  mix-blend-mode: multiply;
+}
+.locality-dot {
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Locality modal (prueba reversible) ---------- */
+
+.locality-modal {
+  position: fixed;
+  z-index: 50;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s;
+  pointer-events: none;
+}
+.locality-modal.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.locality-modal .locality-card {
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--verde-fuerte) 28%, transparent);
+}
+.locality-modal__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--color-callout-border);
+  background: var(--blanco);
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* ---------- Timeline controls ---------- */
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.year-pill {
+  font: 400 0.95rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  background: var(--crema);
+  border: 1px solid var(--color-callout-border);
+  border-radius: 0.25rem;
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+}
+.year-pill.is-active {
+  background: var(--color-text-primary);
+  color: var(--crema);
+  border-color: var(--color-text-primary);
+}
+
+.play-btn {
+  font: 400 0.95rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  background: var(--crema);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+}
+.play-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.trail-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font: 400 0.9rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+}
+.trail-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.trail-toggle__track {
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--verde-gris-300);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+.trail-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--blanco);
+  transition: transform 0.2s ease;
+}
+.trail-toggle input:checked + .trail-toggle__track {
+  background: var(--color-text-primary);
+}
+.trail-toggle input:checked + .trail-toggle__track .trail-toggle__thumb {
+  transform: translateX(16px);
+}
+.trail-toggle input:focus-visible + .trail-toggle__track {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Locality card ---------- */
+
+.locality-card {
+  padding: 1.5rem;
+  border: 1px solid var(--color-callout-border);
+  background-color: var(--color-bg);
+}
+
+.locality-card--placeholder {
+  color: var(--color-text-secondary);
+  font: var(--text-body-primary);
+}
+
+.locality-card__nombre {
+  font: 700 1.75rem/2.5rem var(--font-primary);
+}
+
+/* "IDES: XX/100" — configuración replicada de Figma (node 105:697): el
+   valor reutiliza el mismo estilo/subrayado que .stat-info__valor. */
+.locality-card__ides {
+  margin-top: 0.25rem;
+}
+.locality-card__ides-label {
+  font: 300 1.75rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+}
+.locality-card__ides-valor {
+  margin-left: 0.15rem;
+}
+
+.locality-card__year {
+  font: 400 1rem/1.25rem var(--font-primary);
+  color: var(--color-text-primary);
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.locality-card__dim + .locality-card__dim {
+  margin-top: 1rem;
+}
+
+.locality-card__dim-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.locality-card__dim-label {
+  font: 400 1rem/1.25rem var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+.locality-card__dim-value {
+  font: var(--text-data-1);
+}
+.locality-card__dim-value-suffix {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+/* Barra sólida, sin track de fondo — el ancho ya representa el valor,
+   igual que en el componente real de Figma. */
+.locality-card__bar {
+  height: 37px;
+  border: 1px solid var(--color-callout-border);
+}
+
+.locality-card__cta {
+  width: 100%;
+  margin-top: 1.75rem;
+  font: 600 0.95rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  background: var(--blanco);
+  border: 1px solid var(--color-text-primary);
+  border-radius: 0.25rem;
+  padding: 0.8rem;
+  cursor: not-allowed;
+}
+
+/* ---------- Diagrama explicativo ---------- */
+
+.diagrama-explicativo {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+#chart-secundario {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+#chart-secundario svg {
+  width: 100%;
+  height: 100%;
+}
+
+.diagrama-explicativo__texto {
+  font: var(--text-body-primary);
+}
+.diagrama-explicativo__texto h2 {
+  font: 600 2rem/1.15 var(--font-primary);
+  margin-bottom: 1rem;
+}
+.diagrama-explicativo__texto p + p {
+  margin-top: 1rem;
+}
