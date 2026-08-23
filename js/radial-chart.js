@@ -520,11 +520,7 @@
           .on("mouseleave", () => opts.onHover && opts.onHover(null))
           .on("click", (event, d) => {
             event.stopPropagation();
-            opts.onSelect &&
-              opts.onSelect(d.id, currentYear, {
-                clientX: event.clientX,
-                clientY: event.clientY,
-              });
+            opts.onSelect && opts.onSelect(d.id, currentYear);
           });
       }
 

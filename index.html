@@ -188,38 +188,18 @@
         const modalContent = document.getElementById("locality-modal-content");
         const modalClose = document.getElementById("locality-modal-close");
         const chartMainEl = document.getElementById("chart-main");
+        const tabsRowEl = document.querySelector(".tabs-row");
 
         let pinnedId = null;
-        let ultimaPosModal = null;
 
-        function centroChart() {
-          const r = chartMainEl.getBoundingClientRect();
-          return { clientX: r.left + r.width / 2, clientY: r.top + r.height / 2 };
-        }
-
-        function posicionarModal(pos) {
-          const margen = 16;
-          const w = modal.offsetWidth;
-          const h = modal.offsetHeight;
-          let x = pos.clientX + 20;
-          let y = pos.clientY - h / 2;
-          x = Math.min(Math.max(x, margen), window.innerWidth - w - margen);
-          y = Math.min(Math.max(y, margen), window.innerHeight - h - margen);
-          modal.style.left = `${x}px`;
-          modal.style.top = `${y}px`;
-        }
-
-        // El modal se posiciona sobre el punto donde se hizo clic (o el
-        // centro del gráfico si se seleccionó por el dropdown, sin evento
-        // de mouse). Se reusa la última posición al refrescar contenido
-        // por cambio de año, para no reposicionarlo de golpe.
-        function mostrarModal(id, año, pos) {
-          if (pos) ultimaPosModal = pos;
+        // El panel va anclado por CSS a la esquina superior derecha del
+        // gráfico (ver .locality-modal en explorador.css) — no necesita
+        // reposicionarse por JS, solo mostrar/ocultar y refrescar contenido.
+        function mostrarModal(id, año) {
           const localidad = data.find((d) => d.id === id);
           renderLocalityCard(modalContent, localidad, año);
           chart.highlight(id);
           modal.classList.add("is-visible");
-          posicionarModal(ultimaPosModal || centroChart());
         }
 
         function ocultarModal() {
@@ -230,8 +210,8 @@
         // Fija/despina una localidad — usado tanto al hacer clic sobre una
         // elipse del gráfico como al elegirla en el dropdown "Filtrar por
         // localidad", para que ambos caminos repliquen el mismo
-        // comportamiento (modal, atenuado de las demás, estela propia).
-        function seleccionarLocalidad(id, pos) {
+        // comportamiento (panel, atenuado de las demás, estela propia).
+        function seleccionarLocalidad(id) {
           if (id === null || id === "") {
             pinnedId = null;
             chart.setSeleccion(null);
@@ -242,7 +222,7 @@
           pinnedId = pinnedId === id ? null : id;
           chart.setSeleccion(pinnedId);
           if (pinnedId) {
-            mostrarModal(pinnedId, chart.getCurrentYear(), pos);
+            mostrarModal(pinnedId, chart.getCurrentYear());
           } else {
             ocultarModal();
           }
@@ -265,8 +245,8 @@
             if (pinnedId) return;
             chart.highlight(id);
           },
-          onSelect(id, año, pos) {
-            seleccionarLocalidad(id, pos);
+          onSelect(id) {
+            seleccionarLocalidad(id);
           },
         });
 
@@ -275,9 +255,19 @@
         });
 
         modalClose.addEventListener("click", () => seleccionarLocalidad(null));
+        // Cierra al hacer clic afuera — pero no cuenta como "afuera" nada
+        // dentro del gráfico, del panel, ni de la fila de controles
+        // (year-pills, reproducir, toggle de estelas, filtro), para que
+        // esos clics no despinen la selección.
         document.addEventListener("click", (e) => {
           if (!pinnedId) return;
-          if (modal.contains(e.target) || chartMainEl.contains(e.target)) return;
+          if (
+            modal.contains(e.target) ||
+            chartMainEl.contains(e.target) ||
+            tabsRowEl.contains(e.target)
+          ) {
+            return;
+          }
           seleccionarLocalidad(null);
         });
         document.addEventListener("keydown", (e) => {
