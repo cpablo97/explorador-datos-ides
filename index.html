@@ -192,6 +192,62 @@
 
         let pinnedId = null;
 
+        // Panel arrastrable: se puede mover con el mouse a cualquier parte
+        // del gráfico para destaparlo, dejando ver la visualización debajo.
+        // La posición elegida se mantiene mientras dura la sesión, aunque
+        // se cambie de localidad o se cierre y se vuelva a abrir.
+        let arrastre = null;
+        let acabaDeArrastrar = false;
+        function onDragMove(e) {
+          if (!arrastre) return;
+          const parent = modal.offsetParent;
+          const maxLeft = Math.max(0, parent.clientWidth - modal.offsetWidth);
+          const maxTop = Math.max(0, parent.clientHeight - modal.offsetHeight);
+          const left = Math.min(
+            Math.max(arrastre.origLeft + (e.clientX - arrastre.startX), 0),
+            maxLeft,
+          );
+          const top = Math.min(
+            Math.max(arrastre.origTop + (e.clientY - arrastre.startY), 0),
+            maxTop,
+          );
+          modal.style.left = `${left}px`;
+          modal.style.top = `${top}px`;
+        }
+        function onDragEnd() {
+          arrastre = null;
+          modal.classList.remove("is-dragging");
+          document.removeEventListener("mousemove", onDragMove);
+          document.removeEventListener("mouseup", onDragEnd);
+          // Evita que el click que el navegador dispara justo al soltar
+          // el mouse cierre el panel o seleccione lo que haya debajo,
+          // si el arrastre terminó fuera del panel.
+          acabaDeArrastrar = true;
+          setTimeout(() => {
+            acabaDeArrastrar = false;
+          }, 0);
+        }
+        modal.addEventListener("mousedown", (e) => {
+          if (e.target.closest("#locality-modal-close") || e.target.closest(".locality-card__cta")) {
+            return;
+          }
+          // Primer arrastre: pasa de anclado por "right" a "left" explícito,
+          // usando su posición actual en pantalla como punto de partida.
+          modal.style.left = `${modal.offsetLeft}px`;
+          modal.style.top = `${modal.offsetTop}px`;
+          modal.style.right = "auto";
+          arrastre = {
+            startX: e.clientX,
+            startY: e.clientY,
+            origLeft: modal.offsetLeft,
+            origTop: modal.offsetTop,
+          };
+          modal.classList.add("is-dragging");
+          document.addEventListener("mousemove", onDragMove);
+          document.addEventListener("mouseup", onDragEnd);
+          e.preventDefault();
+        });
+
         // El panel va anclado por CSS a la esquina superior derecha del
         // gráfico (ver .locality-modal en explorador.css) — no necesita
         // reposicionarse por JS, solo mostrar/ocultar y refrescar contenido.
@@ -240,7 +296,12 @@
           showRingLabels: true,
           axisOpacity: 0.5,
           axisLabelOffset: 20,
-          margin: 170,
+          // Asimétrico: "Determinantes Sociales" (arriba-izquierda) es la
+          // etiqueta más ancha y necesita mucho más margen a la izquierda
+          // que en los otros 3 lados — así el círculo no se encoge por
+          // agrandar el margen parejo en los 4 lados.
+          margin: 60,
+          marginLeft: 290,
           onHover(id) {
             if (pinnedId) return;
             chart.highlight(id);
@@ -260,6 +321,7 @@
         // (year-pills, reproducir, toggle de estelas, filtro), para que
         // esos clics no despinen la selección.
         document.addEventListener("click", (e) => {
+          if (acabaDeArrastrar) return;
           if (!pinnedId) return;
           if (
             modal.contains(e.target) ||
@@ -285,7 +347,8 @@
           showRingLabels: false,
           axisOpacity: 0.35,
           axisLabelOffset: 30,
-          margin: 60,
+          axisLabelFont: "var(--text-caption-source)",
+          margin: 130,
         });
 
         const usme = data.find((d) => d.id === "usme");
@@ -313,14 +376,18 @@
           });
         });
 
-        document.getElementById("play-btn").addEventListener("click", () => {
-          reproducirEvolucion(chart, {
+        document.getElementById("play-btn").addEventListener("click", async () => {
+          // Mientras se reproduce la evolución, el panel baja de opacidad
+          // para dejar ver el gráfico moviéndose detrás.
+          modal.classList.add("is-playing");
+          await reproducirEvolucion(chart, {
             playBtn: document.getElementById("play-btn"),
             onYearChange(año) {
               marcarAñoActivo(año);
               if (pinnedId) mostrarModal(pinnedId, año);
             },
           });
+          modal.classList.remove("is-playing");
         });
 
         document.getElementById("toggle-estelas").addEventListener("change", (e) => {

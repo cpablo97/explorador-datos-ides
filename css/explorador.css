@@ -166,9 +166,9 @@ p {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 0 1rem 0;
+  padding: 0.75rem 0;
   border-bottom: 1px solid var(--color-callout-border);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .tabs-row__filtro {
@@ -178,7 +178,7 @@ p {
   border: 1px solid var(--color-callout-border);
   border-radius: 0.25rem;
   padding: 0.6rem 1.2rem;
-  background: var(--blanco);
+  background: var(--crema);
 }
 
 /* ---------- Dashboard ---------- */
@@ -188,6 +188,8 @@ p {
    de la versión anterior (sidebar fija) en explorador.css.bak-sidebar. */
 .dashboard {
   display: block;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 }
 
 .dashboard__chart-col {
@@ -200,6 +202,7 @@ p {
   width: 100%;
   max-width: 100%;
   aspect-ratio: 1;
+  cursor: crosshair;
 }
 #chart-main svg {
   width: 100%;
@@ -236,12 +239,27 @@ p {
     transform 0.15s ease,
     visibility 0.15s;
   pointer-events: none;
+  cursor: grab;
 }
 .locality-modal.is-visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
+}
+/* Arrastrable — se puede mover a cualquier parte del gráfico para
+   destaparlo. Mientras se arrastra se corta la transición de posición
+   (para que siga el mouse sin retraso) y se bloquea la selección de texto. */
+.locality-modal.is-dragging {
+  transition: none;
+  cursor: grabbing;
+  user-select: none;
+}
+/* Mientras se reproduce "Reproducir evolución", el panel (y todo su
+   contenido, ya que opacity afecta a todo el subárbol) se atenúa para
+   dejar ver el gráfico moviéndose detrás. */
+.locality-modal.is-visible.is-playing {
+  opacity: 0.25;
 }
 .locality-modal .locality-card {
   box-shadow: 0 12px 32px color-mix(in srgb, var(--verde-fuerte) 28%, transparent);
@@ -370,7 +388,7 @@ p {
   margin-top: 0.25rem;
 }
 .locality-card__ides-label {
-  font: 300 1.75rem/1 var(--font-primary);
+  font: 300 1.25rem/1 var(--font-primary);
   color: var(--color-text-primary);
 }
 .locality-card__ides-valor {

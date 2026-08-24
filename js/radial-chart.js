@@ -26,6 +26,17 @@
     determinantes: "Determinantes Sociales",
   };
 
+  // Color del subrayado de las etiquetas de eje — variables semánticas
+  // por dimensión pedidas explícitamente, distintas de AXES[].colorVar
+  // (que para determinantes usa la excepción de "vista compuesta"
+  // verde-500 en la línea del eje/sector de fondo; el subrayado del
+  // texto usa el verde-300 semántico estándar).
+  const DIM_UNDERLINE_COLOR = {
+    salud: "--color-text-decoration-salud",
+    justicia: "--color-text-decoration-justicia",
+    determinantes: "--color-text-decoration-determinantes",
+  };
+
   function anguloARad(deg) {
     return ((deg - 90) * Math.PI) / 180;
   }
@@ -283,7 +294,7 @@
           geom.radioMax + opts.axisLabelOffset,
           axis.angleDeg,
         );
-        ejes
+        const texto = ejes
           .append("text")
           .attr("x", label.x)
           .attr("y", label.y)
@@ -294,9 +305,23 @@
             return "middle";
           })())
           .attr("dominant-baseline", "middle")
-          .attr("fill", `var(${axis.colorVar})`)
-          .attr("style", "font: var(--text-caption-source);")
+          .attr("fill", "var(--color-text-primary)")
+          .attr("style", `font: ${opts.axisLabelFont};`)
           .text(DIM_LABELS[axis.key]);
+
+        // Resaltador dibujado a mano: text-decoration-color en <text> SVG
+        // no se pinta de forma confiable (varios navegadores igual usan el
+        // color del texto) — un rect real detrás del texto sí garantiza el
+        // color correcto por dimensión.
+        const bbox = texto.node().getBBox();
+        const resaltador = ejes
+          .append("rect")
+          .attr("x", bbox.x)
+          .attr("y", bbox.y + bbox.height * 0.62)
+          .attr("width", bbox.width)
+          .attr("height", bbox.height * 0.22)
+          .attr("fill", `var(${DIM_UNDERLINE_COLOR[axis.key]})`);
+        texto.node().before(resaltador.node());
       }
     });
   }
@@ -318,7 +343,12 @@
         showRingLabels: true,
         axisOpacity: 0.5,
         axisLabelOffset: 46,
+        axisLabelFont: "var(--text-body-primary)",
         margin: 80,
+        marginLeft: null,
+        marginRight: null,
+        marginTop: null,
+        marginBottom: null,
         onHover: null,
         onSelect: null,
       },
@@ -326,11 +356,25 @@
     );
 
     const geom = { cx: opts.size / 2, cy: opts.size / 2, radioMax: opts.radioMax };
-    const m = opts.margin;
+    // Márgenes asimétricos: por defecto los 4 lados usan opts.margin, pero
+    // se pueden dar por separado — necesario porque la etiqueta
+    // "Determinantes Sociales" (arriba-izquierda) es mucho más ancha que
+    // las otras, y darle margen extra SOLO a la izquierda evita tener que
+    // agrandar el margen parejo en los 4 lados (lo que encogía el círculo
+    // dentro del mismo contenedor). El aspect-ratio del contenedor se
+    // ajusta en JS para que calce exacto con el viewBox resultante, sin
+    // dejar bandas vacías.
+    const mL = opts.marginLeft ?? opts.margin;
+    const mR = opts.marginRight ?? opts.margin;
+    const mT = opts.marginTop ?? opts.margin;
+    const mB = opts.marginBottom ?? opts.margin;
+    const totalW = opts.size + mL + mR;
+    const totalH = opts.size + mT + mB;
     const svg = d3
       .select(containerSelector)
+      .style("aspect-ratio", `${totalW} / ${totalH}`)
       .append("svg")
-      .attr("viewBox", `${-m} ${-m} ${opts.size + 2 * m} ${opts.size + 2 * m}`)
+      .attr("viewBox", `${-mL} ${-mT} ${totalW} ${totalH}`)
       .attr("class", "radial-chart");
 
     dibujarFondo(svg, geom, opts);
@@ -340,9 +384,50 @@
     const trailsLayer = svg.append("g").attr("class", "locality-trails");
     const trailsDefs = svg.append("defs").attr("class", "locality-trails-defs");
     const dotsLayer = svg.append("g").attr("class", "locality-dots");
+    // Encima de los puntos, para que el nombre no quede tapado por otras
+    // localidades cercanas.
+    const hoverLabelLayer = svg
+      .append("g")
+      .attr("class", "locality-hover-label")
+      .style("pointer-events", "none");
     const dataset = opts.filterIds
       ? opts.data.filter((d) => opts.filterIds.includes(d.id))
       : opts.data;
+
+    // Nombre de la localidad al lado del punto en hover — se ancla hacia
+    // el lado con más espacio (derecha si el punto está en la mitad
+    // izquierda del gráfico, y viceversa) para minimizar recortes contra
+    // el borde, con un fondo detrás para legibilidad sobre el gráfico.
+    function ocultarNombreHover() {
+      hoverLabelLayer.selectAll("*").remove();
+    }
+    function mostrarNombreHover(d) {
+      hoverLabelLayer.selectAll("*").remove();
+      const haciaDerecha = d.x <= geom.cx;
+      const gap = opts.dotRadius + 10;
+      const x = haciaDerecha ? d.x + gap : d.x - gap;
+      const texto = hoverLabelLayer
+        .append("text")
+        .attr("x", x)
+        .attr("y", d.y)
+        .attr("text-anchor", haciaDerecha ? "start" : "end")
+        .attr("dominant-baseline", "middle")
+        .attr("fill", "var(--color-text-primary)")
+        .attr("style", "font: var(--text-caption-source); font-weight: 600;")
+        .text(d.nombre);
+      const bbox = texto.node().getBBox();
+      const pad = 4;
+      const fondo = hoverLabelLayer
+        .append("rect")
+        .attr("x", bbox.x - pad)
+        .attr("y", bbox.y - pad)
+        .attr("width", bbox.width + pad * 2)
+        .attr("height", bbox.height + pad * 2)
+        .attr("rx", 3)
+        .attr("fill", "var(--color-bg)")
+        .attr("fill-opacity", 0.9);
+      texto.node().before(fondo.node());
+    }
 
     let currentYear = 2024;
     let puntosAnteriores = new Map();
@@ -516,8 +601,14 @@
       if (opts.interactive) {
         dots
           .style("cursor", "pointer")
-          .on("mouseenter", (event, d) => opts.onHover && opts.onHover(d.id, currentYear))
-          .on("mouseleave", () => opts.onHover && opts.onHover(null))
+          .on("mouseenter", (event, d) => {
+            opts.onHover && opts.onHover(d.id, currentYear);
+            mostrarNombreHover(d);
+          })
+          .on("mouseleave", () => {
+            opts.onHover && opts.onHover(null);
+            ocultarNombreHover();
+          })
           .on("click", (event, d) => {
             event.stopPropagation();
             opts.onSelect && opts.onSelect(d.id, currentYear);
