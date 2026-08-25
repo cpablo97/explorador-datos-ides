@@ -166,13 +166,13 @@ p {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--color-bg);
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--color-callout-border);
-  margin-bottom: 0.5rem;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 
 .tabs-row__filtro {
@@ -180,7 +180,6 @@ p {
   font: 400 0.9rem/1 var(--font-primary);
   color: var(--color-text-primary);
   border: 1px solid var(--color-callout-border);
-  border-radius: 0.25rem;
   padding: 0.6rem 1.2rem;
   background: var(--crema);
 }
@@ -192,7 +191,7 @@ p {
    de la versión anterior (sidebar fija) en explorador.css.bak-sidebar. */
 .dashboard {
   display: block;
-  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
 
@@ -393,7 +392,6 @@ p {
   color: var(--color-text-primary);
   background: var(--crema);
   border: 1px solid var(--color-callout-border);
-  border-radius: 0.25rem;
   padding: 0.6rem 1.1rem;
   cursor: pointer;
 }
@@ -408,7 +406,6 @@ p {
   color: var(--color-text-primary);
   background: var(--crema);
   border: none;
-  border-radius: 0.25rem;
   padding: 0.7rem 1.4rem;
   cursor: pointer;
 }
@@ -548,7 +545,6 @@ p {
   color: var(--color-text-primary);
   background: var(--blanco);
   border: 1px solid var(--color-text-primary);
-  border-radius: 0.25rem;
   padding: 0.8rem;
   cursor: not-allowed;
 }

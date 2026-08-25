@@ -11,7 +11,6 @@
 /* ---------- Sección / colapso ---------- */
 
 .locality-detail {
-  margin-top: 3rem;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -25,6 +24,7 @@
 }
 
 .locality-detail__content {
+  background: color-mix(in srgb, var(--color-bg) 70%, transparent);
   border: 1px solid var(--color-callout-border);
   padding: 2rem 2.5rem 2.5rem;
   -webkit-backdrop-filter: blur(10px);
@@ -34,11 +34,17 @@
 /* ---------- Encabezado ---------- */
 
 .locality-detail__nombre {
-  font: 700 1.75rem/2.25rem var(--font-primary);
+  font: 700 2.75rem/2.25rem var(--font-primary);
   color: var(--color-text-primary);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
 }
 .locality-detail__year {
-  margin-top: 0.25rem;
+  margin-top: 0.75rem;
   font: 400 1rem/1.25rem var(--font-primary);
   color: var(--color-text-secondary);
 }
@@ -47,24 +53,22 @@
 
 .locality-detail__tabs {
   display: flex;
-  gap: 0.75rem;
   margin: 1.75rem 0 2rem;
-  border-bottom: 1px solid var(--color-callout-border);
-  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--color-callout-border);
 }
 .locality-detail__tab {
   font: 400 0.95rem/1 var(--font-primary);
   color: var(--color-text-primary);
-  background: var(--crema);
-  border: 1px solid var(--color-callout-border);
-  border-radius: 0.25rem;
+  background: transparent;
+  border: none;
+  border-bottom: 0.25rem solid var(--color-callout-border);
+  border-radius: 0;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
 }
 .locality-detail__tab.is-active {
-  background: var(--color-text-primary);
-  color: var(--crema);
-  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+  border-bottom: 0.25rem solid var(--color-text-primary);
 }
 
 .locality-detail__panel {
@@ -112,14 +116,14 @@
   gap: 2.25rem;
 }
 .locality-detail__tracks--compact {
-  gap: 0.5rem;
+  gap: 5rem;
 }
 
 /* ---------- Track individual ---------- */
 
-.locality-detail__track--salud { --dim-color: var(--azul-300); }
-.locality-detail__track--justicia { --dim-color: var(--naranja-300); }
-.locality-detail__track--determinantes { --dim-color: var(--verde-400); }
+.locality-detail__track--salud { --dim-color: var(--azul-300); --dim-decoration-color: var(--color-text-decoration-salud); }
+.locality-detail__track--justicia { --dim-color: var(--naranja-300); --dim-decoration-color: var(--color-text-decoration-justicia); }
+.locality-detail__track--determinantes { --dim-color: var(--verde-400); --dim-decoration-color: var(--color-text-decoration-determinantes); }
 
 .locality-detail__track-label {
   display: flex;
@@ -129,27 +133,39 @@
   margin-bottom: 0.35rem;
 }
 .locality-detail__track-nombre {
-  font: 600 1.15rem/1.3 var(--font-primary);
+  font: 600 1.25rem/1.3 var(--font-primary);
   color: var(--color-text-primary);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
 }
 .locality-detail__track-valor {
   font: var(--text-data-1);
   font-size: 1.4rem;
-  color: var(--dim-color);
+  color: var(--color-text-primary);
   white-space: nowrap;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--dim-decoration-color, var(--color-text-decoration-generico));
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
 }
 .locality-detail__track-valor-suffix {
   font-weight: 400;
-  font-size: 0.85rem;
+  font-size: 1.25rem;
   opacity: 0.6;
 }
 
 .locality-detail__track--compact .locality-detail__track-nombre {
-  font-size: 0.85rem;
+  font-size: 1.25rem;
   font-weight: 400;
 }
 .locality-detail__track--compact .locality-detail__track-valor {
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .locality-detail__track--compact .locality-detail__track-label {
   margin-bottom: 0.1rem;
@@ -173,13 +189,40 @@
 }
 
 .locality-detail__band {
-  fill: color-mix(in srgb, var(--dim-color) 20%, transparent);
+  fill: var(--dim-color);
+  mix-blend-mode: multiply;
 }
 
 .locality-detail__dot {
   fill: var(--dim-color);
 }
 .locality-detail__dot--cuartil {
+  opacity: 0.75;
+}
+
+.locality-detail__dot-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+.locality-detail__cuartil-group {
+  outline: none;
+}
+.locality-detail__label-text.locality-detail__label-text--cuartil {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.locality-detail__tick.locality-detail__tick--cuartil {
+  stroke: var(--verde-gris-400);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.locality-detail__cuartil-group:hover .locality-detail__label-text--cuartil,
+.locality-detail__cuartil-group:focus-within .locality-detail__label-text--cuartil {
+  opacity: 0.6;
+}
+.locality-detail__cuartil-group:hover .locality-detail__tick--cuartil,
+.locality-detail__cuartil-group:focus-within .locality-detail__tick--cuartil {
   opacity: 0.75;
 }
 
@@ -195,6 +238,7 @@
 }
 .locality-detail__label-text {
   font: var(--text-caption-source);
+  font-weight: 200;
   fill: var(--color-text-primary);
   opacity: 0.6;
 }
@@ -206,19 +250,37 @@
   font-size: 0.58rem;
 }
 
+/* Promedio/mediana: suelen caer muy cerca en el eje real, así que su texto
+   va más angosto — cuando están cerca cada uno se ancla hacia su propio
+   lado en vez de centrarse (ver posicionarCentrales en locality-detail.js). */
+.locality-detail__value-text--central {
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.locality-detail__label-text--central {
+  font-size: 0.68rem;
+}
+.locality-detail__track--compact .locality-detail__value-text--central {
+  font-size: 0.62rem;
+}
+.locality-detail__track--compact .locality-detail__label-text--central {
+  font-size: 0.52rem;
+}
+
 .locality-detail__connector {
-  stroke: var(--dim-color);
-  stroke-width: 2;
+  stroke: var(--color-callout-border);
+  stroke-width: 1;
 }
 
 .locality-detail__marker {
   fill: var(--dim-color);
-  stroke: var(--color-bg);
-  stroke-width: 3;
+  stroke: var(--color-callout-border);
+  stroke-width: 1;
+  mix-blend-mode: multiply;
 }
 .locality-detail__marker-value {
   font: 700 1.4rem/1 var(--font-primary);
-  fill: var(--blanco);
+  fill: var(--color-text-primary);
 }
 .locality-detail__track--compact .locality-detail__marker-value {
   font-size: 0.85rem;

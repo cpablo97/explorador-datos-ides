@@ -22,48 +22,33 @@
   // da el CSS vía width:100% + aspect-ratio — ver css/utilities/locality-detail.css,
   // mismo patrón que #chart-main en fan-chart.js).
   const GEOM = {
-    full: { W: 760, H: 200, padX: 56, axisY: 128, circleR: 34, circleCy: 40, dotR: 5.5, qDotR: 4, tickHalf: 11, labelGap: 110 },
-    compact: { W: 760, H: 116, padX: 44, axisY: 70, circleR: 19, circleCy: 22, dotR: 4, qDotR: 3, tickHalf: 8, labelGap: 90 },
+    full: { W: 760, H: 200, padX: 56, axisY: 128, circleR: 34, circleCy: 40, dotR: 5.5, qDotR: 4, tickHalf: 11, centralGap: 6 },
+    compact: { W: 760, H: 116, padX: 44, axisY: 70, circleR: 19, circleCy: 22, dotR: 4, qDotR: 3, tickHalf: 8, centralGap: 5 },
   };
-  const ROLES_ETIQUETA = ["bottom", "lowerQ", "avg", "median", "upperQ", "top"];
 
-  // Los 6 marcadores (extremos, cuartiles, promedio, mediana) pueden caer
-  // muy cerca unos de otros en el eje real cuando la distribución es
-  // angosta — sus DOTS/TICKS se quedan en su posición real (`x(valor)`),
-  // pero el TEXTO (valor + etiqueta) se reacomoda con un separado mínimo
-  // para no quedar ilegible superpuesto. Barrido simple de izquierda a
-  // derecha: si dos posiciones ordenadas quedan más cerca que `minGap`, la
-  // de la derecha se empuja. Se recalcula en cada render/actualización
-  // (mismas `stats`/escala), así se mantiene consistente durante la
-  // animación por año.
-  function posicionesEtiqueta(stats, xScale, minGap, limites) {
-    const items = ROLES_ETIQUETA.map((role) => ({ role, x: xScale(stats[role]) }));
-    items.sort((a, b) => a.x - b.x);
-    for (let i = 1; i < items.length; i++) {
-      if (items[i].x - items[i - 1].x < minGap) {
-        items[i].x = items[i - 1].x + minGap;
-      }
-    }
-    // El barrido hacia la derecha puede empujar la última etiqueta más allá
-    // del borde del track cuando varios valores están apretados entre sí —
-    // si eso pasa, se recorre TODO el grupo hacia la izquierda lo mismo que
-    // se pasó, y se fija el primero al límite izquierdo como último
-    // recurso (caso extremo: los 6 marcadores casi pegados).
-    const ultimo = items[items.length - 1];
-    if (ultimo.x > limites.max) {
-      const exceso = ultimo.x - limites.max;
-      items.forEach((it) => {
-        it.x -= exceso;
-      });
-    }
-    if (items[0].x < limites.min) {
-      items[0].x = limites.min;
-    }
-    const out = {};
-    items.forEach((it) => {
-      out[it.role] = it.x;
-    });
-    return out;
+  // Bottom/top siempre caen justo en los bordes del dominio de `x`, así
+  // que su texto no necesita acomodo. Los cuartiles solo muestran su
+  // etiqueta al hover (ver .locality-detail__cuartil-group en renderTrack),
+  // así que tampoco compiten por espacio. Promedio y mediana sí conviven
+  // siempre visibles y pueden caer muy cerca — su texto nunca se centra
+  // sobre su tick (lo atravesaría por la mitad); cada uno se ancla hacia
+  // el lado contrario al del otro marcador, con un pequeño espacio (`gap`)
+  // para no tocar la línea. El tick queda en la posición real (`tickX`);
+  // el texto se corre `gap` unidades hacia su lado (`textX`).
+  function posicionarCentrales(xAvg, xMedian, gap) {
+    const avgALaIzquierda = xAvg <= xMedian;
+    return {
+      avg: {
+        tickX: xAvg,
+        textX: avgALaIzquierda ? xAvg - gap : xAvg + gap,
+        anchor: avgALaIzquierda ? "end" : "start",
+      },
+      median: {
+        tickX: xMedian,
+        textX: avgALaIzquierda ? xMedian + gap : xMedian - gap,
+        anchor: avgALaIzquierda ? "start" : "end",
+      },
+    };
   }
 
   function entryDeAño(localidad, año) {
@@ -146,7 +131,6 @@
     const g = GEOM[size];
     const stats = calcularBenchmarks(valores);
     const x = d3.scaleLinear().domain([stats.bottom, stats.top]).range([g.padX, g.W - g.padX]);
-    const labelX = posicionesEtiqueta(stats, x, g.labelGap, { min: g.padX, max: g.W - g.padX });
 
     const wrapper = hostSel
       .append("div")
@@ -185,26 +169,29 @@
       .attr("class", "locality-detail__band")
       .attr("x", x(stats.lowerQ))
       .attr("width", Math.max(0, x(stats.upperQ) - x(stats.lowerQ)))
-      .attr("y", g.axisY - 4)
-      .attr("height", 8);
+      .attr("y", g.axisY - 10)
+      .attr("height", 20);
 
-    // Extremos: punto + valor + etiqueta.
+    // Extremos: punto + valor + etiqueta. Siempre caen justo en los bordes
+    // del dominio de `x` (bottom/top lo definen), así que su texto va
+    // centrado sobre su propia posición real sin necesitar acomodo.
     [
       { role: "bottom", val: stats.bottom, texto: "Rango inferior" },
       { role: "top", val: stats.top, texto: "Rango superior" },
     ].forEach((d) => {
+      const px = x(d.val);
       svg
         .append("circle")
         .datum({ role: d.role })
         .attr("class", "locality-detail__dot")
-        .attr("cx", x(d.val))
+        .attr("cx", px)
         .attr("cy", g.axisY)
         .attr("r", g.dotR);
       svg
         .append("text")
         .datum({ role: d.role })
         .attr("class", "locality-detail__value-text")
-        .attr("x", labelX[d.role])
+        .attr("x", px)
         .attr("y", g.axisY + g.tickHalf + 14)
         .attr("text-anchor", "middle")
         .text(Math.round(d.val));
@@ -212,63 +199,107 @@
         .append("text")
         .datum({ role: d.role })
         .attr("class", "locality-detail__label-text")
-        .attr("x", labelX[d.role])
+        .attr("x", px)
         .attr("y", g.axisY + g.tickHalf + 28)
         .attr("text-anchor", "middle")
         .text(d.texto);
     });
 
-    // Cuartiles: solo punto + etiqueta, sin valor numérico (igual que en
-    // referenteSIS.png).
+    // Cuartiles: el punto siempre visible; su etiqueta ("Cuartil inferior/
+    // superior") solo aparece al pasar el mouse (o con foco de teclado)
+    // sobre el punto — así no compite con promedio/mediana, que suelen
+    // caer muy cerca. El círculo transparente agranda el área de hover,
+    // porque el punto real (qDotR) es muy chico para apuntarle con precisión.
     [
-      { role: "lowerQ", val: stats.lowerQ, texto: "Cuartil inferior" },
-      { role: "upperQ", val: stats.upperQ, texto: "Cuartil superior" },
+      { role: "lowerQ", val: stats.lowerQ, texto: "Cuartil inferior", lado: -1 },
+      { role: "upperQ", val: stats.upperQ, texto: "Cuartil superior", lado: 1 },
     ].forEach((d) => {
-      svg
+      const px = x(d.val);
+      // Igual que promedio/mediana: el texto nunca se centra sobre el tick
+      // (lo atravesaría por la mitad) — se ancla hacia afuera de la banda,
+      // con el mismo espacio (`centralGap`) de distancia a la línea.
+      const textX = px + d.lado * g.centralGap;
+      const anchor = d.lado < 0 ? "end" : "start";
+      // Tick apuntando hacia arriba (mismo sentido que el connector del
+      // marker): la punta queda en tickTopY y ahí mismo se ancla el texto,
+      // en vez de abajo del eje como promedio/mediana.
+      const tickTopY = g.axisY - 38;
+      const tickBottomY = g.axisY + 2;
+      const grupo = svg
+        .append("g")
+        .attr("class", "locality-detail__cuartil-group")
+        .attr("tabindex", "0");
+      grupo
+        .append("circle")
+        .datum({ role: d.role })
+        .attr("class", "locality-detail__dot-hit")
+        .attr("cx", px)
+        .attr("cy", g.axisY)
+        .attr("r", g.qDotR + 6);
+      grupo
         .append("circle")
         .datum({ role: d.role })
         .attr("class", "locality-detail__dot locality-detail__dot--cuartil")
-        .attr("cx", x(d.val))
+        .attr("cx", px)
         .attr("cy", g.axisY)
         .attr("r", g.qDotR);
-      svg
+      // Tick corto, solo hacia arriba del eje (mismo sentido que
+      // .locality-detail__connector del marker — no cruza hacia abajo como
+      // el de promedio/mediana), en un verde-gris suave y oculto hasta el
+      // hover (ver .locality-detail__tick--cuartil en el CSS).
+      grupo
+        .append("line")
+        .datum({ role: d.role })
+        .attr("class", "locality-detail__tick locality-detail__tick--cuartil")
+        .attr("x1", px)
+        .attr("x2", px)
+        .attr("y1", tickBottomY)
+        .attr("y2", tickTopY);
+      grupo
         .append("text")
         .datum({ role: d.role })
-        .attr("class", "locality-detail__label-text")
-        .attr("x", labelX[d.role])
-        .attr("y", g.axisY + g.tickHalf + 28)
-        .attr("text-anchor", "middle")
+        .attr(
+          "class",
+          "locality-detail__label-text locality-detail__label-text--central locality-detail__label-text--cuartil",
+        )
+        .attr("x", textX)
+        .attr("y", tickTopY)
+        .attr("text-anchor", anchor)
         .text(d.texto);
     });
 
-    // Promedio / mediana: tick + valor + etiqueta.
+    // Promedio / mediana: tick + valor + etiqueta — ver posicionarCentrales:
+    // el tick queda en la posición real, el texto se corre a un lado. El
+    // tick baja hasta pasar la caja de su etiqueta, para leerse ligado a ella.
+    const centrales = posicionarCentrales(x(stats.avg), x(stats.median), g.centralGap);
     [
       { role: "avg", val: stats.avg, texto: "Promedio" },
       { role: "median", val: stats.median, texto: "Mediana" },
     ].forEach((d) => {
+      const pos = centrales[d.role];
       svg
         .append("line")
         .datum({ role: d.role })
         .attr("class", "locality-detail__tick")
-        .attr("x1", x(d.val))
-        .attr("x2", x(d.val))
+        .attr("x1", pos.tickX)
+        .attr("x2", pos.tickX)
         .attr("y1", g.axisY - g.tickHalf)
-        .attr("y2", g.axisY + g.tickHalf);
+        .attr("y2", g.axisY + g.tickHalf + 34);
       svg
         .append("text")
         .datum({ role: d.role })
-        .attr("class", "locality-detail__value-text")
-        .attr("x", labelX[d.role])
+        .attr("class", "locality-detail__value-text locality-detail__value-text--central")
+        .attr("x", pos.textX)
         .attr("y", g.axisY + g.tickHalf + 14)
-        .attr("text-anchor", "middle")
+        .attr("text-anchor", pos.anchor)
         .text(Math.round(d.val));
       svg
         .append("text")
         .datum({ role: d.role })
-        .attr("class", "locality-detail__label-text")
-        .attr("x", labelX[d.role])
+        .attr("class", "locality-detail__label-text locality-detail__label-text--central")
+        .attr("x", pos.textX)
         .attr("y", g.axisY + g.tickHalf + 28)
-        .attr("text-anchor", "middle")
+        .attr("text-anchor", pos.anchor)
         .text(d.texto);
     });
 
@@ -316,7 +347,6 @@
     const size = wrapper.classed("locality-detail__track--compact") ? "compact" : "full";
     const g = GEOM[size];
     const x = d3.scaleLinear().domain([stats.bottom, stats.top]).range([g.padX, g.W - g.padX]);
-    const labelX = posicionesEtiqueta(stats, x, g.labelGap, { min: g.padX, max: g.W - g.padX });
 
     animarNumero(wrapper.select(".locality-detail__track-valor-num").node(), Math.round(valorLocalidad), duration);
 
@@ -335,32 +365,44 @@
     mover(bandSel, "x", x(stats.lowerQ));
     mover(bandSel, "width", Math.max(0, x(stats.upperQ) - x(stats.lowerQ)));
 
-    const puntos = [
+    // Extremos: siempre en los bordes del dominio de `x`.
+    [
       { role: "bottom", val: stats.bottom },
       { role: "top", val: stats.top },
-      { role: "lowerQ", val: stats.lowerQ },
-      { role: "upperQ", val: stats.upperQ },
-    ];
-    puntos.forEach((p) => {
+    ].forEach((p) => {
       const px = x(p.val);
       mover(porRol(svg, ".locality-detail__dot", p.role), "cx", px);
-      mover(porRol(svg, ".locality-detail__value-text", p.role), "x", labelX[p.role]);
-      mover(porRol(svg, ".locality-detail__label-text", p.role), "x", labelX[p.role]);
-      if (p.role === "bottom" || p.role === "top") {
-        animarNumero(porRol(svg, ".locality-detail__value-text", p.role).node(), Math.round(p.val), duration);
-      }
+      mover(porRol(svg, ".locality-detail__value-text", p.role), "x", px);
+      mover(porRol(svg, ".locality-detail__label-text", p.role), "x", px);
+      animarNumero(porRol(svg, ".locality-detail__value-text", p.role).node(), Math.round(p.val), duration);
     });
 
-    const centrales = [
+    // Cuartiles: punto + área de hover + etiqueta (oculta hasta hover).
+    [
+      { role: "lowerQ", val: stats.lowerQ, lado: -1 },
+      { role: "upperQ", val: stats.upperQ, lado: 1 },
+    ].forEach((p) => {
+      const px = x(p.val);
+      mover(porRol(svg, ".locality-detail__dot", p.role), "cx", px);
+      mover(porRol(svg, ".locality-detail__dot-hit", p.role), "cx", px);
+      mover(porRol(svg, ".locality-detail__tick", p.role), "x1", px);
+      mover(porRol(svg, ".locality-detail__tick", p.role), "x2", px);
+      mover(porRol(svg, ".locality-detail__label-text", p.role), "x", px + p.lado * g.centralGap);
+    });
+
+    // Promedio / mediana: recalcula lado de anclaje con la nueva escala.
+    const centrales = posicionarCentrales(x(stats.avg), x(stats.median), g.centralGap);
+    [
       { role: "avg", val: stats.avg },
       { role: "median", val: stats.median },
-    ];
-    centrales.forEach((c) => {
-      const cx2 = x(c.val);
-      mover(porRol(svg, ".locality-detail__tick", c.role), "x1", cx2);
-      mover(porRol(svg, ".locality-detail__tick", c.role), "x2", cx2);
-      mover(porRol(svg, ".locality-detail__value-text", c.role), "x", labelX[c.role]);
-      mover(porRol(svg, ".locality-detail__label-text", c.role), "x", labelX[c.role]);
+    ].forEach((c) => {
+      const pos = centrales[c.role];
+      mover(porRol(svg, ".locality-detail__tick", c.role), "x1", pos.tickX);
+      mover(porRol(svg, ".locality-detail__tick", c.role), "x2", pos.tickX);
+      mover(porRol(svg, ".locality-detail__value-text", c.role), "x", pos.textX);
+      mover(porRol(svg, ".locality-detail__label-text", c.role), "x", pos.textX);
+      porRol(svg, ".locality-detail__value-text", c.role).attr("text-anchor", pos.anchor);
+      porRol(svg, ".locality-detail__label-text", c.role).attr("text-anchor", pos.anchor);
       animarNumero(porRol(svg, ".locality-detail__value-text", c.role).node(), Math.round(c.val), duration);
     });
 
