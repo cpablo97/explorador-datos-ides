@@ -11,17 +11,19 @@
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  async function reproducirEvolucion(chart, { onYearChange, playBtn } = {}) {
+  async function reproducirEvolucion(chart, { onYearChange, onYearStart, playBtn } = {}) {
     if (playBtn) {
       playBtn.disabled = true;
       playBtn.textContent = "Reproduciendo…";
     }
 
+    onYearStart && onYearStart(AÑOS[0], 0);
     chart.setYear(AÑOS[0]);
     onYearChange && onYearChange(AÑOS[0]);
     await esperar(400);
 
     for (let i = 1; i < AÑOS.length; i++) {
+      onYearStart && onYearStart(AÑOS[i], STEP_DURATION);
       await chart.transitionToYear(AÑOS[i], STEP_DURATION);
       onYearChange && onYearChange(AÑOS[i]);
       if (i < AÑOS.length - 1) await esperar(STEP_PAUSE);
@@ -33,5 +35,5 @@
     }
   }
 
-  window.IDESTimeline = { AÑOS, reproducirEvolucion };
+  window.IDESTimeline = { AÑOS, STEP_DURATION, reproducirEvolucion };
 })();

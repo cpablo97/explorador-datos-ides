@@ -201,7 +201,7 @@ p {
 #chart-main {
   width: 100%;
   max-width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 1300 / 740;
   cursor: crosshair;
 }
 #chart-main svg {
@@ -209,14 +209,108 @@ p {
   height: 100%;
 }
 
-/* Fondo decorativo del gráfico radial y las localidades — mismo
-   mix-blend-mode:multiply que el brandmark del header (.half-circle en
-   stats-donuts.js), extraído de la captura de Figma del gráfico real. */
-.chart-fondo__sector {
+/* ---------- Abanico (fan-chart.js) ---------- */
+
+.fan-fondo__base {
+  stroke: var(--color-decorative-grid);
+  stroke-opacity: 0.4;
+  stroke-width: 1.5;
+}
+.fan-fondo__arco {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 15%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.fan-fondo__arco--mayor {
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 35%, transparent);
+  stroke-dasharray: none;
+}
+.fan-fondo__valor {
+  font: var(--text-caption-source);
+  fill: var(--color-text-primary);
+  opacity: 0.6;
+}
+
+.fan-guide {
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 25%, transparent);
+  stroke-width: 1;
+  transition: opacity 0.25s ease;
+}
+
+.fan-point {
+  fill: var(--color-text-decoration-generico);
+  stroke: var(--verde-fuerte);
+  stroke-width: 1.2;
+  transition: opacity 0.25s ease;
+}
+
+/* Mismo mix-blend-mode:multiply que el resto de los colores por dimensión
+   (brandmark del header, cuñas de la rosa) — ver dibujarEstelas en
+   fan-chart.js. */
+.fan-trail {
   mix-blend-mode: multiply;
 }
-.locality-dot {
+.fan-point[tabindex] {
+  cursor: pointer;
+}
+.fan-point:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 3px;
+}
+
+/* Nombre de la localidad, persistente — rotado para leerse como la
+   continuación de su línea guía (ver el bloque que dibuja fan-guide +
+   fan-etiqueta en crearGraficoAbanico, fan-chart.js). */
+.fan-etiqueta {
+  font: var(--text-caption-source);
+  fill: var(--color-text-primary);
+  opacity: 0.85;
+}
+
+/* ---------- Rosa (locality-rose.js) ---------- */
+
+.locality-rose__bounds {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 30%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+/* Mismo mix-blend-mode:multiply que el brandmark del header (.half-circle
+   en stats-donuts.js) — las 3 cuñas se superponen en el centro de la rosa
+   y el multiply deja ver esa mezcla, en vez de que la de encima tape a
+   las otras dos. */
+.locality-rose__cuña {
   mix-blend-mode: multiply;
+}
+.locality-rose__nucleo {
+  fill: var(--verde-fuerte);
+}
+/* "Florece" desde el punto de reposo: escala 5%→100% con transform-origin
+   en el centro real de la elipse (fill-box == bounding box de la elipse,
+   que ya está centrada en cx,cy — ver locality-rose.js). */
+.locality-rose {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.05);
+  transition:
+    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.18s ease;
+}
+.locality-rose.is-visible {
+  opacity: 1;
+  /* "none" y no scale(1): cualquier transform (incluida una escala neutra
+     de 1) crea un stacking context nuevo en CSS, lo que aislaría el
+     mix-blend-mode de las cuñas — dejarían de mezclarse con el fondo real
+     y solo se mezclarían entre sí (que ni se tocan). Con "none" el
+     multiply vuelve a funcionar en cuanto termina de "florecer". CSS anima
+     igual la transición scale(0.05)→none sin problema. */
+  transform: none;
+}
+.locality-rose.reduced-motion {
+  transform: none;
+  transition: opacity 0.18s ease;
 }
 
 /* ---------- Locality modal (prueba reversible) ---------- */
@@ -427,10 +521,20 @@ p {
 }
 
 /* Barra sólida, sin track de fondo — el ancho ya representa el valor,
-   igual que en el componente real de Figma. */
+   igual que en el componente real de Figma. La duración se pisa por JS en
+   cada llamada a actualizarLocalityCard() (locality-card.js): 0 para
+   saltos instantáneos (apertura, primer año de "Reproducir evolución",
+   prefers-reduced-motion), STEP_DURATION para que se mueva en sincronía
+   con el punto/rosa del gráfico. */
 .locality-card__bar {
   height: 37px;
   border: 1px solid var(--color-callout-border);
+  transition-property: width;
+  transition-duration: 0s;
+  /* Aproximación visual de d3.easeCubicInOut (el mismo easing del punto,
+     la rosa y la estela en fan-chart.js/locality-rose.js) — así la barra
+     se siente parte del mismo movimiento, no solo de la misma duración. */
+  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .locality-card__cta {
@@ -458,7 +562,7 @@ p {
 #chart-secundario {
   width: 100%;
   max-width: 360px;
-  aspect-ratio: 1;
+  aspect-ratio: 460 / 265;
   pointer-events: none;
 }
 #chart-secundario svg {

@@ -54,6 +54,11 @@
               <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
               <span class="trail-toggle__label">Estelas</span>
             </label>
+            <label class="trail-toggle">
+              <input type="checkbox" id="toggle-rosas" />
+              <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
+              <span class="trail-toggle__label">Rosas siempre visibles</span>
+            </label>
           </div>
           <select class="tabs-row__filtro" id="filtro-localidad">
             <option value="">Filtrar por localidad</option>
@@ -85,7 +90,8 @@
     </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="js/radial-chart.js"></script>
+    <script src="js/locality-rose.js"></script>
+    <script src="js/fan-chart.js"></script>
     <script src="js/locality-card.js"></script>
     <script src="js/stats-donuts.js"></script>
     <script src="js/timeline-control.js"></script>
@@ -142,9 +148,9 @@
       }
 
       (async function () {
-        const { crearGraficoRadial, getAñoData, DIM_LABELS } = window.IDESRadialChart;
-        const { renderLocalityCard } = window.IDESLocalityCard;
-        const { AÑOS, reproducirEvolucion } = window.IDESTimeline;
+        const { crearGraficoAbanico, getAñoData } = window.IDESFanChart;
+        const { renderLocalityCard, actualizarLocalityCard } = window.IDESLocalityCard;
+        const { AÑOS, STEP_DURATION, reproducirEvolucion } = window.IDESTimeline;
 
         const data = await fetch("data/localidades.json").then((r) => r.json());
 
@@ -285,23 +291,17 @@
           filtroSelect.value = pinnedId || "";
         }
 
-        const chart = crearGraficoRadial("#chart-main", {
+        const chart = crearGraficoAbanico("#chart-main", {
           data,
-          size: 850,
-          radioMax: 425,
-          dotRadius: 25,
-          hoverDotRadius: 32,
+          radioMax: 420,
+          dotRadius: 8,
+          roseRx: 46,
+          roseRy: 46,
+          marginLeft: 230,
+          marginRight: 230,
+          marginTop: 230,
+          marginBottom: 90,
           interactive: true,
-          showAxisLabels: true,
-          showRingLabels: true,
-          axisOpacity: 0.5,
-          axisLabelOffset: 20,
-          // Asimétrico: "Determinantes Sociales" (arriba-izquierda) es la
-          // etiqueta más ancha y necesita mucho más margen a la izquierda
-          // que en los otros 3 lados — así el círculo no se encoge por
-          // agrandar el margen parejo en los 4 lados.
-          margin: 60,
-          marginLeft: 290,
           onHover(id) {
             if (pinnedId) return;
             chart.highlight(id);
@@ -336,30 +336,27 @@
           if (e.key === "Escape" && pinnedId) seleccionarLocalidad(null);
         });
 
-        crearGraficoRadial("#chart-secundario", {
+        crearGraficoAbanico("#chart-secundario", {
           data,
-          size: 320,
-          radioMax: 120,
-          dotRadius: 12,
+          radioMax: 140,
+          dotRadius: 5,
+          roseRx: 22,
+          roseRy: 22,
+          marginLeft: 90,
+          marginRight: 90,
+          marginTop: 90,
+          marginBottom: 35,
           interactive: false,
           filterIds: ["usme"],
-          showAxisLabels: true,
-          showRingLabels: false,
-          axisOpacity: 0.35,
-          axisLabelOffset: 30,
-          axisLabelFont: "var(--text-caption-source)",
-          margin: 130,
+          forceRose: true,
         });
 
         const usme = data.find((d) => d.id === "usme");
-        const usmeDims = getAñoData(usme, 2024).dims;
-        const dominanteUsme = Object.keys(usmeDims).reduce((mejor, key) =>
-          usmeDims[key] > usmeDims[mejor] ? key : mejor,
-        );
+        const usmeAño = getAñoData(usme, 2024);
         document.getElementById("explicativo-texto-1").textContent =
-          "Cada punto representa una localidad. Cuanto más lejos del centro, mayor es su índice compuesto (IDES) — el centro equivale a 0 y el borde exterior del círculo a 100. La dirección hacia la que se inclina el punto muestra cuál dimensión pesa más en su resultado.";
+          "Cada punto ocupa un lugar fijo en el abanico —uno por localidad, en orden alfabético— y su distancia al centro representa su Índice de Derecho a la Salud compuesto: el centro equivale a 0 y el borde exterior a 100. Pasa el cursor (o navega con tabulador) sobre cualquier punto para revelar su “rosa”.";
         document.getElementById("explicativo-texto-2").textContent =
-          `En el ejemplo de Usme (2024): Justicia=${usmeDims.justicia}, Salud=${usmeDims.salud}, Determinantes Sociales=${usmeDims.determinantes}. Como ${DIM_LABELS[dominanteUsme]} tiene el puntaje más alto, el punto se inclina hacia ese eje.`;
+          `En el ejemplo de Usme (2024): índice compuesto ${usmeAño.indiceCompuesto}/100. Sus tres dimensiones —Justicia ${usmeAño.dims.justicia}, Salud ${usmeAño.dims.salud}, Determinantes Sociales ${usmeAño.dims.determinantes}— se ven en su rosa, cada pétalo escalado contra su propio anillo, nunca contra la escala 0–100 del abanico.`;
 
         const yearPills = Array.from(document.querySelectorAll(".year-pill"));
         function marcarAñoActivo(año) {
@@ -370,9 +367,18 @@
         yearPills.forEach((btn) => {
           btn.addEventListener("click", () => {
             const año = Number(btn.dataset.año);
-            chart.setYear(año);
             marcarAñoActivo(año);
-            if (pinnedId) mostrarModal(pinnedId, año);
+            // Se dispara ANTES/en el mismo tick que chart.transitionToYear(),
+            // no después — así números y barras del panel se mueven en
+            // paralelo con el punto y la rosa, no como una animación que
+            // arranca cuando el gráfico ya terminó. No hace falta volver a
+            // llamar a mostrarModal()/chart.highlight(): el propio render()
+            // de fan-chart.js ya re-sincroniza la rosa fijada con esta misma
+            // duración (ver idActivo en fan-chart.js).
+            if (pinnedId) {
+              actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
+            }
+            chart.transitionToYear(año, STEP_DURATION);
           });
         });
 
@@ -382,9 +388,13 @@
           modal.classList.add("is-playing");
           await reproducirEvolucion(chart, {
             playBtn: document.getElementById("play-btn"),
+            onYearStart(año, duration) {
+              if (pinnedId) {
+                actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, duration);
+              }
+            },
             onYearChange(año) {
               marcarAñoActivo(año);
-              if (pinnedId) mostrarModal(pinnedId, año);
             },
           });
           modal.classList.remove("is-playing");
@@ -392,6 +402,10 @@
 
         document.getElementById("toggle-estelas").addEventListener("change", (e) => {
           chart.setEstelasActivas(e.target.checked);
+        });
+
+        document.getElementById("toggle-rosas").addEventListener("change", (e) => {
+          chart.setRosasSiempreVisibles(e.target.checked);
         });
       })();
     </script>
