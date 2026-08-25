@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/utilities/locality-detail.css" />
   </head>
   <body>
     <div class="grid-fondo" id="grid-fondo"></div>
@@ -78,6 +79,10 @@
           </div>
         </div>
 
+        <section class="locality-detail" id="locality-detail">
+          <div class="locality-detail__content" id="locality-detail-content"></div>
+        </section>
+
         <section class="diagrama-explicativo">
           <div id="chart-secundario"></div>
           <div class="diagrama-explicativo__texto">
@@ -93,6 +98,7 @@
     <script src="js/locality-rose.js"></script>
     <script src="js/fan-chart.js"></script>
     <script src="js/locality-card.js"></script>
+    <script src="js/locality-detail.js"></script>
     <script src="js/stats-donuts.js"></script>
     <script src="js/timeline-control.js"></script>
     <script>
@@ -150,6 +156,7 @@
       (async function () {
         const { crearGraficoAbanico, getAñoData } = window.IDESFanChart;
         const { renderLocalityCard, actualizarLocalityCard } = window.IDESLocalityCard;
+        const { renderLocalityDetail, actualizarLocalityDetail } = window.IDESLocalityDetail;
         const { AÑOS, STEP_DURATION, reproducirEvolucion } = window.IDESTimeline;
 
         const data = await fetch("data/localidades.json").then((r) => r.json());
@@ -195,6 +202,8 @@
         const modalClose = document.getElementById("locality-modal-close");
         const chartMainEl = document.getElementById("chart-main");
         const tabsRowEl = document.querySelector(".tabs-row");
+        const detailSection = document.getElementById("locality-detail");
+        const detailContent = document.getElementById("locality-detail-content");
 
         let pinnedId = null;
 
@@ -260,12 +269,15 @@
         function mostrarModal(id, año) {
           const localidad = data.find((d) => d.id === id);
           renderLocalityCard(modalContent, localidad, año);
+          renderLocalityDetail(detailContent, data, localidad, año);
+          detailSection.classList.add("is-visible");
           chart.highlight(id);
           modal.classList.add("is-visible");
         }
 
         function ocultarModal() {
           modal.classList.remove("is-visible");
+          detailSection.classList.remove("is-visible");
           chart.highlight(null);
         }
 
@@ -317,16 +329,18 @@
 
         modalClose.addEventListener("click", () => seleccionarLocalidad(null));
         // Cierra al hacer clic afuera — pero no cuenta como "afuera" nada
-        // dentro del gráfico, del panel, ni de la fila de controles
-        // (year-pills, reproducir, toggle de estelas, filtro), para que
-        // esos clics no despinen la selección.
+        // dentro del gráfico, del panel, de la fila de controles
+        // (year-pills, reproducir, toggle de estelas, filtro), ni de la
+        // sección de detalle (sus tabs/sub-tabs), para que esos clics no
+        // despinen la selección.
         document.addEventListener("click", (e) => {
           if (acabaDeArrastrar) return;
           if (!pinnedId) return;
           if (
             modal.contains(e.target) ||
             chartMainEl.contains(e.target) ||
-            tabsRowEl.contains(e.target)
+            tabsRowEl.contains(e.target) ||
+            detailSection.contains(e.target)
           ) {
             return;
           }
@@ -377,6 +391,7 @@
             // duración (ver idActivo en fan-chart.js).
             if (pinnedId) {
               actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
+              actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
             }
             chart.transitionToYear(año, STEP_DURATION);
           });
@@ -391,6 +406,7 @@
             onYearStart(año, duration) {
               if (pinnedId) {
                 actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, duration);
+                actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, duration);
               }
             },
             onYearChange(año) {

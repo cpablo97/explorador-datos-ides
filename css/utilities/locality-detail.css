@@ -1,0 +1,225 @@
+/* locality-detail.css
+   Panel de "detalle de localidad" (benchmark por dimensión/variable) —
+   ver context/prompt-detalle-localidad.md. Aislado a propósito en su
+   propio archivo (no vive en explorador.css) para no repetir el problema
+   de scrollytelling-stage.css peleando con estilos nuevos.
+
+   El color por dimensión se resuelve por CLASE CSS (--dim-color definido
+   acá abajo), nunca puesto por JS sobre el nodo SVG — así se evita el bug
+   de setAttribute vs .style con custom properties en SVG. */
+
+/* ---------- Sección / colapso ---------- */
+
+.locality-detail {
+  margin-top: 3rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease;
+}
+.locality-detail.is-visible {
+  max-height: 6000px;
+  opacity: 1;
+}
+
+.locality-detail__content {
+  border: 1px solid var(--color-callout-border);
+  padding: 2rem 2.5rem 2.5rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Encabezado ---------- */
+
+.locality-detail__nombre {
+  font: 700 1.75rem/2.25rem var(--font-primary);
+  color: var(--color-text-primary);
+}
+.locality-detail__year {
+  margin-top: 0.25rem;
+  font: 400 1rem/1.25rem var(--font-primary);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Tabs / sub-tabs ---------- */
+
+.locality-detail__tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1.75rem 0 2rem;
+  border-bottom: 1px solid var(--color-callout-border);
+  padding-bottom: 1.25rem;
+}
+.locality-detail__tab {
+  font: 400 0.95rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  background: var(--crema);
+  border: 1px solid var(--color-callout-border);
+  border-radius: 0.25rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+}
+.locality-detail__tab.is-active {
+  background: var(--color-text-primary);
+  color: var(--crema);
+  border-color: var(--color-text-primary);
+}
+
+.locality-detail__panel {
+  display: none;
+}
+.locality-detail__panel.is-active {
+  display: block;
+}
+
+.locality-detail__subtabs {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+.locality-detail__subtab {
+  font: 400 0.85rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-callout-border);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+}
+.locality-detail__subtab--salud { --dim-color: var(--azul-300); }
+.locality-detail__subtab--justicia { --dim-color: var(--naranja-300); }
+.locality-detail__subtab--determinantes { --dim-color: var(--verde-400); }
+.locality-detail__subtab.is-active {
+  background: var(--dim-color);
+  color: var(--blanco);
+  border-color: var(--dim-color);
+}
+
+.locality-detail__subpanel {
+  display: none;
+}
+.locality-detail__subpanel.is-active {
+  display: block;
+}
+
+/* ---------- Tracks (contenedor) ---------- */
+
+.locality-detail__tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+.locality-detail__tracks--compact {
+  gap: 0.5rem;
+}
+
+/* ---------- Track individual ---------- */
+
+.locality-detail__track--salud { --dim-color: var(--azul-300); }
+.locality-detail__track--justicia { --dim-color: var(--naranja-300); }
+.locality-detail__track--determinantes { --dim-color: var(--verde-400); }
+
+.locality-detail__track-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+.locality-detail__track-nombre {
+  font: 600 1.15rem/1.3 var(--font-primary);
+  color: var(--color-text-primary);
+}
+.locality-detail__track-valor {
+  font: var(--text-data-1);
+  font-size: 1.4rem;
+  color: var(--dim-color);
+  white-space: nowrap;
+}
+.locality-detail__track-valor-suffix {
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.locality-detail__track--compact .locality-detail__track-nombre {
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+.locality-detail__track--compact .locality-detail__track-valor {
+  font-size: 1rem;
+}
+.locality-detail__track--compact .locality-detail__track-label {
+  margin-bottom: 0.1rem;
+}
+
+.locality-detail__svg-wrap {
+  width: 100%;
+}
+.locality-detail__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* ---------- Elementos SVG del track ---------- */
+
+.locality-detail__axis {
+  stroke: var(--color-callout-border);
+  stroke-width: 2;
+}
+
+.locality-detail__band {
+  fill: color-mix(in srgb, var(--dim-color) 20%, transparent);
+}
+
+.locality-detail__dot {
+  fill: var(--dim-color);
+}
+.locality-detail__dot--cuartil {
+  opacity: 0.75;
+}
+
+.locality-detail__tick {
+  stroke: var(--color-text-primary);
+  stroke-width: 2;
+  opacity: 0.75;
+}
+
+.locality-detail__value-text {
+  font: 600 1rem/1 var(--font-primary);
+  fill: var(--color-text-primary);
+}
+.locality-detail__label-text {
+  font: var(--text-caption-source);
+  fill: var(--color-text-primary);
+  opacity: 0.6;
+}
+
+.locality-detail__track--compact .locality-detail__value-text {
+  font-size: 0.72rem;
+}
+.locality-detail__track--compact .locality-detail__label-text {
+  font-size: 0.58rem;
+}
+
+.locality-detail__connector {
+  stroke: var(--dim-color);
+  stroke-width: 2;
+}
+
+.locality-detail__marker {
+  fill: var(--dim-color);
+  stroke: var(--color-bg);
+  stroke-width: 3;
+}
+.locality-detail__marker-value {
+  font: 700 1.4rem/1 var(--font-primary);
+  fill: var(--blanco);
+}
+.locality-detail__track--compact .locality-detail__marker-value {
+  font-size: 0.85rem;
+}
