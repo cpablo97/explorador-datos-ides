@@ -28,7 +28,7 @@
   function getAñoData(localidad, año) {
     const entry = localidad.anos.find((a) => a.ano === año);
     return {
-      indiceCompuesto: entry.indice_compuesto,
+      indiceCompuesto: entry.ides,
       dims: {
         salud: entry.indices.salud.puntaje,
         justicia: entry.indices.justicia.puntaje,
@@ -101,13 +101,17 @@
     );
 
     const { renderRose, clearRose } = window.IDESLocalityRose;
+    const { getLocalidadesReales } = window.IDESLocalityUtils;
 
     // El ángulo de CADA localidad se deriva de su posición en el orden
     // alfabético completo (las 20), no del subconjunto que termine
     // renderizándose (ver filterIds) — así el diagrama secundario de Usme
     // usa exactamente el mismo ángulo fijo que tendría en el abanico
-    // principal.
-    const localidadesOrdenadas = ordenAlfabetico(opts.data);
+    // principal. Bogotá (ciudad: true) se excluye ANTES de ordenar: si se
+    // colara acá, correría el ángulo de toda localidad alfabéticamente
+    // posterior a ella y aparecería como un pétalo 21 en un abanico
+    // pensado para 20.
+    const localidadesOrdenadas = ordenAlfabetico(getLocalidadesReales(opts.data));
     const N = localidadesOrdenadas.length;
     const indiceAlfabetico = new Map(
       localidadesOrdenadas.map((loc, i) => [loc.id, i]),
