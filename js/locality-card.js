@@ -37,8 +37,17 @@
             <div class="locality-card__bar" style="width:${dims[axis.key]}%; background:var(${BAR_COLOR[axis.key]})"></div>
           </div>`,
         ).join("")}
-        <button class="locality-card__cta" type="button" disabled>Ver localidad</button>
+        <a class="locality-card__cta" href="#locality-detail">Ver localidad</a>
       </div>`;
+
+    const cta = container.querySelector(".locality-card__cta");
+    cta.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("locality-detail")?.scrollIntoView({
+        behavior: prefiereMovimientoReducido() ? "auto" : "smooth",
+        block: "start",
+      });
+    });
   }
 
   function renderLocalityCardPlaceholder(container) {

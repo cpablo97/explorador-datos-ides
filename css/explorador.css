@@ -539,6 +539,7 @@ p {
 }
 
 .locality-card__cta {
+  display: block;
   width: 100%;
   margin-top: 1.75rem;
   font: 600 0.95rem/1 var(--font-primary);
@@ -546,7 +547,9 @@ p {
   background: var(--blanco);
   border: 1px solid var(--color-text-primary);
   padding: 0.8rem;
-  cursor: not-allowed;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* ---------- Diagrama explicativo ---------- */
