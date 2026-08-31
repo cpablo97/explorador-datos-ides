@@ -1,0 +1,185 @@
+/* indicadores.css
+   Estilos específicos de la página de aterrizaje de "Fichas técnicas de
+   indicadores" (ver context/indicadores.md). Reutiliza tal cual, desde
+   explorador.css: navbar (#nav-real), fondo punteado fijo (.grid-fondo),
+   tokens de color/tipografía, el brandmark de stats-donuts.js y
+   .btn-outline / .btn-outline--filled. Lo único propio de esta página es
+   el layout: hero de 2 columnas + 3 filas de dimensión. */
+
+/* ---------- Hero ---------- */
+
+.indicadores-hero {
+  margin-top: 1.5rem;
+  padding: 4rem 2.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+.indicadores-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.indicadores-hero__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Mismo subrayado-resaltador que .header__title/.meto-hero__title —
+   token --text-heading-1 (~64px) tal cual pide el prompt. */
+.indicadores-hero__title {
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+/* Subtítulo propio de esta página (~40px, sin subrayar) — distinto de
+   .header__subtitle (28px) aunque comparta el mismo texto "Pediatría
+   Bogotá" en index.html; acá el diseño de Figma pide un tamaño mayor. */
+.indicadores-hero__subtitle {
+  font: 400 2.5rem/1.1 var(--font-primary);
+  color: var(--color-text-secondary);
+}
+
+.indicadores-hero__right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Fila de 3 donuts — mismo componente "brandmark" del header del
+   Explorador de Datos (.stat-mark, ver js/stats-donuts.js), reutilizado
+   igual que en .meto-hero__mark. */
+.indicadores-hero__marks {
+  display: flex;
+  gap: 1.25rem;
+}
+.indicadores-hero__mark {
+  width: 120px;
+}
+.indicadores-hero__mark .stat-mark {
+  width: 100%;
+}
+
+.indicadores-hero__desc {
+  font: var(--text-body-primary);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Filas de dimensión ---------- */
+
+.indicador-row {
+  margin-top: 2.5rem;
+  padding: 3rem 2.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+.indicador-row + .indicador-row {
+  margin-top: 0;
+  border-top: none;
+}
+
+.indicador-row__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.indicador-row__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.indicador-row__title {
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--dim-color);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.indicador-row__desc {
+  font: var(--text-body-primary);
+  color: var(--color-text-secondary);
+}
+
+.indicador-row .btn-outline {
+  align-self: flex-start;
+}
+
+/* ---------- Barra de score ---------- */
+/* Componente nuevo, propio de esta página — mismo lenguaje visual que
+   .locality-card__bar (barra sólida sin track, ancho%=valor, borde), pero
+   sin depender de AXES/dims de fan-chart.js: acá el dato es un único score
+   por fila de dimensión, no por eje de una localidad. */
+
+.indicador-score {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.indicador-score__value {
+  align-self: flex-end;
+  font: var(--text-data-1);
+}
+.indicador-score__value-suffix {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.indicador-score__track {
+  height: 48px;
+  border: 1px solid var(--color-callout-border);
+}
+
+.indicador-score__bar {
+  height: 100%;
+  background: var(--dim-color);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .indicadores-hero {
+    padding: 2.5rem 1.5rem;
+  }
+  .indicadores-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .indicadores-hero__marks {
+    gap: 0.75rem;
+  }
+  .indicadores-hero__mark {
+    flex: 1;
+    width: auto;
+  }
+
+  .indicador-row {
+    margin-top: 0;
+    padding: 2rem 1.5rem;
+    border-top: none;
+  }
+  .indicador-row:first-of-type {
+    border-top: 1px solid var(--color-callout-border);
+  }
+  .indicador-row__inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .indicador-score__value {
+    align-self: flex-start;
+  }
+}

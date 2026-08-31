@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Fichas técnicas de indicadores (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/indicadores.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li class="is-active"><a href="#">Indicadores</a></li>
+          <li><a href="metodologia.html">Metodología</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div id="breadcrumb"></div>
+
+      <section class="indicadores-hero">
+        <div class="indicadores-hero__inner">
+          <div class="indicadores-hero__left">
+            <h1 class="indicadores-hero__title">Consulte las fichas técnicas</h1>
+            <p class="indicadores-hero__subtitle">Pediatría Bogotá</p>
+          </div>
+          <div class="indicadores-hero__right">
+            <div class="indicadores-hero__marks">
+              <div class="indicadores-hero__mark" id="mark-salud"></div>
+              <div class="indicadores-hero__mark" id="mark-justicia"></div>
+              <div class="indicadores-hero__mark" id="mark-determinantes"></div>
+            </div>
+            <p class="indicadores-hero__desc">
+              Consulte la ficha técnica con definición, cálculo y fuente de
+              los indicadores que construyen el Índice de Derecho a la
+              Salud (IDES) con énfasis en pediatría y Bogotá.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="indicador-row" style="--dim-color: var(--azul-300)">
+        <div class="indicador-row__inner">
+          <div class="indicador-row__content">
+            <h2 class="indicador-row__title">Salud</h2>
+            <p class="indicador-row__desc">
+              Indicadores que componen el índice de Salud
+            </p>
+            <a class="btn-outline btn-outline--filled" href="ficha-salud.html">
+              Ver indicadores
+              <span class="btn-outline__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <!-- Score de ejemplo (mockeado) — vendrá de localidades.json o de
+               un cálculo real más adelante. -->
+          <div class="indicador-score">
+            <p class="indicador-score__value">10<span class="indicador-score__value-suffix">/100</span></p>
+            <div class="indicador-score__track">
+              <div class="indicador-score__bar" style="width: 10%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="indicador-row" style="--dim-color: var(--naranja-300)">
+        <div class="indicador-row__inner">
+          <div class="indicador-row__content">
+            <h2 class="indicador-row__title">Justicia</h2>
+            <p class="indicador-row__desc">
+              Indicadores que componen el índice de Justicia
+            </p>
+            <a class="btn-outline btn-outline--filled" href="ficha-justicia.html">
+              Ver indicadores
+              <span class="btn-outline__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <!-- Score de ejemplo (mockeado) — vendrá de localidades.json o de
+               un cálculo real más adelante. -->
+          <div class="indicador-score">
+            <p class="indicador-score__value">20<span class="indicador-score__value-suffix">/100</span></p>
+            <div class="indicador-score__track">
+              <div class="indicador-score__bar" style="width: 20%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="indicador-row" style="--dim-color: var(--verde-300)">
+        <div class="indicador-row__inner">
+          <div class="indicador-row__content">
+            <h2 class="indicador-row__title">Determinantes sociales</h2>
+            <p class="indicador-row__desc">
+              Indicadores que componen el índice de Determinantes Sociales
+            </p>
+            <a class="btn-outline btn-outline--filled" href="ficha-determinantes.html">
+              Ver indicadores
+              <span class="btn-outline__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <!-- Score de ejemplo (mockeado) — vendrá de localidades.json o de
+               un cálculo real más adelante. -->
+          <div class="indicador-score">
+            <p class="indicador-score__value">60<span class="indicador-score__value-suffix">/100</span></p>
+            <div class="indicador-score__track">
+              <div class="indicador-score__bar" style="width: 60%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/stats-donuts.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo) —
+      // mismo patrón de fondo fijo de toda la página.
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Indicadores" },
+      ]);
+
+      // 3 donuts del hero — mismo componente "brandmark" que usa el header
+      // del Explorador de Datos y el hero de Metodología (ver
+      // js/stats-donuts.js): 3 semicírculos del mismo color en distintas
+      // rotaciones. Un donut por dimensión, mismas rotaciones que ya usan
+      // index.html/metodologia.html para sus marcas.
+      (function () {
+        const { renderStatMark } = window.IDESStatsDonuts;
+        renderStatMark(document.getElementById("mark-salud"), "--azul-300", [360, 192, 132]);
+        renderStatMark(document.getElementById("mark-justicia"), "--naranja-300", [20, 180, 95]);
+        renderStatMark(document.getElementById("mark-determinantes"), "--verde-300", [360, 192, 132]);
+      })();
+    </script>
+  </body>
+</html>

@@ -50,7 +50,7 @@
 
 
     /*Fondo*/
-    --color-bg: var(--verde-gris-100);
+    --color-bg: #ECEDEB;
 
     /*Interactive*/
     --color-primary-hover: var(--crema);
@@ -83,6 +83,10 @@
        ============================================ */
 
     --font-primary: 'Sora', sans-serif;
+    /* Fichas técnicas por dimensión (ver context/fichas-tecnicas.md): el
+       nombre del indicador en cada tarjeta usa Inter, no Sora — único lugar
+       del sitio con una segunda familia tipográfica. */
+    --font-secondary: 'Inter', sans-serif;
 
     --text-data-1: 600 2.5rem/1 var(--font-primary);
     --text-body-primary: 400 1.5rem/1.625rem var(--font-primary);

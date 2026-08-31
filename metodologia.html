@@ -22,11 +22,13 @@
         <ul>
           <li><a href="#">Inicio</a></li>
           <li><a href="index.html">Explorador de Datos</a></li>
-          <li><a href="#">Indicadores</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
           <li class="is-active"><a href="#">Metodología</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
       </div>
+
+      <div id="breadcrumb"></div>
 
       <section class="meto-hero">
         <div class="meto-hero__inner">
@@ -55,7 +57,7 @@
             Conozca los espacios de participación y los talleres realizados
             para validar y fortalecer el Índice de Derecho a la Salud.
           </p>
-          <a class="btn-outline" href="#">
+          <a class="btn-outline" href="espacios-participativos.html">
             Explore los espacios
             <span class="btn-outline__arrow" aria-hidden="true">→</span>
           </a>
@@ -91,7 +93,7 @@
             Conozca las etapas y decisiones que dieron forma al Índice de
             Derecho a la Salud.
           </p>
-          <a class="btn-outline" href="#">
+          <a class="btn-outline" href="proceso.html">
             Conozca el proceso
             <span class="btn-outline__arrow" aria-hidden="true">→</span>
           </a>
@@ -99,6 +101,7 @@
       </section>
     </div>
 
+    <script src="js/breadcrumb.js"></script>
     <script src="js/stats-donuts.js"></script>
     <script>
       // Portado tal cual de index.html (montarGridFondo) — mismo patrón de
@@ -142,6 +145,11 @@
         contenedor.appendChild(svg);
       }
       montarGridFondo("#grid-fondo");
+
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Metodología" },
+      ]);
 
       // 3 círculos decorativos del hero — mismo componente "brandmark" que
       // el header del Explorador de Datos (ver js/stats-donuts.js): 3

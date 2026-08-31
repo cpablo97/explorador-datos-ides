@@ -3,45 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IDES Bogotá — Taller 1 (prototipo)</title>
+    <title>IDES Bogotá — Fichas técnicas: Justicia (prototipo)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/explorador.css" />
-    <link rel="stylesheet" href="css/taller.css" />
+    <link rel="stylesheet" href="css/ficha-dimension.css" />
   </head>
   <body>
     <div class="grid-fondo" id="grid-fondo"></div>
-    <div class="page">
+    <div class="page ficha-page ficha-page--justicia">
       <div id="nav-real">
         <ul>
           <li><a href="#">Inicio</a></li>
           <li><a href="index.html">Explorador de Datos</a></li>
-          <li><a href="indicadores.html">Indicadores</a></li>
-          <li class="is-active"><a href="metodologia.html">Metodología</a></li>
+          <li class="is-active"><a href="indicadores.html">Indicadores</a></li>
+          <li><a href="metodologia.html">Metodología</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
       </div>
 
       <div id="breadcrumb"></div>
 
-      <section class="taller-header">
-        <div class="taller-header__inner">
-          <h1 class="taller-header__title" id="taller-titulo"></h1>
-          <div class="taller-header__imagen" id="taller-imagen"></div>
+      <section class="ficha-hero">
+        <div class="ficha-hero__inner">
+          <h1 class="ficha-hero__title">
+            <span class="ficha-hero__title-line ficha-hero__title-line--intro">Consulte las fichas técnicas de los indicadores en</span>
+            <span class="ficha-hero__title-line ficha-hero__title-line--dim" id="ficha-dimension-label"></span>
+          </h1>
+          <div class="ficha-hero__mark" id="ficha-mark"></div>
         </div>
       </section>
 
-      <section class="taller-body" id="taller-body"></section>
+      <section class="ficha-grid" id="ficha-grid"></section>
     </div>
 
     <script src="js/breadcrumb.js"></script>
-    <script src="js/taller-template.js"></script>
+    <script src="js/stats-donuts.js"></script>
+    <script src="js/ficha-dimension-template.js"></script>
     <script>
       // Portado tal cual de metodologia.html/index.html (montarGridFondo).
       function montarGridFondo(selector) {
@@ -85,22 +89,25 @@
 
       IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
         { label: "Inicio", href: "#" },
-        { label: "Metodología", href: "metodologia.html" },
-        { label: "Espacios participativos", href: "espacios-participativos.html" },
-        { label: "Taller 1" },
+        { label: "Indicadores", href: "indicadores.html" },
+        { label: "Justicia" },
       ]);
 
-      // Contenido real (Figma node 2132:1500). Sin foto por ahora — ver
-      // js/taller-template.js: .taller-header__imagen queda vacío y deja
-      // ver el fondo punteado detrás, tal como pidió el usuario.
-      IDESTallerTemplate.render({
-        titulo: "Taller 1: Definiendo el acceso a la Salud Pediátrica",
-        imagen: null,
-        parrafos: [
-          "El primer taller se centró en construir colectivamente la definición de acceso a la salud pediátrica por medio de la justicia, estableciendo la base conceptual del Índice. Para ello, los participantes se organizaron en tres mesas de trabajo: personas cuidadoras, profesionales de pediatría y salud, y profesionales del derecho, incluyendo jueces y abogados.",
-          "En cada mesa se realizaron ejercicios de lluvia de ideas y agrupación de conceptos (clustering), a partir de los cuales se identificaron y organizaron los principales elementos asociados al acceso a la salud pediátrica desde cada perspectiva. Posteriormente, cada grupo construyó y presentó su propia definición al resto de los participantes, generando un espacio de intercambio y contraste entre las diferentes perspectivas profesionales y experienciales.",
-        ],
-      });
+      // 5 indicadores reales de Justicia, desde data/fichas-tecnicas.json —
+      // cada tarjeta enlaza a su propia ficha técnica (ficha.html?id=...).
+      (async function () {
+        const data = await fetch("data/fichas-tecnicas.json").then((r) => r.json());
+        IDESFichaTemplate.render({
+          dimensionLabel: "Justicia",
+          rotaciones: [20, 180, 95],
+          indicadores: data.indicadores
+            .filter((i) => i.dimension === "Justicia")
+            .map((i) => ({
+              nombre: i.nombre_indicador,
+              href: `ficha.html?id=${i.id}`,
+            })),
+        });
+      })();
     </script>
   </body>
 </html>

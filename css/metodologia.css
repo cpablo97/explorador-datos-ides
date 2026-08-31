@@ -65,20 +65,17 @@
   color: var(--color-text-secondary);
 }
 
-/* Círculo "un gajo por dimensión" — variante de un solo círculo de la
-   rosa de 3 cuñas (locality-rose.js), usada en el hero de las subpáginas
-   de Metodología (Espacios participativos y, previsiblemente, Fuentes/
-   Glosario/Proceso). Distinta del brandmark de 3 círculos separados
-   (.meto-hero__mark) que usa la portada de Metodología. */
+/* Círculo del hero de las subpáginas de Metodología (Espacios
+   participativos) — brandmark de stats-donuts.js (.stat-mark), mismo que
+   usan .meto-hero__mark/.ficha-hero__mark/.indicadores-hero__mark. Por
+   defecto .stat-mark tiene un ancho fijo (108px, ver explorador.css); acá
+   se estira a 100% del contenedor para que llene .meto-hero__wedge. */
 .meto-hero__wedge {
   width: 220px;
   aspect-ratio: 1;
 }
-.meto-hero__wedge svg {
+.meto-hero__wedge .stat-mark {
   width: 100%;
-  height: 100%;
-  overflow: visible;
-  display: block;
 }
 
 /* ---------- Grid 2x2 de tarjetas ---------- */

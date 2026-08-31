@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Ficha técnica del indicador (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/ficha-tecnica.css" />
+
+    <!-- KaTeX: renderiza formula_calculo_latex / parametros_normalizacion_latex
+         (LaTeX real, no texto plano) — ver js/ficha-tecnica-template.js. -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"
+    />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li class="is-active"><a href="indicadores.html">Indicadores</a></li>
+          <li><a href="metodologia.html">Metodología</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div id="breadcrumb"></div>
+
+      <section class="ficha-detalle">
+        <div class="ficha-detalle-cell ficha-detalle-cell--nombre">
+          <p class="ficha-detalle-cell__valor" id="ficha-nombre"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--dimension">
+          <p class="ficha-detalle-cell__label">Dimensión:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-dimension-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--donut" id="ficha-mark"></div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--definicion">
+          <p class="ficha-detalle-cell__label">Definición:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-definicion-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--periodo">
+          <p class="ficha-detalle-cell__label">Periodo de medición:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-periodo-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--metodo">
+          <p class="ficha-detalle-cell__label">Método:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-metodo-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--cobertura">
+          <p class="ficha-detalle-cell__label">Cobertura:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-cobertura-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--fuente">
+          <p class="ficha-detalle-cell__label">Fuente:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-fuente-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--formula">
+          <p class="ficha-detalle-cell__label">Fórmula de cálculo:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-formula-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--unidad">
+          <p class="ficha-detalle-cell__label">Unidad de medición:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-unidad-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--relevancia">
+          <p class="ficha-detalle-cell__label">¿Por qué es importante incluirlo en IDES?</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-relevancia-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--fuente-apa">
+          <p class="ficha-detalle-cell__label">Consulte la fuente del dato aquí:</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-fuente-apa-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--normalizacion">
+          <p class="ficha-detalle-cell__label">Parámetros de normalización</p>
+          <p class="ficha-detalle-cell__valor" id="ficha-normalizacion-valor"></p>
+        </div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--vacia"></div>
+
+        <div class="ficha-detalle-cell ficha-detalle-cell--footer">
+          <a class="btn-outline btn-outline--filled" href="#" id="ficha-pdf-link">
+            ↓ Descarga en PDF
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/stats-donuts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+    <script src="js/ficha-tecnica-template.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo).
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      // Routing simple de prototipo (sin backend): ?id={id} con el `id` de
+      // data/fichas-tecnicas.json (ej. ?id=salud-tasa-de-mortalidad-por-
+      // cada-10-000-menores-de-20-anos). Sin id reconocido, cae al primer
+      // indicador del JSON como default para no dejar la página en blanco.
+      (async function () {
+        const data = await fetch("data/fichas-tecnicas.json").then((r) => r.json());
+        const indicadores = data.indicadores;
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const indicador = indicadores.find((i) => i.id === id) || indicadores[0];
+
+        window.IDESFichaTecnicaTemplate.render(indicador);
+
+        // Miga dinámica: el 3er nivel (dimensión) depende del indicador
+        // resuelto arriba — enlaza de vuelta a su página agrupadora
+        // (ficha-{slug}.html, slug = DIMENSION_SLUGS de
+        // ficha-tecnica-template.js, ver context/fichas-tecnicas.md).
+        const { DIMENSION_SLUGS } = window.IDESFichaTecnicaTemplate;
+        IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+          { label: "Inicio", href: "#" },
+          { label: "Indicadores", href: "indicadores.html" },
+          {
+            label: indicador.dimension,
+            href: `ficha-${DIMENSION_SLUGS[indicador.dimension]}.html`,
+          },
+          { label: indicador.nombre_indicador },
+        ]);
+      })();
+    </script>
+  </body>
+</html>

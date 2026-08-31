@@ -1,0 +1,129 @@
+/* proceso.css
+   Página "Proceso", una de las 4 secciones de Metodología (ver
+   context/ — prompt de Proceso). Reutiliza tal cual, desde explorador.css:
+   navbar, fondo punteado fijo, design tokens, miga de pan. El círculo del
+   hero reutiliza tal cual js/stats-donuts.js (renderStatMark) — el mismo
+   componente de 3 semicírculos superpuestos con mix-blend-mode:multiply
+   que ya usan la landing de Fichas técnicas y las páginas agrupadoras por
+   dimensión. Acá el layout del hero pone el círculo a la DERECHA (título +
+   intro a la izquierda) — por eso el hero no reutiliza .meto-hero, tiene
+   su propia variante acá. NO usa el grid de líneas divisorias de las páginas
+   de tarjetas: es un layout de artículo, mismo ancho de columna que
+   .taller-body (ver css/taller.css). */
+
+/* ---------- Hero ---------- */
+
+.proceso-hero {
+  margin-top: 1.5rem;
+  padding: 4rem 2.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+/* grid-template-areas (no un wrapper flex para título+intro) a propósito:
+   así el orden en mobile (título, círculo, intro — ver media query) se
+   resuelve reasignando áreas, sin depender de `order` sobre hijos
+   anidados en distintos niveles. */
+.proceso-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "title wedge"
+    "intro wedge";
+  column-gap: 3rem;
+  row-gap: 1.5rem;
+  align-items: center;
+}
+
+.proceso-hero__title {
+  grid-area: title;
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.proceso-hero__intro {
+  grid-area: intro;
+  font: var(--text-body-primary);
+  color: var(--color-text-secondary);
+}
+
+/* Círculo del hero — brandmark de stats-donuts.js (.stat-mark), mismo que
+   usan .meto-hero__mark/.ficha-hero__mark/.indicadores-hero__mark. Por
+   defecto .stat-mark tiene un ancho fijo (108px, ver explorador.css); acá
+   se estira a 100% del contenedor para que llene .proceso-hero__wedge. */
+.proceso-hero__wedge {
+  grid-area: wedge;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  aspect-ratio: 1;
+}
+.proceso-hero__wedge .stat-mark {
+  width: 100%;
+}
+
+/* ---------- Cuerpo del artículo ---------- */
+/* Ancho limitado y alineado a la izquierda (no centrado) — mismo criterio
+   que .taller-body: max-width sin margin-inline:auto, dentro del mismo
+   padding-inline de .page que el resto del sitio. */
+
+.proceso-body {
+  max-width: 52rem;
+  margin: 3rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.proceso-body > p {
+  font: 400 1.5rem/1.5 var(--font-secondary);
+  color: var(--color-text-secondary);
+}
+
+.proceso-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.proceso-section__title {
+  font: 600 2.5rem/1.2 var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+.proceso-section p {
+  font: 400 1.5rem/1.5 var(--font-secondary);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .proceso-hero {
+    padding: 2.5rem 1.5rem;
+  }
+  .proceso-hero__inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "wedge"
+      "intro";
+    row-gap: 1.5rem;
+  }
+  .proceso-hero__wedge {
+    max-width: 200px;
+    margin-inline: auto;
+  }
+
+  .proceso-body {
+    margin-top: 2rem;
+  }
+  .proceso-section__title {
+    font-size: 1.75rem;
+  }
+}

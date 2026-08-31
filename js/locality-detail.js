@@ -442,7 +442,7 @@
       </div>
       <div class="locality-detail__tabs" role="tablist">
         <button type="button" class="locality-detail__tab is-active" data-panel="dimensiones">Dimensiones</button>
-        <button type="button" class="locality-detail__tab" data-panel="variables">Variables</button>
+        <button type="button" class="locality-detail__tab" data-panel="variables">Indicadores</button>
       </div>
       <div class="locality-detail__panel is-active" data-panel="dimensiones">
         <div class="locality-detail__tracks" data-tracks-dimensiones></div>

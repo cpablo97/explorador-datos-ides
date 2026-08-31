@@ -22,11 +22,13 @@
         <ul>
           <li><a href="#">Inicio</a></li>
           <li><a href="index.html">Explorador de Datos</a></li>
-          <li><a href="#">Indicadores</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
           <li class="is-active"><a href="metodologia.html">Metodología</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
       </div>
+
+      <div id="breadcrumb"></div>
 
       <section class="taller-header">
         <div class="taller-header__inner">
@@ -38,6 +40,7 @@
       <section class="taller-body" id="taller-body"></section>
     </div>
 
+    <script src="js/breadcrumb.js"></script>
     <script src="js/taller-template.js"></script>
     <script>
       // Portado tal cual de metodologia.html/index.html (montarGridFondo).
@@ -79,6 +82,13 @@
         contenedor.appendChild(svg);
       }
       montarGridFondo("#grid-fondo");
+
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Metodología", href: "metodologia.html" },
+        { label: "Espacios participativos", href: "espacios-participativos.html" },
+        { label: "Laboratorio" },
+      ]);
 
       // Contenido real (Figma node 2138:1246). Sin foto por ahora — ver
       // js/taller-template.js: .taller-header__imagen queda vacío y deja

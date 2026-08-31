@@ -8,6 +8,19 @@ body {
   background: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-primary);
+  /* Red de seguridad: nada en la página debe generar scroll horizontal a
+     nivel de body (el único scroll horizontal intencional es el propio de
+     .chart-scatter-scroll, un contenedor interno — eso sigue funcionando
+     igual, esto acá no lo afecta). Cubre en particular el breakout de
+     .dashboard, que usa 100vw y puede quedar unos px más ancho que el
+     viewport visible real en navegadores donde 100vw incluye el ancho de
+     la scrollbar.
+     "clip" y no "hidden": overflow (en cualquiera de sus ejes) en html/body
+     convierte a body en un contenedor de scroll propio, lo que rompe
+     position:sticky de .tabs-row (dejaba de pegarse al hacer scroll) — bug
+     reportado por el usuario. "clip" recorta el desborde sin crear ese
+     contenedor de scroll, así que el sticky vuelve a funcionar. */
+  overflow-x: clip;
 }
 
 h1,
@@ -29,9 +42,11 @@ p {
 .page {
   position: relative;
   z-index: 1;
-  max-width: 1280px;
+  /* 1400px: mismo tope que el breakout de .dashboard (ver más abajo,
+     @media min-width:900px) — antes .page topeaba en 1280px y .dashboard
+     se salía más ancho (hasta 1400px) que el resto del sitio. */
+  max-width: 1400px;
   margin-inline: auto;
-  padding-inline: 2rem;
   padding-bottom: 4rem;
 }
 
@@ -67,6 +82,73 @@ p {
   text-decoration: none;
 }
 
+/* ---------- Miga de pan ---------- */
+/* Ligada a la estructura de navegación (ver js/breadcrumb.js) — vive bajo
+   el navbar en TODAS las páginas del sitio. Misma familia/color que los
+   links de #nav-real, en un tamaño menor. En mobile, en vez de truncar o
+   esconder niveles, se deja como una fila con scroll horizontal propio —
+   así ninguna página pierde la cadena completa (p.ej. Inicio / Metodología
+   / Espacios participativos / Taller 1) ni rompe el layout en pantallas
+   angostas. */
+.breadcrumb {
+  margin-top: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.breadcrumb::-webkit-scrollbar {
+  display: none;
+}
+
+.breadcrumb__list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: max-content;
+  min-width: 100%;
+}
+
+.breadcrumb__item a,
+.breadcrumb__item span {
+  font: 300 13px/1 var(--font-primary);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.breadcrumb__item a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.breadcrumb__item a:hover,
+.breadcrumb__item a:focus-visible {
+  text-decoration: underline;
+}
+.breadcrumb__item.is-current span {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+.breadcrumb__separator {
+  font: 300 13px/1 var(--font-primary);
+  color: var(--color-text-primary);
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    margin-top: 0.75rem;
+  }
+  .breadcrumb__list {
+    gap: 0.4rem;
+  }
+  .breadcrumb__item a,
+  .breadcrumb__item span,
+  .breadcrumb__separator {
+    font-size: 12px;
+  }
+}
+
 /* ---------- Botón outline con flecha ---------- */
 /* Reutilizable en cualquier página del sitio (usado primero en la página de
    Metodología, ver context/metodologia.md) — borde sin relleno, con flecha
@@ -99,6 +181,35 @@ p {
 .btn-outline:focus-visible {
   outline: 2px solid var(--color-text-primary);
   outline-offset: 3px;
+}
+
+/* Variante rellena — mismo componente, invierte fondo/borde/texto con un
+   color de dimensión pasado por el padre vía --dim-color (ver
+   indicadores.html / css/indicadores.css). Usada donde el diseño pide un
+   CTA relleno en vez de outline (p.ej. filas de dimensión de Indicadores). */
+.btn-outline--filled {
+  background: var(--dim-color, var(--color-text-primary));
+  border-color: var(--dim-color, var(--color-text-primary));
+  color: var(--blanco);
+}
+.btn-outline--filled:hover,
+.btn-outline--filled:focus-visible {
+  background: color-mix(in srgb, var(--dim-color, var(--color-text-primary)) 85%, black);
+}
+.btn-outline--filled:focus-visible {
+  outline-color: var(--dim-color, var(--color-text-primary));
+}
+
+/* Variante cuadrada compacta — mismo botón, sin texto (solo la flecha),
+   para contextos de grilla densa (p.ej. tarjetas de indicador en las
+   páginas de ficha técnica por dimensión, ver context/fichas-tecnicas.md).
+   Se combina con .btn-outline--filled para el relleno de color. */
+.btn-outline--square {
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  justify-content: center;
+  flex: none;
 }
 
 /* ---------- Header ---------- */
@@ -229,6 +340,28 @@ p {
   backdrop-filter: blur(6px);
 }
 
+/* Breakout puntual, SOLO para este componente (no toca .page ni ninguna
+   otra página): el abanico creció internamente (radioMax/márgenes, ver
+   index.html) para darle más espacio radial a las etiquetas de localidad
+   ahora más grandes — si el contenedor se quedara en el ancho de .page
+   (1280px), el escalado del viewBox encogería ese espacio ganado de
+   vuelta. Centrado relativo a su posición normal (no depende del ancho de
+   .page), con tope en vw para no desbordar en pantallas angostas. Gateado
+   a partir de 900px porque debajo de eso ya no sobra espacio de sobra —
+   en mobile el gráfico se queda dentro del ancho normal de .page. */
+@media (min-width: 900px) {
+  .dashboard {
+    /* Margen de sobra más generoso (antes 24px): algunos navegadores
+       incluyen el ancho de la scrollbar vertical dentro de 100vw, así que
+       un margen chico podía dejar el breakout unos px más ancho que el
+       viewport visible real, forzando scroll horizontal en toda la página. */
+    width: min(1400px, calc(100vw - 48px));
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 .dashboard__chart-col {
   position: relative;
   display: flex;
@@ -238,10 +371,34 @@ p {
 #chart-main {
   width: 100%;
   max-width: 100%;
-  aspect-ratio: 1300 / 740;
+  aspect-ratio: 1470 / 840;
   cursor: crosshair;
 }
 #chart-main svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Dispersión ---------- */
+/* Igual que #chart-main: se encoge/crece libremente vía aspect-ratio +
+   width:100%, sin piso — nunca fuerza scroll (antes tenía min-width, que
+   forzaba scroll en cualquier viewport realista). El wrapper con
+   overflow-x se conserva como red de seguridad inerte — index.html lo usa
+   por id (#chart-scatter-wrap) para el toggle Abanico/Dispersión y el
+   cierre por click-afuera — pero no debería activarse nunca en la
+   práctica; auto (no hidden) para que un desborde real quede visible en
+   vez de recortarse en silencio. */
+.chart-scatter-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+#chart-scatter {
+  width: 100%;
+  aspect-ratio: 2175.5 / 1238;
+  cursor: crosshair;
+}
+#chart-scatter svg {
   width: 100%;
   height: 100%;
 }
@@ -269,10 +426,89 @@ p {
   opacity: 0.6;
 }
 
+/* Título del eje — aclara que los números escritos sobre la línea base
+   (.fan-fondo__valor, 0-100 a ambos lados del hub) son el Índice de
+   Derecho a la Salud, no otra escala. Un solo label centrado en el hub:
+   ambas mitades del abanico son simétricas respecto a ese punto (0 en el
+   centro, 100 en cada extremo), así que no hace falta repetirlo. */
+.fan-fondo__eje-label {
+  font: 600 0.75rem/1.625rem var(--font-primary);
+  letter-spacing: 0.04em;
+  fill: var(--color-text-primary);
+  opacity: 0.75;
+}
+
 .fan-guide {
   stroke: color-mix(in srgb, var(--color-decorative-grid) 25%, transparent);
   stroke-width: 1;
   transition: opacity 0.25s ease;
+}
+
+/* ---------- Dispersión (fan-chart.js, geometría cartesiana) ---------- */
+/* Mismo lenguaje visual de bajo contraste que .fan-fondo__arco/--mayor —
+   cuadrícula horizontal detrás de las rosas (ver orden de capas en
+   montarMotor(), fan-chart.js: `fondo` se agrega antes que puntosLayer/
+   roseLayer). */
+.disp-fondo__linea {
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 15%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.disp-fondo__linea--mayor {
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 35%, transparent);
+  stroke-dasharray: none;
+}
+/* font-size propio (no --text-caption-source): ese token es compartido
+   con .fan-fondo__valor (Abanico) y otros usos del sitio — subirlo acá
+   agrandaría los números del eje en todas partes, no solo en Dispersión.
+   Valor probado en DevTools por el usuario. */
+.disp-fondo__valor {
+  font: 400 1.75rem/1.625rem var(--font-primary);
+  fill: var(--color-text-primary);
+  opacity: 0.6;
+}
+.disp-fondo__eje-label {
+  font: 600 1.75rem/1.625rem var(--font-primary);
+  letter-spacing: 0.04em;
+  fill: var(--color-text-primary);
+  opacity: 0.75;
+}
+/* Separador entre Bogotá D.C. (referencia) y las 20 localidades. */
+.disp-fondo__divisor {
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 30%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.disp-tick {
+  stroke: color-mix(in srgb, var(--color-decorative-grid) 30%, transparent);
+  stroke-width: 1;
+}
+
+/* Línea que conecta la localidad activa (hover o pin) con su nombre en el
+   eje X — ver hoverGuiaSel/actualizarGuiaHover en fan-chart.js. Más
+   marcada que .disp-tick/.disp-fondo__linea (que son guías de fondo, no
+   deben competir con las rosas): esta SÍ debe notarse, es la respuesta a
+   la interacción del usuario. */
+.fan-hover-guia {
+  stroke: var(--color-text-primary);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  transition: opacity 0.15s ease;
+}
+/* 1.75rem: tamaño probado en DevTools por el usuario, notablemente más
+   grande que el 0.95rem anterior (que buscaba igualar el tamaño en
+   pantalla a .fan-etiqueta en Abanico — ya no es el criterio). Un
+   font-size tan grande vuelve a competir por espacio horizontal con las
+   21 categorías del eje X — ver anchoCategoria en fan-chart.js, retuneado
+   para este tamaño. */
+.disp-etiqueta {
+  font: 400 1.75rem/1 var(--font-primary);
+  fill: var(--color-text-primary);
+  opacity: 0.85;
+}
+.disp-etiqueta--bogota {
+  font-weight: 700;
+  opacity: 1;
 }
 
 .fan-point {
@@ -282,27 +518,51 @@ p {
   transition: opacity 0.25s ease;
 }
 
+/* Área sensible de hover/click de cada localidad — invisible, del tamaño
+   del pétalo más grande de su rosa (ver radioMaxPetalo, locality-rose.js),
+   no del punto diminuto (.fan-point, puramente visual). "transparent" y no
+   "none": un fill transparent sigue respondiendo a eventos de puntero por
+   defecto, sin necesitar pointer-events:all. */
+.fan-point-hit {
+  fill: transparent;
+}
+.fan-point-hit[tabindex] {
+  cursor: pointer;
+}
+.fan-point-hit:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 3px;
+}
+
 /* Mismo mix-blend-mode:multiply que el resto de los colores por dimensión
    (brandmark del header, cuñas de la rosa) — ver dibujarEstelas en
    fan-chart.js. */
 .fan-trail {
   mix-blend-mode: multiply;
 }
-.fan-point[tabindex] {
-  cursor: pointer;
-}
-.fan-point:focus-visible {
-  outline: 2px solid var(--color-text-primary);
-  outline-offset: 3px;
-}
 
 /* Nombre de la localidad, persistente — rotado para leerse como la
    continuación de su línea guía (ver el bloque que dibuja fan-guide +
    fan-etiqueta en crearGraficoAbanico, fan-chart.js). */
 .fan-etiqueta {
-  font: var(--text-caption-source);
+  font: 400 1rem/1 var(--font-primary);
   fill: var(--color-text-primary);
   opacity: 0.85;
+}
+/* Bogotá D.C. es una referencia, no una localidad más — mismo criterio que
+   .disp-etiqueta--bogota en Dispersión, sin tocar el estilo de las 20. */
+.fan-etiqueta--bogota {
+  font-weight: 700;
+  opacity: 1;
+}
+/* En teléfonos muy angostos no hay margen físico para 20 nombres de
+   localidad (algunos largos, ej. "Ciudad Bolívar") sin encimarse — ver
+   ajuste #3. Se conserva ahí un tamaño cercano al original en vez de
+   forzar el mismo aumento que sí cabe desde ~375px en adelante. */
+@media (max-width: 420px) {
+  .fan-etiqueta {
+    font-size: 0.8rem;
+  }
 }
 
 /* ---------- Rosa (locality-rose.js) ---------- */
@@ -433,6 +693,18 @@ p {
   background: var(--color-text-primary);
   color: var(--crema);
   border-color: var(--color-text-primary);
+}
+
+/* Grupo "Abanico / Dispersión" — mismas .year-pill tal cual (mismo peso
+   visual que 2022/2023/2024), agrupadas aparte con un separador para dejar
+   claro que es un control distinto (cambia toda la visualización, no un
+   año). */
+.view-pills {
+  display: flex;
+  gap: 0.4rem;
+  padding-right: 0.75rem;
+  margin-right: 0.25rem;
+  border-right: 1px solid var(--color-callout-border);
 }
 
 .play-btn {

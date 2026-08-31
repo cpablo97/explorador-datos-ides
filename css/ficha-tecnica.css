@@ -1,0 +1,157 @@
+/* ficha-tecnica.css
+   Plantilla de "Ficha técnica" de un indicador individual (ver
+   context/plantilla-ficha-tecnica.md) — UNA sola instancia (ficha.html),
+   con el contenido resuelto en runtime según `?id=` contra
+   data/fichas-tecnicas.json (ver js/ficha-tecnica-template.js). Reutiliza
+   tal cual, desde explorador.css: navbar, fondo punteado fijo, design
+   tokens, stats-donuts.js, .btn-outline/--filled. El color por indicador
+   (`color_dimension` del JSON) se fija en runtime como --dim-color
+   directamente sobre .page — no hay clases .ficha-page--{dimension} acá. */
+
+.ficha-detalle {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    "nombre     dimension     donut"
+    "definicion periodo       donut"
+    "metodo     cobertura     fuente"
+    "formula    unidad        relevancia"
+    "fuenteapa  normalizacion vacia"
+    "footer     footer        footer";
+  border-top: 1px solid var(--color-callout-border);
+  border-left: 1px solid var(--color-callout-border);
+}
+
+.ficha-detalle-cell {
+  padding: 2rem 2rem;
+  border-right: 1px solid var(--color-callout-border);
+  border-bottom: 1px solid var(--color-callout-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ficha-detalle-cell__label {
+  font: 600 0.85rem/1.2 var(--font-primary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  opacity: 0.7;
+}
+
+.ficha-detalle-cell__valor {
+  font: var(--text-body-primary);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Celdas especiales ---------- */
+
+.ficha-detalle-cell--nombre {
+  grid-area: nombre;
+  background: var(--dim-color);
+  justify-content: center;
+}
+.ficha-detalle-cell--nombre .ficha-detalle-cell__valor {
+  font: 600 2rem/1.2 var(--font-primary);
+  color: var(--blanco);
+}
+
+.ficha-detalle-cell--dimension { grid-area: dimension; }
+.ficha-detalle-cell--donut {
+  grid-area: donut;
+  align-items: flex-end;
+  justify-content: center;
+}
+.ficha-detalle-cell--definicion { grid-area: definicion; }
+.ficha-detalle-cell--periodo { grid-area: periodo; }
+.ficha-detalle-cell--metodo { grid-area: metodo; }
+.ficha-detalle-cell--cobertura { grid-area: cobertura; }
+.ficha-detalle-cell--fuente { grid-area: fuente; }
+.ficha-detalle-cell--formula { grid-area: formula; }
+.ficha-detalle-cell--unidad { grid-area: unidad; }
+.ficha-detalle-cell--relevancia { grid-area: relevancia; }
+.ficha-detalle-cell--fuente-apa { grid-area: fuenteapa; }
+.ficha-detalle-cell--fuente-apa .ficha-detalle-cell__valor {
+  font: var(--text-caption-source);
+  color: var(--color-text-secondary);
+}
+.ficha-detalle-cell--normalizacion { grid-area: normalizacion; }
+
+/* Celda deliberadamente sin datos (ver prompt: "celda 3 vacía") — sin
+   background propio, deja ver el fondo punteado a través, mismo criterio
+   que .taller-header__imagen sin foto. */
+.ficha-detalle-cell--vacia {
+  grid-area: vacia;
+}
+
+.ficha-detalle-cell--donut .stat-mark {
+  width: 100%;
+  max-width: 220px;
+}
+
+/* ---------- LaTeX (KaTeX) ---------- */
+/* formula_calculo_latex / parametros_normalizacion_latex se renderizan en
+   displayMode — algunas (ej. la razón del UPC, o fórmulas con \text{}
+   largos) son más anchas que la celda de 3 columnas. Sin esto, KaTeX
+   desborda por encima de las celdas vecinas en vez de quedarse contenido
+   (ver .katex-display, que por defecto no limita su propio ancho). */
+.ficha-detalle-cell--formula .ficha-detalle-cell__valor,
+.ficha-detalle-cell--normalizacion .ficha-detalle-cell__valor {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.ficha-detalle-cell--formula .katex-display,
+.ficha-detalle-cell--normalizacion .katex-display {
+  margin: 0;
+}
+.ficha-detalle-cell--formula .katex,
+.ficha-detalle-cell--normalizacion .katex {
+  font-size: 0.85rem;
+}
+
+/* ---------- Footer ---------- */
+
+.ficha-detalle-cell--footer {
+  grid-area: footer;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .ficha-detalle {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "nombre"
+      "dimension"
+      "donut"
+      "definicion"
+      "periodo"
+      "metodo"
+      "cobertura"
+      "fuente"
+      "formula"
+      "unidad"
+      "relevancia"
+      "fuenteapa"
+      "normalizacion"
+      "footer";
+  }
+  .ficha-detalle-cell {
+    padding: 1.75rem 1.5rem;
+  }
+  .ficha-detalle-cell--nombre .ficha-detalle-cell__valor {
+    font: 600 1.5rem/1.25 var(--font-primary);
+  }
+  .ficha-detalle-cell--donut .stat-mark {
+    max-width: 160px;
+  }
+  /* Sin contenido y sin sentido apilada — se omite en mobile. */
+  .ficha-detalle-cell--vacia {
+    display: none;
+  }
+}

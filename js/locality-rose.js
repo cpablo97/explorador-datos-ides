@@ -38,6 +38,17 @@
     return radioMinimo + (dims[petal.key] / 100) * (radioMaxCuña - radioMinimo);
   }
 
+  // Radio del pétalo más grande de la rosa (el de la dimensión con mayor
+  // puntaje) — usado por fan-chart.js como área sensible de hover/click de
+  // cada punto, en vez del punto diminuto (ver .fan-point-hit). Misma
+  // fórmula que radioDePetalo, pero solo para el máximo de las 3 dims.
+  function radioMaxPetalo(dims, rx, ry, radioMinimoRatio = 0.16) {
+    const radioMaxCuña = Math.min(rx, ry);
+    const radioMinimo = radioMaxCuña * radioMinimoRatio;
+    const maxDim = Math.max(dims.justicia, dims.salud, dims.determinantes);
+    return radioMinimo + (maxDim / 100) * (radioMaxCuña - radioMinimo);
+  }
+
   // container: selección D3 de un <g> donde montar la rosa. `key` identifica
   // la instancia (normalmente el id de la localidad) — permite tener varias
   // rosas a la vez en el mismo contenedor (ver "siempre visibles" en
@@ -170,5 +181,5 @@
       });
   }
 
-  window.IDESLocalityRose = { PETALS, sectorPath, renderRose, clearRose };
+  window.IDESLocalityRose = { PETALS, sectorPath, renderRose, clearRose, radioMaxPetalo };
 })();

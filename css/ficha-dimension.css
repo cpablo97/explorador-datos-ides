@@ -1,0 +1,123 @@
+/* ficha-dimension.css
+   Plantilla del "índice de fichas técnicas por dimensión" (ver
+   context/fichas-tecnicas.md) — instanciada por ficha-salud.html,
+   ficha-justicia.html y ficha-determinantes.html. Reutiliza tal cual,
+   desde explorador.css: navbar, fondo punteado fijo, design tokens,
+   stats-donuts.js, .btn-outline/--filled/--square. Lo único propio de esta
+   plantilla es el layout (hero + grilla de tarjetas).
+
+   El color por dimensión se resuelve por CLASE CSS, no por JS — mismo
+   patrón que css/utilities/locality-detail.css: --dim-color (relleno del
+   donut y de los botones) y --dim-decoration-color (subrayado del título,
+   token semántico de tokens.css) quedan fijados acá por
+   .ficha-page--{dimension}, y las 3 instancias solo agregan esa clase al
+   contenedor .page. */
+
+.ficha-page--salud { --dim-color: var(--azul-300); --dim-decoration-color: var(--color-text-decoration-salud); }
+.ficha-page--justicia { --dim-color: var(--naranja-300); --dim-decoration-color: var(--color-text-decoration-justicia); }
+.ficha-page--determinantes { --dim-color: var(--verde-400); --dim-decoration-color: var(--color-text-decoration-determinantes); }
+
+/* ---------- Hero ---------- */
+
+.ficha-hero {
+  margin-top: 1.5rem;
+  padding: 4rem 2.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+.ficha-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.ficha-hero__title {
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+}
+
+.ficha-hero__title-line {
+  display: block;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+/* Primera línea: subrayado neutro (mismo verde genérico que el resto del
+   sitio). Segunda línea: subrayado en el color semántico de la dimensión. */
+.ficha-hero__title-line--intro {
+  text-decoration-color: var(--color-text-decoration-generico);
+}
+.ficha-hero__title-line--dim {
+  text-decoration-color: var(--dim-decoration-color);
+}
+
+/* Donut único, grande — mismo componente "brandmark" que el header del
+   Explorador de Datos (.stat-mark, ver js/stats-donuts.js), pero de un
+   solo color (--dim-color) y ocupando el ancho de la columna derecha. */
+.ficha-hero__mark {
+  width: 100%;
+  max-width: 380px;
+  margin-left: auto;
+}
+.ficha-hero__mark .stat-mark {
+  width: 100%;
+}
+
+/* ---------- Grilla de indicadores ---------- */
+/* 3 columnas, filas dinámicas según indicadores.length — sin fijar
+   filas/celdas: el grid las agrega solas y, si la última fila no se
+   completa, el navegador simplemente deja las celdas restantes vacías. */
+
+.ficha-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--color-callout-border);
+  border-left: 1px solid var(--color-callout-border);
+}
+
+.ficha-card {
+  min-height: 260px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-callout-border);
+  border-bottom: 1px solid var(--color-callout-border);
+}
+
+.ficha-card__nombre {
+  font: 400 1.5rem/1.3 var(--font-secondary);
+  color: var(--color-text-primary);
+}
+
+.ficha-card__cta {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .ficha-hero {
+    padding: 2.5rem 1.5rem;
+  }
+  .ficha-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .ficha-hero__mark {
+    max-width: 220px;
+    margin-inline: auto;
+  }
+
+  .ficha-grid {
+    grid-template-columns: 1fr;
+  }
+  .ficha-card {
+    min-height: 0;
+    padding: 1.75rem 1.5rem;
+  }
+}

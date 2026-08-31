@@ -22,11 +22,13 @@
         <ul>
           <li><a href="#">Inicio</a></li>
           <li class="is-active"><a href="#">Explorador de Datos</a></li>
-          <li><a href="#">Indicadores</a></li>
-          <li><a href="#">Metodología</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
+          <li><a href="metodologia.html">Metodología</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
       </div>
+
+      <div id="breadcrumb"></div>
 
       <header class="header">
         <div class="header__grid">
@@ -46,6 +48,10 @@
       <main>
         <div class="tabs-row">
           <div class="timeline-controls">
+            <div class="view-pills" role="tablist" aria-label="Vista de la visualización">
+              <button class="year-pill is-active" data-vista="abanico" type="button">Abanico</button>
+              <button class="year-pill" data-vista="dispersion" type="button">Dispersión</button>
+            </div>
             <button class="year-pill" data-año="2022" type="button">2022</button>
             <button class="year-pill" data-año="2023" type="button">2023</button>
             <button class="year-pill is-active" data-año="2024" type="button">2024</button>
@@ -53,12 +59,12 @@
             <label class="trail-toggle">
               <input type="checkbox" id="toggle-estelas" checked />
               <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
-              <span class="trail-toggle__label">Estelas</span>
+              <span class="trail-toggle__label">Trayectoria</span>
             </label>
             <label class="trail-toggle">
-              <input type="checkbox" id="toggle-rosas" />
+              <input type="checkbox" id="toggle-rosas" checked />
               <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
-              <span class="trail-toggle__label">Rosas siempre visibles</span>
+              <span class="trail-toggle__label">Dimensiones visibles</span>
             </label>
           </div>
           <select class="tabs-row__filtro" id="filtro-localidad">
@@ -69,6 +75,9 @@
         <div class="dashboard">
           <div class="dashboard__chart-col">
             <div id="chart-main"></div>
+            <div class="chart-scatter-scroll" id="chart-scatter-wrap" hidden>
+              <div id="chart-scatter"></div>
+            </div>
             <!-- Panel de detalle anclado a la esquina superior derecha del
                  gráfico — no reserva columna propia, así el gráfico se
                  queda a todo el ancho. -->
@@ -94,6 +103,7 @@
       </main>
     </div>
 
+    <script src="js/breadcrumb.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/locality-utils.js"></script>
     <script src="js/locality-rose.js"></script>
@@ -144,6 +154,11 @@
       }
       montarGridFondo("#grid-fondo");
 
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Explorador de Datos" },
+      ]);
+
       function renderStatCell({ markId, infoId, valor, etiqueta, colorVar, rotaciones }) {
         const { renderStatMark } = window.IDESStatsDonuts;
         renderStatMark(document.getElementById(markId), colorVar, rotaciones);
@@ -155,7 +170,7 @@
       }
 
       (async function () {
-        const { crearGraficoAbanico, getAñoData } = window.IDESFanChart;
+        const { crearGraficoAbanico, crearGraficoDispersion, getAñoData } = window.IDESFanChart;
         const { renderLocalityCard, actualizarLocalityCard } = window.IDESLocalityCard;
         const { renderLocalityDetail, actualizarLocalityDetail } = window.IDESLocalityDetail;
         const { AÑOS, STEP_DURATION, reproducirEvolucion } = window.IDESTimeline;
@@ -202,6 +217,7 @@
         const modalContent = document.getElementById("locality-modal-content");
         const modalClose = document.getElementById("locality-modal-close");
         const chartMainEl = document.getElementById("chart-main");
+        const chartScatterWrapEl = document.getElementById("chart-scatter-wrap");
         const tabsRowEl = document.querySelector(".tabs-row");
         const detailSection = document.getElementById("locality-detail");
         const detailContent = document.getElementById("locality-detail-content");
@@ -304,16 +320,65 @@
           filtroSelect.value = pinnedId || "";
         }
 
-        const chart = crearGraficoAbanico("#chart-main", {
+        // Combina varias instancias de fan-chart.js (misma API pública:
+        // setYear/transitionToYear/highlight/...) en una sola fachada, así
+        // el resto del archivo (mostrarModal, seleccionarLocalidad, los
+        // handlers de año/estelas/rosas más abajo) sigue hablándole a un
+        // único `chart` sin saber que hay dos vistas — cada cambio de
+        // estado se aplica a ambas, estén o no visibles en este momento,
+        // para que cambiar de vista nunca pierda el estado (año, selección,
+        // trayectoria, dimensiones visibles).
+        function combinarCharts(...instancias) {
+          return {
+            setYear(año) {
+              instancias.forEach((c) => c.setYear(año));
+            },
+            transitionToYear(año, duration) {
+              return Promise.all(instancias.map((c) => c.transitionToYear(año, duration)));
+            },
+            highlight(id) {
+              instancias.forEach((c) => c.highlight(id));
+            },
+            getCurrentYear() {
+              return instancias[0].getCurrentYear();
+            },
+            setEstelasActivas(activo) {
+              instancias.forEach((c) => c.setEstelasActivas(activo));
+            },
+            setRosasSiempreVisibles(activo) {
+              instancias.forEach((c) => c.setRosasSiempreVisibles(activo));
+            },
+            setSeleccion(id) {
+              instancias.forEach((c) => c.setSeleccion(id));
+            },
+          };
+        }
+
+        const chartAbanico = crearGraficoAbanico("#chart-main", {
           data,
-          radioMax: 420,
+          radioMax: 470,
           dotRadius: 8,
           roseRx: 46,
           roseRy: 46,
-          marginLeft: 230,
-          marginRight: 230,
-          marginTop: 230,
+          marginLeft: 265,
+          marginRight: 265,
+          marginTop: 280,
           marginBottom: 90,
+          interactive: true,
+          incluirBogota: true,
+          onHover(id) {
+            if (pinnedId) return;
+            chart.highlight(id);
+          },
+          onSelect(id) {
+            seleccionarLocalidad(id);
+          },
+        });
+
+        const chartDispersion = crearGraficoDispersion("#chart-scatter", {
+          data,
+          ordenX: "alfabetico",
+          añoOrden: 2024,
           interactive: true,
           onHover(id) {
             if (pinnedId) return;
@@ -323,6 +388,8 @@
             seleccionarLocalidad(id);
           },
         });
+
+        const chart = combinarCharts(chartAbanico, chartDispersion);
 
         filtroSelect.addEventListener("change", () => {
           seleccionarLocalidad(filtroSelect.value || null);
@@ -340,6 +407,7 @@
           if (
             modal.contains(e.target) ||
             chartMainEl.contains(e.target) ||
+            chartScatterWrapEl.contains(e.target) ||
             tabsRowEl.contains(e.target) ||
             detailSection.contains(e.target)
           ) {
@@ -373,7 +441,11 @@
         document.getElementById("explicativo-texto-2").textContent =
           `En el ejemplo de Usme (2024): índice compuesto ${usmeAño.indiceCompuesto}/100. Sus tres dimensiones —Justicia ${usmeAño.dims.justicia}, Salud ${usmeAño.dims.salud}, Determinantes Sociales ${usmeAño.dims.determinantes}— se ven en su rosa, cada pétalo escalado contra su propio anillo, nunca contra la escala 0–100 del abanico.`;
 
-        const yearPills = Array.from(document.querySelectorAll(".year-pill"));
+        // Acotado a [data-año]: .year-pill también la usan las pastillas de
+        // vista (Abanico/Dispersión, mismo look, otro propósito) — sin este
+        // filtro, marcarAñoActivo() les quitaría/pondría "is-active" cada
+        // vez que cambia el año, porque Number(undefined) !== año.
+        const yearPills = Array.from(document.querySelectorAll(".year-pill[data-año]"));
         function marcarAñoActivo(año) {
           yearPills.forEach((btn) =>
             btn.classList.toggle("is-active", Number(btn.dataset.año) === año),
@@ -423,6 +495,20 @@
 
         document.getElementById("toggle-rosas").addEventListener("change", (e) => {
           chart.setRosasSiempreVisibles(e.target.checked);
+        });
+
+        // Toggle Abanico/Dispersión — ambos charts ya viven montados y
+        // sincronizados (ver combinarCharts arriba), así que cambiar de
+        // vista es solo mostrar/ocultar contenedores, sin re-crear nada ni
+        // perder año/selección/trayectoria/dimensiones visibles.
+        const viewPills = Array.from(document.querySelectorAll(".view-pills .year-pill"));
+        viewPills.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const vista = btn.dataset.vista;
+            viewPills.forEach((b) => b.classList.toggle("is-active", b === btn));
+            chartMainEl.hidden = vista !== "abanico";
+            chartScatterWrapEl.hidden = vista !== "dispersion";
+          });
         });
       })();
     </script>

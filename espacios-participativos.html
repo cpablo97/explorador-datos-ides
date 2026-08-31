@@ -22,11 +22,13 @@
         <ul>
           <li><a href="#">Inicio</a></li>
           <li><a href="index.html">Explorador de Datos</a></li>
-          <li><a href="#">Indicadores</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
           <li class="is-active"><a href="metodologia.html">Metodología</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
       </div>
+
+      <div id="breadcrumb"></div>
 
       <section class="meto-hero">
         <div class="meto-hero__inner">
@@ -82,8 +84,8 @@
       </section>
     </div>
 
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="js/locality-rose.js"></script>
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/stats-donuts.js"></script>
     <script>
       // Portado tal cual de metodologia.html/index.html (montarGridFondo) —
       // mismo patrón de fondo fijo de toda la página.
@@ -126,25 +128,24 @@
       }
       montarGridFondo("#grid-fondo");
 
-      // Círculo del hero: "un gajo por dimensión" — NO es el brandmark de 3
-      // círculos separados de la portada de Metodología (stats-donuts.js),
-      // es la misma rosa de 3 cuñas de 120° que ya usa el Explorador de
-      // Datos por localidad (locality-rose.js), reutilizada tal cual sin
-      // tocar su lógica. Con las 3 dimensiones al máximo (100) las 3 cuñas
-      // llegan al mismo radio exterior y el resultado es un solo círculo
-      // completo repartido en 3 gajos — decorativo, no representa datos de
-      // una localidad real.
-      (function () {
-        const { renderRose } = window.IDESLocalityRose;
-        const capa = d3.select("#hero-wedge").append("svg").attr("viewBox", "0 0 200 200").append("g");
-        renderRose(capa, {
-          cx: 100,
-          cy: 100,
-          rx: 92,
-          ry: 92,
-          dims: { justicia: 100, salud: 100, determinantes: 100 },
-        });
-      })();
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Metodología", href: "metodologia.html" },
+        { label: "Espacios participativos" },
+      ]);
+
+      // Círculo del hero — mismo componente que la landing de Fichas
+      // técnicas y las páginas agrupadoras por dimensión (stats-donuts.js):
+      // 3 semicírculos del mismo color rotados en ángulos distintos,
+      // combinados con mix-blend-mode:multiply. Espacios participativos no
+      // pertenece a una dimensión, así que usa el verde genérico (mismo
+      // color del subrayado del título de esta página) en vez de un color
+      // de dimensión específico.
+      window.IDESStatsDonuts.renderStatMark(
+        document.getElementById("hero-wedge"),
+        "--color-text-decoration-generico",
+        [360, 192, 132],
+      );
     </script>
   </body>
 </html>
