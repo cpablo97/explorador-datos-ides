@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Laboratorio (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/taller.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="#">Indicadores</a></li>
+          <li class="is-active"><a href="metodologia.html">Metodología</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <section class="taller-header">
+        <div class="taller-header__inner">
+          <h1 class="taller-header__title" id="taller-titulo"></h1>
+          <div class="taller-header__imagen" id="taller-imagen"></div>
+        </div>
+      </section>
+
+      <section class="taller-body" id="taller-body"></section>
+    </div>
+
+    <script src="js/taller-template.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo).
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      // Contenido real (Figma node 2138:1246). Sin foto por ahora — ver
+      // js/taller-template.js: .taller-header__imagen queda vacío y deja
+      // ver el fondo punteado detrás, tal como pidió el usuario (y tal
+      // como está también en el propio diseño de Figma para este nodo).
+      IDESTallerTemplate.render({
+        titulo: "Laboratorio consenso entre expertos",
+        imagen: null,
+        parrafos: [
+          "El Laboratorio combinó la metodología Delphi, el Índice de Validez de Contenido (ICV) y herramientas de Design Thinking para validar y priorizar los indicadores del Índice. Participaron 10 expertos de los ámbitos de pediatría, salud y justicia, priorizando la experiencia y pertinencia de los perfiles sobre el número de participantes. En el componente Delphi, cada experto evaluó individualmente 78 indicadores mediante una escala Likert de cuatro puntos.",
+          "Se desarrolló una dinámica de tarjetas basada en la metáfora de un equipo de fútbol. Los participantes recibieron los indicadores en tarjetas y, de manera colaborativa, construyeron tres equipos, Justicia, Salud y Contexto, seleccionando aquellos indicadores que consideraban que funcionaban mejor juntos y fortalecían cada dimensión. Luego, construyeron una “tribuna” con 10 indicadores que, si bien no formarían parte del equipo principal, podrían aportar información complementaria y apoyar la lectura del Índice. Los 22 indicadores que no alcanzaron consenso fueron reevaluados posteriormente. Finalmente, se plantearon preguntas abiertas para explorar los posibles usos profesionales del IDES, los datos prioritarios y las variables ausentes.",
+        ],
+      });
+    </script>
+  </body>
+</html>

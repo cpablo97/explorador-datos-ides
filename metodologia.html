@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Metodología (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/metodologia.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="#">Indicadores</a></li>
+          <li class="is-active"><a href="#">Metodología</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <section class="meto-hero">
+        <div class="meto-hero__inner">
+          <div class="meto-hero__left">
+            <h1 class="meto-hero__title">
+              Metodología del Índice de Derecho a la Salud - IDES
+            </h1>
+            <div class="meto-hero__circles">
+              <div class="meto-hero__mark" id="mark-justicia"></div>
+              <div class="meto-hero__mark" id="mark-salud"></div>
+              <div class="meto-hero__mark" id="mark-determinantes"></div>
+            </div>
+          </div>
+          <p class="meto-hero__desc">
+            Aquí podrá explorar cómo se mide el derecho a la salud pediátrica
+            para IDES, qué definiciones y fuentes sustentan el índice y cómo
+            se desarrolló el proceso de construcción.
+          </p>
+        </div>
+      </section>
+
+      <section class="meto-grid">
+        <article class="meto-card">
+          <h2 class="meto-card__title">Espacios participativos</h2>
+          <p class="meto-card__text">
+            Conozca los espacios de participación y los talleres realizados
+            para validar y fortalecer el Índice de Derecho a la Salud.
+          </p>
+          <a class="btn-outline" href="#">
+            Explore los espacios
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+        <article class="meto-card">
+          <h2 class="meto-card__title">Fuentes</h2>
+          <p class="meto-card__text">
+            Consulte las fuentes de información de las que provienen los
+            datos que sustentan el Índice.
+          </p>
+          <a class="btn-outline" href="#">
+            Explore las fuentes
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </section>
+
+      <section class="bottom meto-grid">
+        <article class="meto-card">
+          <h2 class="meto-card__title">Glosario</h2>
+          <p class="meto-card__text">
+            Explore los conceptos que le ayudarán a comprender cómo se
+            construye e interpreta el Índice de Derecho a la Salud.
+          </p>
+          <a class="btn-outline" href="#">
+            Explore los conceptos
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+        <article class="meto-card">
+          <h2 class="meto-card__title">Proceso</h2>
+          <p class="meto-card__text">
+            Conozca las etapas y decisiones que dieron forma al Índice de
+            Derecho a la Salud.
+          </p>
+          <a class="btn-outline" href="#">
+            Conozca el proceso
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </section>
+    </div>
+
+    <script src="js/stats-donuts.js"></script>
+    <script>
+      // Portado tal cual de index.html (montarGridFondo) — mismo patrón de
+      // fondo usado como fondo fijo de toda la página en el Explorador de
+      // Datos.
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      // 3 círculos decorativos del hero — mismo componente "brandmark" que
+      // el header del Explorador de Datos (ver js/stats-donuts.js): 3
+      // semicírculos del mismo color en distintas rotaciones. Un círculo
+      // por dimensión (naranja/azul/verde), mismas rotaciones que usa
+      // index.html para sus 3 marcas del header.
+      (function () {
+        const { renderStatMark } = window.IDESStatsDonuts;
+        renderStatMark(document.getElementById("mark-justicia"), "--naranja-300", [20, 180, 95]);
+        renderStatMark(document.getElementById("mark-salud"), "--azul-300", [360, 192, 132]);
+        renderStatMark(document.getElementById("mark-determinantes"), "--verde-300", [360, 192, 132]);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Taller 2 (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/taller.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="#">Indicadores</a></li>
+          <li class="is-active"><a href="metodologia.html">Metodología</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <section class="taller-header">
+        <div class="taller-header__inner">
+          <h1 class="taller-header__title" id="taller-titulo"></h1>
+          <div class="taller-header__imagen" id="taller-imagen"></div>
+        </div>
+      </section>
+
+      <section class="taller-body" id="taller-body"></section>
+    </div>
+
+    <script src="js/taller-template.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo).
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      // Contenido real (Figma node 2132:1731). Sin foto por ahora — ver
+      // js/taller-template.js: .taller-header__imagen queda vacío y deja
+      // ver el fondo punteado detrás, tal como pidió el usuario.
+      IDESTallerTemplate.render({
+        titulo: "Taller 2: Validación y refinamiento de las definiciones",
+        imagen: null,
+        parrafos: [
+          "El segundo taller permitió validar y refinar la definición de acceso a la salud pediátrica por medio de la justicia, así como la selección de variables y la propuesta visual inicial del Índice. Este proceso se desarrolló mediante un ejercicio de retroalimentación colaborativa con personas cuidadoras y profesionales de los ámbitos jurídico y de la salud.",
+          "Para ello, se realizaron discusiones guiadas, ejercicios de valoración de los indicadores mediante una escala tipo semáforo y una actividad participativa para construir y descomponer la definición de acceso a la salud pediátrica por medio de la justicia mediante piezas de rompecabezas. Estas dinámicas permitieron recoger percepciones, identificar aspectos a ajustar y contrastar las decisiones metodológicas y conceptuales del Índice desde las experiencias y conocimientos de los participantes.",
+        ],
+      });
+    </script>
+  </body>
+</html>

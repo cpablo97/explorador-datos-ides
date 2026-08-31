@@ -1,0 +1,79 @@
+/* taller.css
+   Plantilla de detalle de "Taller" (ver context/taller.md) — instanciada
+   por Taller 1, Taller 2, Piloto y Laboratorio (ver
+   espacios-participativos.html). Reutiliza tal cual, desde explorador.css:
+   navbar, fondo punteado fijo, design tokens, .btn-outline. NO usa el
+   grid 2x2 de tarjetas de metodologia.css — es un layout de detalle
+   distinto (encabezado + cuerpo de texto). */
+
+/* ---------- Encabezado ---------- */
+
+.taller-header {
+  margin-top: 1.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+.taller-header__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.taller-header__title {
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+  padding: 4rem 2.5rem;
+  border-right: 1px solid var(--color-callout-border);
+  display: flex;
+  align-items: center;
+}
+
+/* Sin foto (por ahora en las 4 instancias reales — ver taller-data.js):
+   la columna derecha queda vacía, dejando ver el fondo punteado detrás,
+   tal como en el diseño de Figma para Piloto/Laboratorio. Cuando haya una
+   foto real, .taller-header__imagen recibe una <img> y ocupa el alto que
+   marque el título (misma fila del grid). */
+.taller-header__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Cuerpo de texto ---------- */
+/* Ancho limitado (no full-width), respeta el margen del diseño. */
+
+.taller-body {
+  max-width: 52rem;
+  margin: 2.5rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.taller-body__parrafo {
+  font: var(--text-body-primary);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .taller-header__inner {
+    grid-template-columns: 1fr;
+  }
+  .taller-header__title {
+    border-right: none;
+    padding: 2.5rem 1.5rem;
+  }
+  .taller-header__imagen img {
+    min-height: 220px;
+  }
+  .taller-body {
+    max-width: 100%;
+  }
+}

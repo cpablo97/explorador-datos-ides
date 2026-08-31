@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Espacios participativos (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/metodologia.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="#">Indicadores</a></li>
+          <li class="is-active"><a href="metodologia.html">Metodología</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <section class="meto-hero">
+        <div class="meto-hero__inner">
+          <div class="meto-hero__left">
+            <h1 class="meto-hero__title">Espacios participativos</h1>
+            <div class="meto-hero__wedge" id="hero-wedge"></div>
+          </div>
+          <p class="meto-hero__desc">
+            Conozca los espacios de participación y los talleres realizados
+            para validar y fortalecer el Índice de Derecho a la Salud.
+          </p>
+        </div>
+      </section>
+
+      <section class="meto-grid">
+        <article class="meto-card">
+          <h2 class="meto-card__title">
+            Taller 1: Definiendo el acceso a la salud pediátrica
+          </h2>
+          <a class="btn-outline" href="taller-1.html">
+            Conozca sobre el taller
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+        <article class="meto-card">
+          <h2 class="meto-card__title">
+            Taller 2: Validación y refinamiento de las definiciones
+          </h2>
+          <a class="btn-outline" href="taller-2.html">
+            Conozca sobre el taller
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </section>
+
+      <section class="bottom meto-grid">
+        <article class="meto-card">
+          <h2 class="meto-card__title">
+            Piloto: Laboratorio consenso entre expertos
+          </h2>
+          <a class="btn-outline" href="piloto.html">
+            Conozca sobre el piloto
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+        <article class="meto-card">
+          <h2 class="meto-card__title">Laboratorio consenso entre expertos</h2>
+          <a class="btn-outline" href="laboratorio.html">
+            Conozca sobre el laboratorio
+            <span class="btn-outline__arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </section>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/locality-rose.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo) —
+      // mismo patrón de fondo fijo de toda la página.
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      // Círculo del hero: "un gajo por dimensión" — NO es el brandmark de 3
+      // círculos separados de la portada de Metodología (stats-donuts.js),
+      // es la misma rosa de 3 cuñas de 120° que ya usa el Explorador de
+      // Datos por localidad (locality-rose.js), reutilizada tal cual sin
+      // tocar su lógica. Con las 3 dimensiones al máximo (100) las 3 cuñas
+      // llegan al mismo radio exterior y el resultado es un solo círculo
+      // completo repartido en 3 gajos — decorativo, no representa datos de
+      // una localidad real.
+      (function () {
+        const { renderRose } = window.IDESLocalityRose;
+        const capa = d3.select("#hero-wedge").append("svg").attr("viewBox", "0 0 200 200").append("g");
+        renderRose(capa, {
+          cx: 100,
+          cy: 100,
+          rx: 92,
+          ry: 92,
+          dims: { justicia: 100, salud: 100, determinantes: 100 },
+        });
+      })();
+    </script>
+  </body>
+</html>

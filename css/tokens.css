@@ -91,3 +91,16 @@
     --text-heading-1-tracking: -3.84px;
 
 }
+
+/* Título grande (--text-heading-1) desborda su contenedor en mobile a
+   64px — afecta tanto a .header__title (Explorador de Datos, index.html)
+   como a .meto-hero__title (Metodología, metodologia.html), porque ambos
+   consumen el mismo token. Se sobreescribe acá, a nivel de token, para que
+   el fix sea transversal a las dos páginas en vez de duplicarlo por
+   componente. */
+@media (max-width: 768px) {
+  :root {
+    --text-heading-1: 600 2.25rem/1.15 var(--font-primary);
+    --text-heading-1-tracking: -2.16px;
+  }
+}

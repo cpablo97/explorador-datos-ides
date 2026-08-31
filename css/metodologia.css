@@ -1,0 +1,161 @@
+/* metodologia.css
+   Estilos específicos de la página de Metodología (ver
+   context/metodologia.md). Reutiliza tal cual, desde explorador.css: navbar
+   (#nav-real), fondo punteado fijo (.grid-fondo, montado por
+   montarGridFondo() en metodologia.html — mismo patrón que index.html),
+   tokens de color/tipografía, el brandmark de stats-donuts.js y el nuevo
+   .btn-outline. Lo único propio de esta página es el layout: hero + grid
+   2x2 de tarjetas. */
+
+/* ---------- Hero ---------- */
+
+.meto-hero {
+  margin-top: 1.5rem;
+  padding: 4rem 2.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+.meto-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.meto-hero__left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Mismo subrayado-resaltador que .header__title (explorador.css) — token
+   --text-heading-1 (~64px) tal cual pide el prompt. */
+.meto-hero__title {
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.meto-hero__circles {
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* Círculos decorativos del hero — mismo componente "brandmark" del header
+   del Explorador de Datos (.stat-mark, ver js/stats-donuts.js y
+   explorador.css), solo que más grandes acá. El tamaño/solape se controla
+   en .meto-hero__mark (el div contenedor, el verdadero item del flex) y no
+   en .stat-mark, que vive anidado adentro de cada uno (renderStatMark le
+   pone su innerHTML) y por lo tanto no es hijo directo de
+   .meto-hero__circles. */
+.meto-hero__mark {
+  width: 140px;
+}
+.meto-hero__mark .stat-mark {
+  width: 100%;
+}
+
+.meto-hero__desc {
+  font: var(--text-body-primary);
+  color: var(--color-text-secondary);
+}
+
+/* Círculo "un gajo por dimensión" — variante de un solo círculo de la
+   rosa de 3 cuñas (locality-rose.js), usada en el hero de las subpáginas
+   de Metodología (Espacios participativos y, previsiblemente, Fuentes/
+   Glosario/Proceso). Distinta del brandmark de 3 círculos separados
+   (.meto-hero__mark) que usa la portada de Metodología. */
+.meto-hero__wedge {
+  width: 220px;
+  aspect-ratio: 1;
+}
+.meto-hero__wedge svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* ---------- Grid 2x2 de tarjetas ---------- */
+/* Dos filas de 2 columnas en vez de un único grid de 4 celdas: en mobile
+   cada fila colapsa a 1 columna, manteniendo el orden 1-2-3-4 sin
+   reordenar nada por JS/media query. */
+
+.meto-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  border: 1px solid var(--color-callout-border);
+}
+
+.meto-grid.bottom {
+  margin-top: 0;
+}
+
+.meto-grid + .meto-grid {
+  border-top: none;
+}
+
+.meto-card {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.meto-card + .meto-card {
+  border-left: 1px solid var(--color-callout-border);
+}
+
+.meto-card__title {
+  font: 600 2.5rem/1.15 var(--font-primary);
+}
+
+.meto-card__text {
+  font: var(--text-body-primary);
+  color: var(--color-text-secondary);
+}
+
+.meto-card .btn-outline {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .meto-hero {
+    padding: 2.5rem 1.5rem;
+  }
+  .meto-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  /* Siguen en fila (no apilados) para no alargar el scroll — cada uno
+     flexible (flex:1) en vez de un ancho fijo, así los 3 reparten el ancho
+     del contenedor en partes iguales sin desbordar ni solaparse. */
+  .meto-hero__circles {
+    gap: 0.75rem;
+  }
+  .meto-hero__mark {
+    flex: 1;
+    width: auto;
+  }
+  .meto-hero__wedge {
+    width: 140px;
+  }
+  .meto-grid {
+    grid-template-columns: 1fr;
+  }
+  .meto-card {
+    padding: 2rem 1.5rem;
+  }
+  .meto-card + .meto-card {
+    border-left: none;
+    border-top: 1px solid var(--color-callout-border);
+  }
+}
