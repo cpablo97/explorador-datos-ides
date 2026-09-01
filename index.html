@@ -52,10 +52,17 @@
               <button class="year-pill is-active" data-vista="abanico" type="button">Abanico</button>
               <button class="year-pill" data-vista="dispersion" type="button">Dispersión</button>
             </div>
-            <button class="year-pill" data-año="2022" type="button">2022</button>
-            <button class="year-pill" data-año="2023" type="button">2023</button>
-            <button class="year-pill is-active" data-año="2024" type="button">2024</button>
-            <button class="play-btn" id="play-btn" type="button">▶ Reproducir evolución</button>
+            <div class="year-pills" id="year-pills" role="tablist" aria-label="Año seleccionado">
+              <button
+                class="play-btn"
+                id="play-btn"
+                type="button"
+                aria-label="Reproducir evolución"
+                title="Reproducir evolución"
+              >
+                ▶
+              </button>
+            </div>
             <label class="trail-toggle">
               <input type="checkbox" id="toggle-estelas" checked />
               <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
@@ -377,8 +384,7 @@
 
         const chartDispersion = crearGraficoDispersion("#chart-scatter", {
           data,
-          ordenX: "alfabetico",
-          añoOrden: 2024,
+          ordenX: "puntaje",
           interactive: true,
           onHover(id) {
             if (pinnedId) return;
@@ -441,34 +447,46 @@
         document.getElementById("explicativo-texto-2").textContent =
           `En el ejemplo de Usme (2024): índice compuesto ${usmeAño.indiceCompuesto}/100. Sus tres dimensiones —Justicia ${usmeAño.dims.justicia}, Salud ${usmeAño.dims.salud}, Determinantes Sociales ${usmeAño.dims.determinantes}— se ven en su rosa, cada pétalo escalado contra su propio anillo, nunca contra la escala 0–100 del abanico.`;
 
-        // Acotado a [data-año]: .year-pill también la usan las pastillas de
-        // vista (Abanico/Dispersión, mismo look, otro propósito) — sin este
-        // filtro, marcarAñoActivo() les quitaría/pondría "is-active" cada
-        // vez que cambia el año, porque Number(undefined) !== año.
-        const yearPills = Array.from(document.querySelectorAll(".year-pill[data-año]"));
+        // Los botones de año se generan sobre AÑOS (única fuente de verdad,
+        // viene de timeline-control.js) e insertan antes del botón de
+        // reproducir, que ya vive fijo en el HTML como último hijo del
+        // grupo — así el orden en el DOM queda [2022][2023][2024][▶].
+        const yearPillsContainer = document.getElementById("year-pills");
+        const playBtnEl = document.getElementById("play-btn");
+        const yearButtons = AÑOS.map((año) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "year-pill";
+          btn.textContent = año;
+          btn.dataset.año = año;
+          btn.addEventListener("click", () => seleccionarAño(año));
+          yearPillsContainer.insertBefore(btn, playBtnEl);
+          return btn;
+        });
+
         function marcarAñoActivo(año) {
-          yearPills.forEach((btn) =>
+          yearButtons.forEach((btn) =>
             btn.classList.toggle("is-active", Number(btn.dataset.año) === año),
           );
         }
-        yearPills.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const año = Number(btn.dataset.año);
-            marcarAñoActivo(año);
-            // Se dispara ANTES/en el mismo tick que chart.transitionToYear(),
-            // no después — así números y barras del panel se mueven en
-            // paralelo con el punto y la rosa, no como una animación que
-            // arranca cuando el gráfico ya terminó. No hace falta volver a
-            // llamar a mostrarModal()/chart.highlight(): el propio render()
-            // de fan-chart.js ya re-sincroniza la rosa fijada con esta misma
-            // duración (ver idActivo en fan-chart.js).
-            if (pinnedId) {
-              actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
-              actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
-            }
-            chart.transitionToYear(año, STEP_DURATION);
-          });
-        });
+
+        function seleccionarAño(año) {
+          marcarAñoActivo(año);
+          // Se dispara ANTES/en el mismo tick que chart.transitionToYear(),
+          // no después — así números y barras del panel se mueven en
+          // paralelo con el punto y la rosa, no como una animación que
+          // arranca cuando el gráfico ya terminó. No hace falta volver a
+          // llamar a mostrarModal()/chart.highlight(): el propio render()
+          // de fan-chart.js ya re-sincroniza la rosa fijada con esta misma
+          // duración (ver idActivo en fan-chart.js).
+          if (pinnedId) {
+            actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
+            actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
+          }
+          chart.transitionToYear(año, STEP_DURATION);
+        }
+
+        marcarAñoActivo(AÑOS[AÑOS.length - 1]);
 
         document.getElementById("play-btn").addEventListener("click", async () => {
           // Mientras se reproduce la evolución, el panel baja de opacidad

@@ -322,11 +322,12 @@ p {
 
 .tabs-row__filtro {
   margin-left: auto;
-  font: 400 0.9rem/1 var(--font-primary);
+  font: 400 13px/1 var(--font-primary);
   color: var(--color-text-primary);
   border: 1px solid var(--color-callout-border);
-  padding: 0.6rem 1.2rem;
-  background: var(--crema);
+  height: 28px;
+  padding: 0 0.85rem;
+  background: var(--color-bg);
 }
 
 /* ---------- Dashboard ---------- */
@@ -682,11 +683,12 @@ p {
 }
 
 .year-pill {
-  font: 400 0.95rem/1 var(--font-primary);
+  font: 400 13px/1 var(--font-primary);
   color: var(--color-text-primary);
-  background: var(--crema);
+  background: var(--color-bg);
   border: 1px solid var(--color-callout-border);
-  padding: 0.6rem 1.1rem;
+  height: 28px;
+  padding: 0 0.85rem;
   cursor: pointer;
 }
 .year-pill.is-active {
@@ -695,24 +697,41 @@ p {
   border-color: var(--color-text-primary);
 }
 
-/* Grupo "Abanico / Dispersión" — mismas .year-pill tal cual (mismo peso
-   visual que 2022/2023/2024), agrupadas aparte con un separador para dejar
-   claro que es un control distinto (cambia toda la visualización, no un
-   año). */
+/* Grupo "Abanico / Dispersión" y grupo de años — mismo patrón "button
+   group" plano en ambos: botones pegados (sin separación, un solo borde
+   compartido entre vecinos: al que no es el primero se le quita el borde
+   izquierdo), sin border-radius. */
 .view-pills {
   display: flex;
-  gap: 0.4rem;
   padding-right: 0.75rem;
   margin-right: 0.25rem;
   border-right: 1px solid var(--color-callout-border);
 }
+.view-pills > *:not(:first-child) {
+  border-left: none;
+}
+
+/* ---------- Selector de año + reproducir ---------- */
+
+.year-pills {
+  display: flex;
+}
+.year-pills > *:not(:first-child) {
+  border-left: none;
+}
 
 .play-btn {
-  font: 400 0.95rem/1 var(--font-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  font: 400 13px/1 var(--font-primary);
   color: var(--color-text-primary);
-  background: var(--crema);
-  border: none;
-  padding: 0.7rem 1.4rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-callout-border);
+  padding: 0;
   cursor: pointer;
 }
 .play-btn:disabled {

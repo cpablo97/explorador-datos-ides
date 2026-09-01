@@ -14,7 +14,6 @@
   async function reproducirEvolucion(chart, { onYearChange, onYearStart, playBtn } = {}) {
     if (playBtn) {
       playBtn.disabled = true;
-      playBtn.textContent = "Reproduciendo…";
     }
 
     onYearStart && onYearStart(AÑOS[0], 0);
@@ -31,7 +30,6 @@
 
     if (playBtn) {
       playBtn.disabled = false;
-      playBtn.textContent = "▶ Reproducir evolución";
     }
   }
 

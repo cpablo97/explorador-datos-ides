@@ -140,7 +140,9 @@
 
     const guiasLayer = svg.append("g").attr("class", "fan-guias");
     const etiquetasLayer = svg.append("g").attr("class", "fan-etiquetas");
-    geometria.dibujarEtiquetas(guiasLayer, etiquetasLayer);
+    // Abanico dibuja de una vez y no devuelve nada (ángulo fijo); Dispersión
+    // devuelve un actualizador que render() invoca en cada año (ver abajo).
+    const actualizarEtiquetas = geometria.dibujarEtiquetas(guiasLayer, etiquetasLayer);
 
     const trailsLayer = svg.append("g").attr("class", "fan-trails");
     const trailsDefs = svg.append("defs").attr("class", "fan-trails-defs");
@@ -178,7 +180,7 @@
         hoverGuiaSel.attr("opacity", 0);
         return;
       }
-      const etiqueta = geometria.posicionEtiqueta(loc);
+      const etiqueta = geometria.posicionEtiqueta(loc, currentYear);
       hoverGuiaSel
         .attr("x1", d.x)
         .attr("y1", d.y)
@@ -270,9 +272,10 @@
 
     // Estela: recta entre la posición anterior y la nueva. En el abanico el
     // ángulo nunca cambia entre años, así que el tramo ya es colineal con
-    // el hub; en dispersión la x tampoco cambia (categórica), así que la
-    // estela es un tramo vertical — en ambos casos alcanza con una simple
-    // línea recta, sin curva ni tangente.
+    // el hub. En dispersión, con ordenX: "puntaje" la x sí puede cambiar de
+    // un año a otro (el ranking se reacomoda), así que la estela puede
+    // quedar diagonal — refuerzo visual esperado del reordenamiento. En
+    // ambos casos alcanza con una simple línea recta, sin curva ni tangente.
     function dibujarEstelas(anteriores, puntos, duration) {
       if (!estelasActivas) return;
       puntos.forEach((p) => {
@@ -413,6 +416,8 @@
         puntosSel.interrupt("year-move").attr("cx", (d) => d.x).attr("cy", (d) => d.y);
         hitSel.interrupt("year-move").attr("cx", (d) => d.x).attr("cy", (d) => d.y);
       }
+
+      if (actualizarEtiquetas) actualizarEtiquetas(año, { animate, duration });
 
       currentYear = año;
       // Misma duración/easing que el punto y la línea guía (ver arriba) —
@@ -709,8 +714,10 @@
         // cabían en el margen viejo y se recortaban contra el borde
         // inferior del SVG (overflow:hidden implícito de todo <svg>).
         marginBottom: 230,
+        // "puntaje": orden dinámico por índice compuesto del año activo
+        // (ver indiceCategoriaParaAño más abajo) — Bogotá D.C. queda
+        // siempre pinneada en el slot 0 sin importar el modo.
         ordenX: "alfabetico", // "alfabetico" | "puntaje"
-        añoOrden: 2024, // año usado para ordenar si ordenX === "puntaje"
         interactive: true,
         forceRose: false,
         trailWidth: 15.2,
@@ -723,10 +730,11 @@
 
     const { getLocalidadesReales, getBogota } = window.IDESLocalityUtils;
 
-    const localidadesOrdenadas =
-      opts.ordenX === "puntaje"
-        ? ordenPorPuntaje(getLocalidadesReales(opts.data), opts.añoOrden)
-        : ordenAlfabetico(getLocalidadesReales(opts.data));
+    // categorias: solo identidad/conteo (N, dataset, yMax) — el orden real
+    // en el eje X se recalcula por año más abajo (indiceCategoriaParaAño),
+    // así que aquí siempre va alfabético sin importar opts.ordenX.
+    const localidadesReales = getLocalidadesReales(opts.data);
+    const localidadesOrdenadas = ordenAlfabetico(localidadesReales);
     const bogota = getBogota(opts.data);
 
     // Bogotá D.C. va primero, como entidad de referencia (benchmark) — no
@@ -735,7 +743,22 @@
     // hueco extra en el eje X (ver GAP_BOGOTA más abajo).
     const categorias = bogota ? [bogota, ...localidadesOrdenadas] : localidadesOrdenadas;
     const N = categorias.length;
-    const indiceCategoria = new Map(categorias.map((loc, i) => [loc.id, i]));
+
+    // Con ordenX: "puntaje" el orden en el eje X depende del año (el
+    // ranking por puntaje IDES cambia de un año a otro) — se recalcula por
+    // demanda y se cachea por año (solo hay 3, el costo es irrelevante).
+    // Bogotá sigue pinneada en el slot 0 en cualquier año.
+    const indiceCategoriaAlfabetica = new Map(categorias.map((loc, i) => [loc.id, i]));
+    const cacheIndicePorAño = new Map();
+    function indiceCategoriaParaAño(año) {
+      if (opts.ordenX !== "puntaje") return indiceCategoriaAlfabetica;
+      if (!cacheIndicePorAño.has(año)) {
+        const ordenadas = ordenPorPuntaje(localidadesReales, año);
+        const cats = bogota ? [bogota, ...ordenadas] : ordenadas;
+        cacheIndicePorAño.set(año, new Map(cats.map((loc, i) => [loc.id, i])));
+      }
+      return cacheIndicePorAño.get(año);
+    }
 
     const GAP_BOGOTA = 1.3; // "categorías" de más entre Bogotá y las localidades
     const holguraTotal = bogota ? GAP_BOGOTA - 1 : 0;
@@ -772,7 +795,7 @@
     function posicionDe(loc, año) {
       const { dims, indiceCompuesto } = getAñoData(loc, año);
       return {
-        x: xDeIndice(indiceCategoria.get(loc.id)),
+        x: xDeIndice(indiceCategoriaParaAño(año).get(loc.id)),
         y: escalaY(indiceCompuesto),
         dims,
         indiceCompuesto,
@@ -789,9 +812,11 @@
 
       // Punto de anclaje de la línea guía hover/pin (ver hoverGuiaSel en
       // montarMotor) — el mismo punto donde arranca el tick/etiqueta de
-      // cada categoría en dibujarEtiquetas() más abajo.
-      posicionEtiqueta(loc) {
-        return { x: xDeIndice(indiceCategoria.get(loc.id)), y: opts.altoGrafico };
+      // cada categoría en dibujarEtiquetas() más abajo. Recibe año porque
+      // con ordenX: "puntaje" ese punto se mueve entre años igual que el
+      // punto mismo.
+      posicionEtiqueta(loc, año) {
+        return { x: xDeIndice(indiceCategoriaParaAño(año).get(loc.id)), y: opts.altoGrafico };
       },
 
       dibujarFondo(fondo) {
@@ -845,27 +870,70 @@
         }
       },
 
+      // A diferencia de Abanico (ángulo fijo, se dibuja una sola vez), con
+      // ordenX: "puntaje" el orden en X cambia por año — así que esto ya no
+      // dibuja directo: devuelve un `actualizar(año, {animate, duration})`
+      // que el motor invoca en cada render() (ver montarMotor), con el
+      // mismo join keyed por id + transición "year-move" que puntosSel/
+      // hitSel, para que tick+etiqueta viajen pegados a su punto.
       dibujarEtiquetas(guiasLayer, etiquetasLayer) {
-        categorias.forEach((loc, i) => {
-          const x = xDeIndice(i);
-          const yBase = opts.altoGrafico;
+        const yBase = opts.altoGrafico;
+        return function actualizar(año, { animate, duration } = {}) {
+          const indice = indiceCategoriaParaAño(año);
+          const puntos = categorias.map((loc) => ({
+            id: loc.id,
+            nombre: loc.nombre,
+            ciudad: loc.ciudad,
+            x: xDeIndice(indice.get(loc.id)),
+          }));
 
-          guiasLayer
-            .append("line")
-            .attr("class", "disp-tick")
-            .attr("x1", x)
-            .attr("x2", x)
-            .attr("y1", yBase)
-            .attr("y2", yBase + 8);
+          const ticksSel = guiasLayer
+            .selectAll("line.disp-tick")
+            .data(puntos, (d) => d.id)
+            .join((enter) =>
+              enter
+                .append("line")
+                .attr("class", "disp-tick")
+                .attr("y1", yBase)
+                .attr("y2", yBase + 8)
+                .attr("x1", (d) => d.x)
+                .attr("x2", (d) => d.x),
+            );
 
-          etiquetasLayer
-            .append("text")
-            .attr("class", `disp-etiqueta${loc.ciudad ? " disp-etiqueta--bogota" : ""}`)
-            .attr("transform", `translate(${x},${yBase + 14}) rotate(-45)`)
-            .attr("text-anchor", "end")
-            .attr("dy", "0.32em")
-            .text(loc.nombre);
-        });
+          const etiquetasSel = etiquetasLayer
+            .selectAll("text.disp-etiqueta")
+            .data(puntos, (d) => d.id)
+            .join((enter) =>
+              enter
+                .append("text")
+                .attr("class", (d) => `disp-etiqueta${d.ciudad ? " disp-etiqueta--bogota" : ""}`)
+                .attr("text-anchor", "end")
+                .attr("dy", "0.32em")
+                .text((d) => d.nombre)
+                .attr("transform", (d) => `translate(${d.x},${yBase + 14}) rotate(-45)`),
+            );
+
+          if (animate) {
+            ticksSel
+              .interrupt("year-move")
+              .transition("year-move")
+              .duration(duration)
+              .ease(d3.easeCubicInOut)
+              .attr("x1", (d) => d.x)
+              .attr("x2", (d) => d.x);
+            etiquetasSel
+              .interrupt("year-move")
+              .transition("year-move")
+              .duration(duration)
+              .ease(d3.easeCubicInOut)
+              .attr("transform", (d) => `translate(${d.x},${yBase + 14}) rotate(-45)`);
+          } else {
+            ticksSel.interrupt("year-move").attr("x1", (d) => d.x).attr("x2", (d) => d.x);
+            etiquetasSel
+              .interrupt("year-move")
+              .attr("transform", (d) => `translate(${d.x},${yBase + 14}) rotate(-45)`);
+          }
+        };
       },
     };
 
