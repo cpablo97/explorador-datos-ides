@@ -33,16 +33,20 @@
   align-items: center;
 }
 
-/* Sin foto (por ahora en las 4 instancias reales — ver taller-data.js):
-   la columna derecha queda vacía, dejando ver el fondo punteado detrás,
-   tal como en el diseño de Figma para Piloto/Laboratorio. Cuando haya una
-   foto real, .taller-header__imagen recibe una <img> y ocupa el alto que
-   marque el título (misma fila del grid). */
-.taller-header__imagen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* .taller-header__imagen aloja el carrusel de fotos del espacio: es el
+   mismo elemento donde PhotoCarousel.init() agrega la clase
+   .photo-carousel (ver js/photo-carousel.js/taller-template.js), no un
+   contenedor separado. Ocupa el alto que marque el título (misma fila
+   del grid en desktop). Si el manifest no tiene fotos para ese espacio,
+   la columna queda vacía y deja ver el fondo punteado detrás, mismo
+   fallback que antes de tener fotos reales.
+
+   min-height:0 evita el tamaño-mínimo-automático de grid item (ver
+   css/photo-carousel.css para por qué .photo-carousel__viewport se saca
+   de flujo — esa es la pieza que realmente evita que una foto en
+   retrato, como varias de Taller 2, infle la fila entera del hero). */
+.taller-header__imagen {
+  min-height: 0;
 }
 
 /* ---------- Cuerpo de texto ---------- */
@@ -70,7 +74,10 @@
     border-right: none;
     padding: 2.5rem 1.5rem;
   }
-  .taller-header__imagen img {
+  /* .taller-header__imagen ya no tiene contenido en flujo (ver arriba,
+     .photo-carousel es absolute) — en la columna única de mobile
+     necesita su propia altura mínima explícita, si no colapsaría a 0. */
+  .taller-header__imagen {
     min-height: 220px;
   }
   .taller-body {

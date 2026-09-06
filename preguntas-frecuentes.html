@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Preguntas Frecuentes (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/preguntas-frecuentes.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
+          <li><a href="metodologia.html">Metodología</a></li>
+          <li class="is-active"><a href="#">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div id="breadcrumb"></div>
+
+      <section class="faq-hero">
+        <div class="faq-hero__title-cell">
+          <h1 class="faq-hero__title">Preguntas Frecuentes</h1>
+        </div>
+        <div class="faq-hero__mark" id="mark-1"></div>
+        <div class="faq-hero__mark" id="mark-2"></div>
+        <div class="faq-hero__mark" id="mark-3"></div>
+        <p class="faq-hero__desc">
+          Si desea conocer más sobre IDES, explore las preguntas frecuentes
+          o si tiene preguntas, quiere sugerir nuevos datos o indicadores,
+          póngase en contacto con nosotros en
+          <a href="mailto:kajalk@stanford.edu">kajalk@stanford.edu</a>.
+        </p>
+      </section>
+
+      <section class="faq-body">
+        <dl class="faq-list">
+          <dt class="faq-list__q">¿Qué significa un puntaje de 100?</dt>
+          <dd class="faq-list__a">
+            Un puntaje de 100 representa el mejor desempeño posible dentro de
+            la escala del IDES. Los valores más cercanos a 100 indican
+            mejores resultados en relación con los indicadores incluidos en
+            el índice.
+          </dd>
+
+          <dt class="faq-list__q">¿Cuál es nuestra misión y visión con IDES?</dt>
+          <dd class="faq-list__a">
+            La misión es hacer más accesible la información sobre el derecho
+            a la salud de niñas, niños y adolescentes en Bogotá mediante
+            datos claros, comparables y fáciles de consultar. Por otro lado,
+            la visión es contribuir a una toma de decisiones informada que
+            permita identificar brechas y orientar acciones para garantizar
+            el derecho a la salud. IDES pediatría Bogotá es solo el
+            comienzo, su metodología y diseño es replicable a futuro para
+            otros territorios.
+          </dd>
+
+          <dt class="faq-list__q">¿De qué fuentes provienen los datos?</dt>
+          <dd class="faq-list__a">
+            Los datos utilizados por IDES provienen de fuentes públicas,
+            institucionales y verificables, seleccionadas de acuerdo con la
+            disponibilidad y pertinencia de la información. Entre ellas se
+            encuentran el Banco Mundial, la Secretaría de Educación del
+            Distrito, SaluData – Observatorio de Salud de Bogotá y Así
+            Vamos en Salud. También se utilizaron datos obtenidos mediante
+            solicitudes de información realizadas a entidades como la
+            Secretaría Distrital de Salud, la Personería de Bogotá D. C. y
+            el Consejo Superior de la Judicatura.
+          </dd>
+
+          <dt class="faq-list__q">¿Cómo se interpretan los resultados?</dt>
+          <dd class="faq-list__a">
+            El IDES utiliza una escala de 0 a 100, donde los valores más
+            altos representan un mejor desempeño según los criterios
+            definidos para el índice. El resultado puede consultarse de
+            manera general o por cada una de sus dimensiones: Salud,
+            Justicia y Determinantes Sociales. Es importante interpretar
+            cada resultado junto con los indicadores que lo componen.
+          </dd>
+
+          <dt class="faq-list__q">
+            ¿Cómo puedo conocer los métodos de normalización de cada
+            indicador?
+          </dt>
+          <dd class="faq-list__a">
+            Puedes consultar las fichas técnicas de cada indicador, donde
+            encontrarás información detallada sobre su definición, fuente de
+            datos, unidad de medida, método de cálculo y método de
+            normalización utilizado para obtener el puntaje del IDES.
+          </dd>
+
+          <dt class="faq-list__q">
+            ¿Cómo puedo consultar la información de cada localidad?
+          </dt>
+          <dd class="faq-list__a">
+            Puedes seleccionar una localidad desde el explorador del IDES
+            para consultar su puntaje general y los resultados
+            correspondientes a las dimensiones de Salud, Justicia y
+            Determinantes Sociales. También puedes explorar los indicadores
+            que componen cada resultado.
+          </dd>
+
+          <dt class="faq-list__q">
+            ¿Cómo puedo sugerir nuevos datos o indicadores?
+          </dt>
+          <dd class="faq-list__a">
+            Si consideras que existe un indicador o una fuente de
+            información que podría complementar el IDES, puedes enviarnos tu
+            propuesta a través del correo
+            <a href="mailto:kajalk@stanford.edu">kajalk@stanford.edu</a>.
+          </dd>
+        </dl>
+
+        <p class="faq-body__closing">
+          Para más información, contáctenos en
+          <a href="mailto:kajalk@stanford.edu">kajalk@stanford.edu</a>
+        </p>
+      </section>
+    </div>
+
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/stats-donuts.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo).
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Preguntas Frecuentes" },
+      ]);
+
+      // 3 donuts decorativos del hero — mismo componente "brandmark" que el
+      // header del Explorador de Datos y el resto de páginas internas (ver
+      // js/stats-donuts.js): 3 semicírculos del mismo color en distintas
+      // rotaciones. Mismos colores/rotaciones que index.html/metodologia.html
+      // (naranja/azul/verde) — acá no representan una dimensión puntual,
+      // son puramente decorativos.
+      (function () {
+        const { renderStatMark } = window.IDESStatsDonuts;
+        renderStatMark(document.getElementById("mark-1"), "--naranja-300", [20, 180, 95]);
+        renderStatMark(document.getElementById("mark-2"), "--azul-300", [360, 192, 132]);
+        renderStatMark(document.getElementById("mark-3"), "--verde-300", [360, 192, 132]);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Fuentes (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/fuentes.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
+          <li class="is-active"><a href="metodologia.html">Metodología</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div id="breadcrumb"></div>
+
+      <h1 class="fuentes-titulo">Fuentes</h1>
+
+      <section class="fuentes-section">
+        <h2 class="fuentes-section__subtitulo">Fuentes Oficiales</h2>
+        <div class="fuentes-oficiales" id="fuentes-oficiales"></div>
+      </section>
+
+      <section class="fuentes-section">
+        <h2 class="fuentes-section__subtitulo">
+          Respuestas a solicitudes de información
+        </h2>
+        <div class="fuentes-solicitudes" id="fuentes-solicitudes"></div>
+      </section>
+    </div>
+
+    <script src="js/breadcrumb.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo).
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Metodología", href: "metodologia.html" },
+        { label: "Fuentes" },
+      ]);
+
+      (async function () {
+        const { fuentesOficiales, solicitudesInformacion } = await fetch(
+          "data/fuentes.json",
+        ).then((r) => r.json());
+
+        const oficialesEl = document.getElementById("fuentes-oficiales");
+        fuentesOficiales.forEach((fuente) => {
+          const item = document.createElement("div");
+          item.className = "fuente-oficial";
+
+          const nombre = document.createElement("p");
+          nombre.className = "fuente-oficial__nombre";
+          nombre.textContent = fuente.nombre;
+
+          const cita = document.createElement("p");
+          cita.className = "fuente-oficial__cita";
+          // El diseño de Figma muestra la cita como texto plano, no como
+          // link (ver prompt) — igual se aprovecha `url` para que la cita
+          // completa sea clickeable, mismo criterio ya usado en las citas
+          // de Preguntas Frecuentes/Glosario (color heredado, sin resaltar
+          // como CTA).
+          if (fuente.url) {
+            const link = document.createElement("a");
+            link.href = fuente.url;
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.textContent = fuente.cita;
+            cita.appendChild(link);
+          } else {
+            cita.textContent = fuente.cita;
+          }
+
+          item.append(nombre, cita);
+          oficialesEl.appendChild(item);
+        });
+
+        const solicitudesEl = document.getElementById("fuentes-solicitudes");
+        solicitudesInformacion.forEach((solicitud) => {
+          const item = document.createElement("div");
+          item.className = "fuente-solicitud";
+
+          const entidad = document.createElement("p");
+          entidad.className = "fuente-solicitud__linea";
+          entidad.textContent = `Entidad: ${solicitud.entidad}`;
+
+          const radicado = document.createElement("p");
+          radicado.className = "fuente-solicitud__linea";
+          radicado.textContent = `Radicado: ${solicitud.radicado}`;
+
+          const btn = document.createElement("a");
+          btn.className = "btn-outline fuentes-btn-descargar";
+          // encodeURI: los nombres de archivo reales traen espacios y
+          // tildes (p.ej. "1_Secretaria de Salud de Bogotá.pdf", y el
+          // archivo #4 con un espacio extra tras el guion bajo, ver
+          // fuentes.json) — hay que escaparlos para que el href sea válido.
+          btn.href = encodeURI(`data/${solicitud.archivo}`);
+          btn.setAttribute("download", "");
+          btn.textContent = "Descargar";
+
+          item.append(entidad, radicado, btn);
+          solicitudesEl.appendChild(item);
+        });
+      })();
+    </script>
+  </body>
+</html>

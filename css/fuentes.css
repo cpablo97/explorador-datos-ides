@@ -1,0 +1,106 @@
+/* fuentes.css
+   Página "Fuentes", subpágina de Metodología (ver el card correspondiente
+   en metodologia.html) — Figma nodeId 2193:883. Reutiliza tal cual, desde
+   explorador.css: navbar (#nav-real), fondo punteado fijo (.grid-fondo,
+   montado por montarGridFondo() en fuentes.html), design tokens, miga de
+   pan y .btn-outline (con un ajuste tipográfico puntual, ver
+   .fuentes-btn-descargar).
+
+   A diferencia de las demás subpáginas de Metodología (Proceso, Espacios
+   participativos, Glosario), el mockup de Figma de esta página NO pone el
+   título dentro de una caja bordeada ni agrega donuts decorativos — es un
+   layout de documento simple, título + dos listas, así que no se reutiliza
+   el patrón "-hero" de esas páginas. */
+
+/* .page no trae padding-inline propio (ver explorador.css) — cada sección
+   interna aporta su propio inset horizontal (2.5rem, mismo valor que el
+   padding de los "-hero" bordeados de las demás páginas) para no quedar
+   pegada al borde del viewport como sí lo están el nav y la miga de pan. */
+.fuentes-titulo {
+  margin-top: 1.5rem;
+  padding-inline: 2.5rem;
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  color: var(--color-text-primary);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.fuentes-section {
+  max-width: 52rem;
+  margin-top: 3rem;
+  padding-inline: 2.5rem;
+}
+
+.fuentes-section__subtitulo {
+  font: var(--text-heading-2);
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Fuentes oficiales ---------- */
+
+.fuentes-oficiales {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.fuente-oficial__nombre {
+  font: 600 1.5rem/1.4 var(--font-secondary);
+  color: var(--color-text-primary);
+}
+
+.fuente-oficial__cita {
+  font: 400 1.5rem/1.5 var(--font-secondary);
+  color: var(--color-text-primary);
+}
+.fuente-oficial__cita a {
+  color: inherit;
+}
+
+/* ---------- Respuestas a solicitudes de información ---------- */
+
+.fuentes-solicitudes {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.fuente-solicitud {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fuente-solicitud__linea {
+  font: 400 1.5rem/1.5 var(--font-secondary);
+  color: var(--color-text-primary);
+}
+
+.fuentes-btn-descargar {
+  align-self: flex-start;
+  margin-top: 0.75rem;
+  font: 400 1rem/1 var(--font-secondary);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .fuentes-titulo {
+    padding-inline: 1.5rem;
+  }
+  .fuentes-section {
+    margin-top: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+  .fuente-oficial__nombre,
+  .fuente-oficial__cita,
+  .fuente-solicitud__linea {
+    font-size: 1.125rem;
+  }
+}

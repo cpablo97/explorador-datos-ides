@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/explorador.css" />
     <link rel="stylesheet" href="css/taller.css" />
+    <link rel="stylesheet" href="css/photo-carousel.css" />
   </head>
   <body>
     <div class="grid-fondo" id="grid-fondo"></div>
@@ -24,7 +25,7 @@
           <li><a href="index.html">Explorador de Datos</a></li>
           <li><a href="indicadores.html">Indicadores</a></li>
           <li class="is-active"><a href="metodologia.html">Metodología</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
         </ul>
       </div>
 
@@ -41,6 +42,7 @@
     </div>
 
     <script src="js/breadcrumb.js"></script>
+    <script src="js/photo-carousel.js"></script>
     <script src="js/taller-template.js"></script>
     <script>
       // Portado tal cual de metodologia.html/index.html (montarGridFondo).
@@ -90,13 +92,11 @@
         { label: "Piloto" },
       ]);
 
-      // Contenido real (Figma node 2138:1200). Sin foto por ahora — ver
-      // js/taller-template.js: .taller-header__imagen queda vacío y deja
-      // ver el fondo punteado detrás, tal como pidió el usuario (y tal
-      // como está también en el propio diseño de Figma para este nodo).
+      // Contenido real (Figma node 2138:1200). El carrusel de fotos lee
+      // assets/espacios-fotos.json en runtime (ver js/photo-carousel.js).
       IDESTallerTemplate.render({
         titulo: "Piloto: Laboratorio consenso entre expertos",
-        imagen: null,
+        espacio: "piloto",
         parrafos: [
           "El taller piloto permitió probar la estructura, los instrumentos y los tiempos definidos para el taller con expertos. La actividad combinó dos rondas de cuestionarios tipo Delphi, discusiones guiadas por mesas disciplinares y una dinámica de Cartas y combinaciones para explorar la relación entre variables y dimensiones.",
           "Finalmente, se realizó un ejercicio de proyección sobre el uso futuro del IDES y una sesión de retroalimentación para identificar aspectos por mejorar y elementos que funcionaron adecuadamente.",

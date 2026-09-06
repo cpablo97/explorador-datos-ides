@@ -1,0 +1,57 @@
+{
+  "piloto": {
+    "carpeta": "Piloto",
+    "archivos": [
+      "1 piloto.jpeg",
+      "2 piloto.jpeg",
+      "3 piloto.jpeg",
+      "4 Piloto.jpeg",
+      "5 piloto.jpeg",
+      "6 Piloto.jpeg",
+      "7 piloto.jpeg",
+      "8 piloto.jpeg"
+    ]
+  },
+  "laboratorio": {
+    "carpeta": "Laboratorio",
+    "archivos": [
+      "1 Laboratorio.jpg",
+      "2 Laboratorio.jpg",
+      "3 Laboratorio.jpg",
+      "4 Laboratorio.jpg",
+      "5 Laboratorio.jpg",
+      "6 Laboratorio.jpg",
+      "7 Laboratorio.jpg",
+      "8 Laboratorio.jpg",
+      "9 Laboratorio.jpg"
+    ]
+  },
+  "taller-1": {
+    "carpeta": "Taller 1",
+    "archivos": [
+      "1. Taller 1.jpg",
+      "2. Taller 1.jpg",
+      "3. Taller 1.jpg",
+      "4. Taller 1.jpg",
+      "5. Taller 1.jpg",
+      "6. Taller 1.jpg",
+      "7. Taller 1.jpg",
+      "8. Taller 1.jpg",
+      "9. Taller 1.jpg"
+    ]
+  },
+  "taller-2": {
+    "carpeta": "Taller 2",
+    "archivos": [
+      "1. Taller 2.jpg",
+      "2. Taller 2.jpg",
+      "3. Taller 2.jpg",
+      "4. Taller 2.jpg",
+      "5. Taller 2.jpg",
+      "6. Taller 2.jpg",
+      "7. Taller 2.jpg",
+      "8. Taller 2.jpg",
+      "9. Taller 2.jpg"
+    ]
+  }
+}

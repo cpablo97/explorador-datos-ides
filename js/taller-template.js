@@ -1,23 +1,23 @@
 // taller-template.js
 // Plantilla reutilizable de detalle de "Taller" (ver context/taller.md).
-// Recibe un objeto {titulo, imagen, parrafos} y renderiza el encabezado +
+// Recibe un objeto {titulo, espacio, parrafos} y renderiza el encabezado +
 // cuerpo de texto — cada instancia (taller-1.html, taller-2.html,
 // piloto.html, laboratorio.html) solo aporta esos datos, no repite lógica.
 
 (function () {
-  // imagen: URL de la foto real del taller/evento, o null/undefined si
-  // todavía no hay una (caso actual de las 4 instancias — ver nota en
-  // cada *.html). Cuando llegue la foto real, o al migrar a WordPress,
-  // este campo pasa a ser el campo ACF de imagen del taller.
-  function render({ titulo, imagen, parrafos }) {
+  // espacio: slug del espacio ("piloto" | "laboratorio" | "taller-1" |
+  // "taller-2"), usado para inicializar el carrusel de fotos de ese
+  // espacio (ver js/photo-carousel.js y assets/espacios-fotos.json). Si se
+  // omite, o el manifest no tiene fotos para ese slug, la columna de
+  // imagen queda vacía y deja ver el fondo punteado detrás.
+  function render({ titulo, espacio, parrafos }) {
     document.getElementById("taller-titulo").textContent = titulo;
 
-    const imagenEl = document.getElementById("taller-imagen");
-    if (imagen) {
-      const img = document.createElement("img");
-      img.src = imagen;
-      img.alt = "";
-      imagenEl.appendChild(img);
+    if (espacio) {
+      window.PhotoCarousel.init({
+        container: document.getElementById("taller-imagen"),
+        espacio,
+      });
     }
 
     const bodyEl = document.getElementById("taller-body");

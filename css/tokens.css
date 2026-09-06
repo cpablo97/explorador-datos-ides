@@ -83,9 +83,10 @@
        ============================================ */
 
     --font-primary: 'Sora', sans-serif;
-    /* Fichas técnicas por dimensión (ver context/fichas-tecnicas.md): el
-       nombre del indicador en cada tarjeta usa Inter, no Sora — único lugar
-       del sitio con una segunda familia tipográfica. */
+    /* Fichas técnicas por dimensión (ver context/fichas-tecnicas.md), la
+       página de Preguntas Frecuentes y el Glosario: el cuerpo de texto en
+       estas páginas usa Inter, no Sora — las demás páginas del sitio son
+       Sora exclusivamente. */
     --font-secondary: 'Inter', sans-serif;
 
     --text-data-1: 600 2.5rem/1 var(--font-primary);
@@ -93,6 +94,11 @@
     --text-caption-source: 400 0.75rem/1.625rem var(--font-primary);
     --text-heading-1: 600 4rem/1 var(--font-primary);
     --text-heading-1-tracking: -3.84px;
+    /* Sora Regular 40px — título de cada concepto en el Glosario (ver
+       css/glosario.css). Mismo valor que .indicadores-hero__subtitle
+       (css/indicadores.css), sin tocar esa regla local para no acoplarla
+       a este token nuevo. */
+    --text-heading-2: 400 2.5rem/1.1 var(--font-primary);
 
 }
 

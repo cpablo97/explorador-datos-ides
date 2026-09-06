@@ -1,0 +1,51 @@
+{
+  "fuentesOficiales": [
+    {
+      "nombre": "Banco Mundial",
+      "cita": "Banco Mundial. (2026). Gasto corriente en salud per cápita (US$). World Bank Open Data. https://datos.bancomundial.org/indicator/SH.XPD.CHEX.PC.CD",
+      "url": "https://datos.bancomundial.org/indicator/SH.XPD.CHEX.PC.CD"
+    },
+    {
+      "nombre": "Secretaría de Educación del Distrito",
+      "cita": "Secretaría de Educación del Distrito. (2026). Conoce nuestras cifras: Boletines. https://www.educacionbogota.edu.co/portal_institucional/conoce-nuestras-cifras/boletines",
+      "url": "https://www.educacionbogota.edu.co/portal_institucional/conoce-nuestras-cifras/boletines"
+    },
+    {
+      "nombre": "SaluData: Observatorio de Salud",
+      "cita": "Secretaría Distrital de Salud. (2026). SaluData: Observatorio de Salud de Bogotá. https://saludata.saludcapital.gov.co/osb/",
+      "url": "https://saludata.saludcapital.gov.co/osb/"
+    },
+    {
+      "nombre": "Así Vamos en Salud",
+      "cita": "Así Vamos en Salud. (s. f.). Descripción. https://www.asivamosensalud.org/quienes-somos/descripcion",
+      "url": "https://www.asivamosensalud.org/quienes-somos/descripcion"
+    }
+  ],
+  "solicitudesInformacion": [
+    {
+      "entidad": "Secretaría de Salud de Bogotá",
+      "radicado": "2026-EE-90766",
+      "archivo": "1_Secretaria de Salud de Bogotá.pdf"
+    },
+    {
+      "entidad": "Personería de Bogotá D. C.",
+      "radicado": "E-2026-0053662",
+      "archivo": "2_Personería de Bogotá.pdf"
+    },
+    {
+      "entidad": "Consejo Superior de la Judicatura",
+      "radicado": "UDAEO26-2113",
+      "archivo": "3_Consejo Superior de la Judicatura.pdf"
+    },
+    {
+      "entidad": "Consejo Superior de la Judicatura",
+      "radicado": "UDAEO26-4008",
+      "archivo": "4_ Consejo Superior de la Judicatura.pdf"
+    },
+    {
+      "entidad": "Secretaría de Salud de Bogotá",
+      "radicado": "2026-EE-54611",
+      "archivo": "5_Secretaria de Salud.pdf"
+    }
+  ]
+}

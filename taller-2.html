@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/explorador.css" />
     <link rel="stylesheet" href="css/taller.css" />
+    <link rel="stylesheet" href="css/photo-carousel.css" />
   </head>
   <body>
     <div class="grid-fondo" id="grid-fondo"></div>
@@ -24,7 +25,7 @@
           <li><a href="index.html">Explorador de Datos</a></li>
           <li><a href="indicadores.html">Indicadores</a></li>
           <li class="is-active"><a href="metodologia.html">Metodología</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
         </ul>
       </div>
 
@@ -41,6 +42,7 @@
     </div>
 
     <script src="js/breadcrumb.js"></script>
+    <script src="js/photo-carousel.js"></script>
     <script src="js/taller-template.js"></script>
     <script>
       // Portado tal cual de metodologia.html/index.html (montarGridFondo).
@@ -90,12 +92,11 @@
         { label: "Taller 2" },
       ]);
 
-      // Contenido real (Figma node 2132:1731). Sin foto por ahora — ver
-      // js/taller-template.js: .taller-header__imagen queda vacío y deja
-      // ver el fondo punteado detrás, tal como pidió el usuario.
+      // Contenido real (Figma node 2132:1731). El carrusel de fotos lee
+      // assets/espacios-fotos.json en runtime (ver js/photo-carousel.js).
       IDESTallerTemplate.render({
         titulo: "Taller 2: Validación y refinamiento de las definiciones",
-        imagen: null,
+        espacio: "taller-2",
         parrafos: [
           "El segundo taller permitió validar y refinar la definición de acceso a la salud pediátrica por medio de la justicia, así como la selección de variables y la propuesta visual inicial del Índice. Este proceso se desarrolló mediante un ejercicio de retroalimentación colaborativa con personas cuidadoras y profesionales de los ámbitos jurídico y de la salud.",
           "Para ello, se realizaron discusiones guiadas, ejercicios de valoración de los indicadores mediante una escala tipo semáforo y una actividad participativa para construir y descomponer la definición de acceso a la salud pediátrica por medio de la justicia mediante piezas de rompecabezas. Estas dinámicas permitieron recoger percepciones, identificar aspectos a ajustar y contrastar las decisiones metodológicas y conceptuales del Índice desde las experiencias y conocimientos de los participantes.",

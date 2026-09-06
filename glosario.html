@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Glosario (prototipo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/glosario.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
+          <li class="is-active"><a href="metodologia.html">Metodología</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div id="breadcrumb"></div>
+
+      <section class="glosario-hero">
+        <div class="glosario-hero__inner">
+          <div class="glosario-hero__left">
+            <h1 class="glosario-hero__title">Glosario</h1>
+            <p class="glosario-hero__desc">
+              Explore los conceptos que le ayudarán a comprender cómo se
+              construye e interpreta el Índice de Derecho a la Salud.
+            </p>
+          </div>
+          <div class="glosario-hero__marks">
+            <div class="glosario-hero__mark" id="mark-1"></div>
+            <div class="glosario-hero__mark" id="mark-2"></div>
+            <div class="glosario-hero__mark" id="mark-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="glosario-controls">
+        <button type="button" class="glosario-controls__btn" id="btn-az" aria-pressed="false">
+          A-Z
+        </button>
+        <div class="glosario-chips" id="glosario-chips" role="group" aria-label="Filtrar por dimensión">
+          <button
+            type="button"
+            class="glosario-chip is-active"
+            data-categoria="Justicia"
+            aria-pressed="true"
+            style="--dim-color: var(--color-text-decoration-justicia)"
+          >
+            Justicia
+          </button>
+          <button
+            type="button"
+            class="glosario-chip is-active"
+            data-categoria="Determinantes Sociales"
+            aria-pressed="true"
+            style="--dim-color: var(--color-text-decoration-determinantes)"
+          >
+            Determinantes Sociales
+          </button>
+          <button
+            type="button"
+            class="glosario-chip is-active"
+            data-categoria="Salud"
+            aria-pressed="true"
+            style="--dim-color: var(--color-text-decoration-salud)"
+          >
+            Salud
+          </button>
+          <button
+            type="button"
+            class="glosario-chip is-active"
+            data-categoria="General"
+            aria-pressed="true"
+            style="--dim-color: var(--color-text-decoration-generico)"
+          >
+            General
+          </button>
+        </div>
+      </div>
+
+      <section class="glosario-list" id="glosario-list"></section>
+    </div>
+
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/stats-donuts.js"></script>
+    <script>
+      // Portado tal cual de metodologia.html/index.html (montarGridFondo).
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "#" },
+        { label: "Metodología", href: "metodologia.html" },
+        { label: "Glosario" },
+      ]);
+
+      // 3 donuts decorativos del hero — mismo componente "brandmark" que el
+      // resto de páginas internas (ver js/stats-donuts.js). No existe en el
+      // repo un "anillo compuesto" reutilizable equivalente al pie de 6
+      // gajos del mockup de Figma (ese pie no corresponde a las 4
+      // categorías reales del glosario ni a ninguna paleta del sitio), así
+      // que se usa este componente ya existente en su lugar.
+      (function () {
+        const { renderStatMark } = window.IDESStatsDonuts;
+        renderStatMark(document.getElementById("mark-1"), "--naranja-300", [20, 180, 95]);
+        renderStatMark(document.getElementById("mark-2"), "--azul-300", [360, 192, 132]);
+        renderStatMark(document.getElementById("mark-3"), "--verde-300", [360, 192, 132]);
+      })();
+
+      // Mapeo categoría → token de color de dimensión, ya usado en todo el
+      // sitio (fan-chart/locality-rose/composite ring) para no inventar
+      // hex nuevos: Justicia=naranja, Salud=azul, Determinantes
+      // Sociales=verde, General=verde claro (--color-text-decoration-*,
+      // ver css/tokens.css).
+      const DIM_TOKEN = {
+        Justicia: "--color-text-decoration-justicia",
+        Salud: "--color-text-decoration-salud",
+        "Determinantes Sociales": "--color-text-decoration-determinantes",
+        General: "--color-text-decoration-generico",
+      };
+      const CATEGORIAS = ["Justicia", "Determinantes Sociales", "Salud", "General"];
+
+      (async function () {
+        const data = await fetch("data/glosario.json").then((r) => r.json());
+        const listEl = document.getElementById("glosario-list");
+
+        let ordenAZ = false;
+        let categoriasActivas = new Set(CATEGORIAS);
+
+        function crearTarjeta(entry) {
+          const card = document.createElement("article");
+          card.className = "glosario-card";
+          card.style.setProperty("--dim-color", `var(${DIM_TOKEN[entry.categoria]})`);
+
+          const concepto = document.createElement("h2");
+          concepto.className = "glosario-card__concepto";
+          concepto.textContent = entry.concepto;
+
+          const definicion = document.createElement("p");
+          definicion.className = "glosario-card__definicion";
+          definicion.textContent = entry.definicion;
+
+          const fuente = document.createElement("p");
+          fuente.className = "glosario-card__fuente";
+          if (entry.fuenteUrl) {
+            const link = document.createElement("a");
+            link.href = entry.fuenteUrl;
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.textContent = entry.fuenteApa;
+            fuente.appendChild(link);
+          } else {
+            fuente.textContent = entry.fuenteApa;
+          }
+
+          const categoria = document.createElement("p");
+          categoria.className = "glosario-card__categoria";
+          categoria.textContent = entry.categoria;
+
+          card.append(concepto, definicion, fuente, categoria);
+          return card;
+        }
+
+        function render() {
+          const visibles = data.filter((d) => categoriasActivas.has(d.categoria));
+          if (ordenAZ) {
+            visibles.sort((a, b) => a.concepto.localeCompare(b.concepto, "es"));
+          }
+          listEl.innerHTML = "";
+          visibles.forEach((entry) => listEl.appendChild(crearTarjeta(entry)));
+        }
+
+        // Botón "A-Z": alterna entre el orden original del JSON (agrupado
+        // por dimensión, como en el Excel fuente) y orden alfabético por
+        // concepto entre las entradas actualmente visibles.
+        const btnAZ = document.getElementById("btn-az");
+        btnAZ.addEventListener("click", () => {
+          ordenAZ = !ordenAZ;
+          btnAZ.classList.toggle("is-active", ordenAZ);
+          btnAZ.setAttribute("aria-pressed", String(ordenAZ));
+          render();
+        });
+
+        // Chips "Filtrar por dimensión": cada chip prende/apaga su propia
+        // categoría de forma independiente (toggle), todas activas por
+        // defecto — reemplaza el dropdown con checkboxes.
+        document.querySelectorAll(".glosario-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            const categoria = chip.dataset.categoria;
+            const activo = !chip.classList.contains("is-active");
+            chip.classList.toggle("is-active", activo);
+            chip.setAttribute("aria-pressed", String(activo));
+            if (activo) {
+              categoriasActivas.add(categoria);
+            } else {
+              categoriasActivas.delete(categoria);
+            }
+            render();
+          });
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>

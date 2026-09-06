@@ -1,0 +1,213 @@
+/* glosario.css
+   Página "Glosario", subpágina de Metodología (ver el card correspondiente
+   en metodologia.html) — Figma nodeId 2411:567. Reutiliza tal cual, desde
+   explorador.css: navbar (#nav-real), fondo punteado fijo (.grid-fondo,
+   montado por montarGridFondo() en glosario.html), design tokens, miga de
+   pan, el brandmark de stats-donuts.js (.stat-mark) y .btn-outline.
+
+   El mockup de Figma usa un fondo #d3dec9 distinto de --color-bg (#ecedeb,
+   token centralizado del sitio) — por decisión explícita se usa acá el
+   fondo estándar del sitio en vez de introducir una excepción de color
+   para esta única página. */
+
+/* ---------- Hero ---------- */
+/* Mismo patrón 2 columnas que .meto-hero/.indicadores-hero: título+intro a
+   la izquierda, elemento decorativo a la derecha. A diferencia de esas
+   páginas la intro va DEBAJO del título (no al lado, ver Figma) y usa
+   Inter en vez de Sora (--text-body-primary es Sora, no sirve acá). */
+
+.glosario-hero {
+  margin-top: 1.5rem;
+  padding: 4rem 2.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+.glosario-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.glosario-hero__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.glosario-hero__title {
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  color: var(--color-text-primary);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.glosario-hero__desc {
+  font: 400 1.5rem/1.625rem var(--font-secondary);
+  color: var(--color-text-primary);
+}
+
+/* 3 donuts decorativos — mismo componente que .meto-hero__circles
+   (metodologia.css): brandmark de stats-donuts.js, un círculo por color. */
+.glosario-hero__marks {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.25rem;
+}
+.glosario-hero__mark {
+  width: 140px;
+}
+.glosario-hero__mark .stat-mark {
+  width: 100%;
+}
+
+/* ---------- Barra de controles ---------- */
+
+.glosario-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.glosario-controls__btn {
+  font: 600 0.95rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-callout-border);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.glosario-controls__btn:hover,
+.glosario-controls__btn:focus-visible {
+  background: var(--color-primary-hover);
+}
+.glosario-controls__btn.is-active {
+  background: var(--color-text-primary);
+  color: var(--blanco);
+}
+
+/* Chips de filtro por dimensión — toggle independiente por categoría (no
+   un dropdown): activo = relleno con el color de esa dimensión (mismo
+   --dim-color que usa .glosario-card__categoria); inactivo = atenuado. */
+.glosario-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.glosario-chip {
+  font: 600 0.85rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-callout-border);
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+.glosario-chip:hover,
+.glosario-chip:focus-visible {
+  border-color: var(--dim-color);
+}
+.glosario-chip.is-active {
+  background: var(--dim-color);
+  border-color: var(--dim-color);
+  color: var(--blanco);
+}
+.glosario-chip:not(.is-active) {
+  opacity: 0.5;
+}
+
+/* ---------- Lista de tarjetas ---------- */
+
+.glosario-list {
+  margin-top: 1.5rem;
+  border: 1px solid var(--color-callout-border);
+}
+
+.glosario-card {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.glosario-card + .glosario-card {
+  border-top: 1px solid var(--color-callout-border);
+}
+
+.glosario-card__concepto {
+  font: var(--text-heading-2);
+  color: var(--color-text-primary);
+}
+
+.glosario-card__definicion {
+  font: 400 1rem/1.5 var(--font-secondary);
+  color: var(--color-text-primary);
+}
+
+.glosario-card__fuente {
+  font: 400 0.75rem/1.4 var(--font-secondary);
+  color: var(--color-text-primary);
+}
+.glosario-card__fuente a {
+  color: inherit;
+}
+
+/* Mismo patrón de subrayado-resaltador que .glosario-hero__title/
+   .header__title (color de texto siempre --color-text-primary; el color
+   de dimensión vive solo en el subrayado, vía --dim-color). */
+.glosario-card__categoria {
+  font: 600 1.5rem/1.2 var(--font-primary);
+  color: var(--color-text-primary);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--dim-color);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+  width: fit-content;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .glosario-hero {
+    padding: 2.5rem 1.5rem;
+  }
+  .glosario-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .glosario-hero__marks {
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+  .glosario-hero__mark {
+    flex: 1;
+    width: auto;
+  }
+
+  .glosario-controls__btn {
+    padding: 0.85rem 1rem;
+    font-size: 0.85rem;
+  }
+  .glosario-chip {
+    padding: 0.55rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .glosario-card {
+    padding: 1.75rem 1.5rem;
+  }
+  .glosario-card__concepto {
+    font-size: 1.75rem;
+  }
+}

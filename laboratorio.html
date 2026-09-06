@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/explorador.css" />
     <link rel="stylesheet" href="css/taller.css" />
+    <link rel="stylesheet" href="css/photo-carousel.css" />
   </head>
   <body>
     <div class="grid-fondo" id="grid-fondo"></div>
@@ -24,7 +25,7 @@
           <li><a href="index.html">Explorador de Datos</a></li>
           <li><a href="indicadores.html">Indicadores</a></li>
           <li class="is-active"><a href="metodologia.html">Metodología</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
         </ul>
       </div>
 
@@ -41,6 +42,7 @@
     </div>
 
     <script src="js/breadcrumb.js"></script>
+    <script src="js/photo-carousel.js"></script>
     <script src="js/taller-template.js"></script>
     <script>
       // Portado tal cual de metodologia.html/index.html (montarGridFondo).
@@ -90,13 +92,11 @@
         { label: "Laboratorio" },
       ]);
 
-      // Contenido real (Figma node 2138:1246). Sin foto por ahora — ver
-      // js/taller-template.js: .taller-header__imagen queda vacío y deja
-      // ver el fondo punteado detrás, tal como pidió el usuario (y tal
-      // como está también en el propio diseño de Figma para este nodo).
+      // Contenido real (Figma node 2138:1246). El carrusel de fotos lee
+      // assets/espacios-fotos.json en runtime (ver js/photo-carousel.js).
       IDESTallerTemplate.render({
         titulo: "Laboratorio consenso entre expertos",
-        imagen: null,
+        espacio: "laboratorio",
         parrafos: [
           "El Laboratorio combinó la metodología Delphi, el Índice de Validez de Contenido (ICV) y herramientas de Design Thinking para validar y priorizar los indicadores del Índice. Participaron 10 expertos de los ámbitos de pediatría, salud y justicia, priorizando la experiencia y pertinencia de los perfiles sobre el número de participantes. En el componente Delphi, cada experto evaluó individualmente 78 indicadores mediante una escala Likert de cuatro puntos.",
           "Se desarrolló una dinámica de tarjetas basada en la metáfora de un equipo de fútbol. Los participantes recibieron los indicadores en tarjetas y, de manera colaborativa, construyeron tres equipos, Justicia, Salud y Contexto, seleccionando aquellos indicadores que consideraban que funcionaban mejor juntos y fortalecían cada dimensión. Luego, construyeron una “tribuna” con 10 indicadores que, si bien no formarían parte del equipo principal, podrían aportar información complementaria y apoyar la lectura del Índice. Los 22 indicadores que no alcanzaron consenso fueron reevaluados posteriormente. Finalmente, se plantearon preguntas abiertas para explorar los posibles usos profesionales del IDES, los datos prioritarios y las variables ausentes.",

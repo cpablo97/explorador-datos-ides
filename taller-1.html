@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/explorador.css" />
     <link rel="stylesheet" href="css/taller.css" />
+    <link rel="stylesheet" href="css/photo-carousel.css" />
   </head>
   <body>
     <div class="grid-fondo" id="grid-fondo"></div>
@@ -24,7 +25,7 @@
           <li><a href="index.html">Explorador de Datos</a></li>
           <li><a href="indicadores.html">Indicadores</a></li>
           <li class="is-active"><a href="metodologia.html">Metodología</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
         </ul>
       </div>
 
@@ -41,6 +42,7 @@
     </div>
 
     <script src="js/breadcrumb.js"></script>
+    <script src="js/photo-carousel.js"></script>
     <script src="js/taller-template.js"></script>
     <script>
       // Portado tal cual de metodologia.html/index.html (montarGridFondo).
@@ -90,12 +92,11 @@
         { label: "Taller 1" },
       ]);
 
-      // Contenido real (Figma node 2132:1500). Sin foto por ahora — ver
-      // js/taller-template.js: .taller-header__imagen queda vacío y deja
-      // ver el fondo punteado detrás, tal como pidió el usuario.
+      // Contenido real (Figma node 2132:1500). El carrusel de fotos lee
+      // assets/espacios-fotos.json en runtime (ver js/photo-carousel.js).
       IDESTallerTemplate.render({
         titulo: "Taller 1: Definiendo el acceso a la Salud Pediátrica",
-        imagen: null,
+        espacio: "taller-1",
         parrafos: [
           "El primer taller se centró en construir colectivamente la definición de acceso a la salud pediátrica por medio de la justicia, estableciendo la base conceptual del Índice. Para ello, los participantes se organizaron en tres mesas de trabajo: personas cuidadoras, profesionales de pediatría y salud, y profesionales del derecho, incluyendo jueces y abogados.",
           "En cada mesa se realizaron ejercicios de lluvia de ideas y agrupación de conceptos (clustering), a partir de los cuales se identificaron y organizaron los principales elementos asociados al acceso a la salud pediátrica desde cada perspectiva. Posteriormente, cada grupo construyó y presentó su propia definición al resto de los participantes, generando un espacio de intercambio y contraste entre las diferentes perspectivas profesionales y experienciales.",

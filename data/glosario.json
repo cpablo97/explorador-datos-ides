@@ -1,0 +1,310 @@
+[
+  {
+    "concepto": "Acción de tutela",
+    "definicion": "Mecanismo judicial preferente y sumario que permite a cualquier persona en Colombia solicitar ante un juez, en todo momento y lugar, la protección inmediata de sus derechos constitucionales fundamentales cuando son vulnerados o amenazados por una autoridad pública o, en ciertos casos, un particular. La decisión debe adoptarse en un plazo máximo de diez días, es de cumplimiento inmediato y puede ordenar que quien vulnera el derecho actúe o se abstenga de hacerlo. Es la base de los siete indicadores de este componente.",
+    "categoria": "Justicia",
+    "fuenteApa": "Constitución Política de Colombia, 1991, art. 86. https://www.constitucioncolombia.com/titulo2/capitulo-4/articulo-86",
+    "fuenteUrl": "https://www.constitucioncolombia.com/titulo2/capitulo-4/articulo-86"
+  },
+  {
+    "concepto": "Decreto 2591 de 1991",
+    "definicion": "Norma que reglamenta en detalle el funcionamiento de la acción de tutela: quién puede presentarla, los plazos, los efectos del fallo y mecanismos como el desacato. Es la norma de referencia para varios de los indicadores de este componente.",
+    "categoria": "Justicia",
+    "fuenteApa": "Presidencia de la República de Colombia. (1991). Decreto 2591 de 1991, por el cual se reglamenta la acción de tutela consagrada en el artículo 86 de la Constitución Política. Función Pública. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5304",
+    "fuenteUrl": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5304"
+  },
+  {
+    "concepto": "Tasa de resolución",
+    "definicion": "Resultado de comparar cuántas tutelas se resolvieron en un período frente a cuántas tutelas nuevas entraron en ese mismo período. Un valor igual o mayor a 1 indica que el sistema judicial resuelve al menos tantas tutelas como las que recibe, sin acumular pendientes.",
+    "categoria": "Justicia",
+    "fuenteApa": "Consejo Superior de la Judicatura, Unidad de Desarrollo y Análisis Estadístico. (s.f.). Indicadores de gestión de la Rama Judicial. https://www.ramajudicial.gov.co/documents/1513685/14652023/Indicadores+P%C3%A1gina.pdf/a8e0c049-6bc0-4e41-9635-9e65b297f652",
+    "fuenteUrl": "https://www.ramajudicial.gov.co/documents/1513685/14652023/Indicadores+P%C3%A1gina.pdf/a8e0c049-6bc0-4e41-9635-9e65b297f652"
+  },
+  {
+    "concepto": "Congestión judicial",
+    "definicion": "Situación en la que los juzgados acumulan más procesos pendientes de los que logran resolver en un período, generando represamiento de casos. Es uno de los problemas más documentados de la justicia colombiana, pues el aumento en la demanda de procesos no ha ido acompañado de un crecimiento similar en jueces y recursos. Cuando hay congestión en tutelas de salud, se pone en riesgo el plazo de 10 días exigido por la Constitución.",
+    "categoria": "Justicia",
+    "fuenteApa": "Consejo Superior de la Judicatura, Unidad de Desarrollo y Análisis Estadístico. (s.f.). Indicadores de gestión de la Rama Judicial. https://www.ramajudicial.gov.co/documents/1513685/14652023/Indicadores+P%C3%A1gina.pdf/a8e0c049-6bc0-4e41-9635-9e65b297f652, pág. 2, apartado \"Congestión\".",
+    "fuenteUrl": "https://www.ramajudicial.gov.co/documents/1513685/14652023/Indicadores+P%C3%A1gina.pdf/a8e0c049-6bc0-4e41-9635-9e65b297f652"
+  },
+  {
+    "concepto": "Despacho judicial",
+    "definicion": "Órgano jurisdiccional encargado de dirimir controversias judiciales; El 'número de despachos por habitantes' mide cuánta infraestructura judicial hay disponible en un territorio.",
+    "categoria": "Justicia",
+    "fuenteApa": "Ministerio de Ciencia, Tecnología e Innovación [Minciencias]. (s.f.). Despacho judicial. Glosario. https://minciencias.gov.co/glosario/despacho-judicial",
+    "fuenteUrl": "https://minciencias.gov.co/glosario/despacho-judicial"
+  },
+  {
+    "concepto": "Primera instancia / Segunda instancia",
+    "definicion": "La primera instancia es el primer juez que estudia y decide una tutela. Si alguna de las partes no está de acuerdo, puede impugnarla (apelarla) ante un juez superior, que la revisa en segunda instancia y puede confirmar, revocar o modificar el fallo inicial. Este sistema de doble revisión es una garantía del debido proceso y permite evaluar la calidad de las decisiones de primera instancia.",
+    "categoria": "Justicia",
+    "fuenteApa": "Presidencia de la República de Colombia. (1991). Decreto 2591 de 1991, por el cual se reglamenta la acción de tutela consagrada en el artículo 86 de la Constitución Política. Secretaría del Senado. https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html [arts. 31 y 32].",
+    "fuenteUrl": "https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html"
+  },
+  {
+    "concepto": "Revocar / Modificar (un fallo)",
+    "definicion": "Revocar significa que el juez de segunda instancia tomó una decisión contraria a la del primer juez (por ejemplo, negó lo que antes se había concedido). Modificar significa que el juez de segunda instancia mantuvo la decisión pero le hizo ajustes parciales (por ejemplo, cambió una orden específica dentro del fallo).",
+    "categoria": "Justicia",
+    "fuenteApa": "Presidencia de la República de Colombia. (1991). Decreto 2591 de 1991, por el cual se reglamenta la acción de tutela consagrada en el artículo 86 de la Constitución Política. Secretaría del Senado. https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html [arts. 32 y 35].",
+    "fuenteUrl": "https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html"
+  },
+  {
+    "concepto": "Improcedente / Improcedencia",
+    "definicion": "Una tutela se declara improcedente cuando el juez decide no estudiar el fondo del problema de salud reclamado, porque la persona no cumplió ciertos requisitos para usar este mecanismo (ver subsidiariedad e inmediatez). Es distinto de que la tutela sea negada: aquí el juez ni siquiera entra a evaluar si el derecho fue vulnerado. Una tasa alta de improcedencia indica que, aunque la tutela existe en la ley, hay barreras procesales que impiden su uso real.",
+    "categoria": "Justicia",
+    "fuenteApa": "Presidencia de la República de Colombia. (1991). Decreto 2591 de 1991, por el cual se reglamenta la acción de tutela consagrada en el artículo 86 de la Constitución Política. Secretaría del Senado. https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html [art. 6].",
+    "fuenteUrl": "https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html"
+  },
+  {
+    "concepto": "Subsidiariedad",
+    "definicion": "Principio según el cual la acción de tutela tiene carácter residual y subsidiario: solo procede cuando la persona no cuenta con otro medio de defensa judicial para proteger su derecho fundamental, o cuando, existiendo otro mecanismo, este no resulta idóneo ni eficaz para brindar una protección adecuada y oportuna. De manera excepcional, también puede usarse como mecanismo transitorio para evitar un perjuicio irremediable. La tutela no reemplaza los procedimientos ordinarios ni es la primera vía frente a cualquier trámite.",
+    "categoria": "Justicia",
+    "fuenteApa": "Presidencia de la República de Colombia. (1991). Decreto 2591 de 1991, por el cual se reglamenta la acción de tutela consagrada en el artículo 86 de la Constitución Política. Secretaría del Senado. https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html [art. 6, núm. 1].",
+    "fuenteUrl": "https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html"
+  },
+  {
+    "concepto": "Inmediatez",
+    "definicion": "Requisito según el cual la acción de tutela debe incoarse en un plazo razonable, el cual debe ser ponderado por el juez en cada caso; de lo contrario se burlaría el alcance jurídico establecido por el Constituyente y se desvirtuaría su finalidad de medio de protección actual, inmediato y efectivo.",
+    "categoria": "Justicia",
+    "fuenteApa": "Corte Constitucional de Colombia. (1999). Sentencia SU-961 de 1999 (M.P. Vladimiro Naranjo Mesa). https://www.corteconstitucional.gov.co/relatoria/1999/su961-99.htm",
+    "fuenteUrl": "https://www.corteconstitucional.gov.co/relatoria/1999/su961-99.htm"
+  },
+  {
+    "concepto": "Incidente de desacato",
+    "definicion": "Instrumento procesal para garantizar el goce efectivo de los derechos fundamentales amparados mediante la acción de tutela, que tiene lugar cuando el obligado a cumplir una orden de tutela no lo hace. En este trámite, el juez constitucional puede sancionar con arresto o multa a quien desatienda las órdenes judiciales encaminadas a restaurar el derecho vulnerado, con plena observancia del debido proceso.",
+    "categoria": "Justicia",
+    "fuenteApa": "Presidencia de la República de Colombia. (1991). Decreto 2591 de 1991, por el cual se reglamenta la acción de tutela consagrada en el artículo 86 de la Constitución Política. Secretaría del Senado. https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html [art. 52].",
+    "fuenteUrl": "https://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html"
+  },
+  {
+    "concepto": "Término perentorio",
+    "definicion": "Plazo legal obligatorio que no se puede extender ni aplazar. En el caso de la tutela, la Constitución establece que no pueden pasar más de 10 días calendario entre que se presenta la solicitud y se resuelve.",
+    "categoria": "Justicia",
+    "fuenteApa": "Asamblea Nacional Constituyente. (1991). Constitución Política de Colombia, art. 86. Secretaría del Senado. https://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html",
+    "fuenteUrl": "https://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html"
+  },
+  {
+    "concepto": "Pobreza monetaria / Pobreza monetaria extrema",
+    "definicion": "La pobreza monetaria mide si el ingreso de una persona alcanza para cubrir una canasta básica de bienes y servicios esenciales (alimentación, vivienda, transporte, vestuario). La pobreza monetaria extrema mide si el ingreso ni siquiera alcanza para cubrir una canasta básica de alimentos con los requerimientos calóricos mínimos. El DANE calcula cada año el valor de estas líneas de ingreso; la variable permite distinguir si las dificultades de acceso a salud o justicia responden a fallas del sistema o a condiciones socioeconómicas estructurales.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "DANE. (2025). Boletín técnico: Pobreza monetaria en Colombia. Año 2023 (pp. 4, 25). https://www.dane.gov.co/files/operaciones/PM/bol-PM-2023.pdf",
+    "fuenteUrl": "https://www.dane.gov.co/files/operaciones/PM/bol-PM-2023.pdf"
+  },
+  {
+    "concepto": "Determinantes sociales de la salud",
+    "definicion": "Circunstancias en que las personas nacen, crecen, viven, trabajan y envejecen, así como el conjunto de fuerzas y sistemas que moldean esas condiciones de vida cotidiana (ingresos, educación, vivienda, entorno, acceso a servicios). Justifica incluir variables de contexto —que a primera vista no son de salud ni de justicia— dentro del índice, pues la salud de niños y niñas depende también de las condiciones sociales y materiales en que viven.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "Organización Mundial de la Salud [OMS]. (s.f.). Determinantes sociales de la salud [nota descriptiva]. https://www.who.int/es/news-room/fact-sheets/detail/social-determinants-of-health",
+    "fuenteUrl": "https://www.who.int/es/news-room/fact-sheets/detail/social-determinants-of-health"
+  },
+  {
+    "concepto": "Sustancias psicoactivas (SPA)",
+    "definicion": "Toda sustancia que, introducida en el organismo por cualquier vía de administración, produce una alteración del funcionamiento del sistema nervioso central y es susceptible de crear dependencia psicológica, física o ambas. Tienen la capacidad de modificar la conciencia, el estado de ánimo o los procesos de pensamiento de quien las consume (OMS).",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "Ministerio de Justicia y del Derecho, Observatorio de Drogas de Colombia. (s.f.). Sustancias psicoactivas. https://www.minjusticia.gov.co/programas-co/ODC/Paginas/Sustancias-Psicoactivas.aspx",
+    "fuenteUrl": "https://www.minjusticia.gov.co/programas-co/ODC/Paginas/Sustancias-Psicoactivas.aspx"
+  },
+  {
+    "concepto": "Disposición de basuras / Gestión de residuos sólidos",
+    "definicion": "Proceso integral que abarca la recolección, transporte, tratamiento, aprovechamiento y eliminación final de desechos, con el objetivo de proteger el medio ambiente y la salud pública. Una disposición 'adecuada' implica usar el servicio formal de recolección; una 'inadecuada' incluye quemar, enterrar o arrojar basuras en espacios públicos o cuerpos de agua, aumentando el riesgo de enfermedades infecciosas, especialmente en población infantil.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "Ministerio de Salud y Protección Social. (s.f.). Agua, saneamiento básico y gestión integral de residuos sólidos [ABECÉ]. https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/abece-agua-saneamiento.pdf",
+    "fuenteUrl": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/abece-agua-saneamiento.pdf"
+  },
+  {
+    "concepto": "Saneamiento básico (acueducto y alcantarillado)",
+    "definicion": "Conjunto de acciones y técnicas que buscan reducir los riesgos sanitarios del entorno, principalmente mediante el acceso a agua potable (acueducto) y la eliminación segura de aguas residuales y excretas (alcantarillado), para tener un ambiente limpio y sano. La falta de continuidad del acueducto o la ausencia de alcantarillado incrementa el riesgo de enfermedades diarreicas y otras afecciones que impactan especialmente a la población pediátrica.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "Ministerio de Salud y Protección Social. (s.f.). Agua, saneamiento básico y gestión integral de residuos sólidos [ABECÉ]. https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/abece-agua-saneamiento.pdf",
+    "fuenteUrl": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/SA/abece-agua-saneamiento.pdf"
+  },
+  {
+    "concepto": "Desnutrición (mortalidad por desnutrición)",
+    "definicion": "Condición que resulta de una ingesta insuficiente de alimentos o de la incapacidad del cuerpo para aprovechar los nutrientes que recibe.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "Organización Mundial de la Salud [OMS]. (s.f.). Malnutrición. https://www.who.int/es/news-room/fact-sheets/detail/malnutrition",
+    "fuenteUrl": "https://www.who.int/es/news-room/fact-sheets/detail/malnutrition"
+  },
+  {
+    "concepto": "Bajo peso al nacer (BPN)",
+    "definicion": "Peso al nacimiento inferior a 2.500 gramos, independientemente de la edad gestacional del bebé (definición de la OMS). Es uno de los indicadores más usados para evaluar la salud materno-infantil, pues resume distintas condiciones de la madre durante el embarazo (nutrición, enfermedades, calidad de la atención prenatal) y predice un mayor riesgo de mortalidad y de problemas de desarrollo en el bebé.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "World Health Organization [OMS]. (2014). Global nutrition targets 2025: Low birth weight policy brief (WHO/NMH/NHD/14.5). https://www.who.int/publications/i/item/WHO-NMH-NHD-14.5",
+    "fuenteUrl": "https://www.who.int/publications/i/item/WHO-NMH-NHD-14.5"
+  },
+  {
+    "concepto": "Tasa de cobertura bruta en educación",
+    "definicion": "Se calcula a partir de la población en edad escolar de 5 a 16 años en Bogotá, excluyendo los grados de prejardín y jardín de los sectores oficial y no oficial.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "Secretaría de Educación del Distrito, Oficina Asesora de Planeación / IDECA. (2025). Tasa de cobertura educativa bruta. Bogotá D.C. [ficha de indicador, corte SIMAT abril-septiembre 2025]. https://www.ideca.gov.co/recursos/mapas/tasa-cobertura-educativa-bruta-bogota-dc",
+    "fuenteUrl": "https://www.ideca.gov.co/recursos/mapas/tasa-cobertura-educativa-bruta-bogota-dc"
+  },
+  {
+    "concepto": "Pruebas Saber 11 / ICFES",
+    "definicion": "Pruebas estandarizadas que aplica el Estado colombiano a los estudiantes que terminan la educación media, para evaluar sus competencias en distintas áreas del conocimiento. El promedio de resultados por localidad se usa como medida de la calidad educativa y de las brechas entre distintas zonas de la ciudad.",
+    "categoria": "Determinantes Sociales",
+    "fuenteApa": "Instituto Colombiano para la Evaluación de la Educación [ICFES]. (septiembre 23, 2025). Saber 11°. https://www.icfes.gov.co/evaluaciones-icfes/saber-11/",
+    "fuenteUrl": "https://www.icfes.gov.co/evaluaciones-icfes/saber-11/"
+  },
+  {
+    "concepto": "EPS – Entidad Prestadora de Servicios",
+    "definicion": "Entidades responsables de la afiliación y registro de los afiliados al sistema de la seguridad social en Colombia. Se encargan también del recaudo de las cotizaciones y su función básica es organizar y garantizar la prestación del plan obligatorio de salud.",
+    "categoria": "Salud",
+    "fuenteApa": "Congreso de la República de Colombia. (1993). Ley 100 de 1993, art. 177. Función Pública. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5248",
+    "fuenteUrl": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5248"
+  },
+  {
+    "concepto": "IPS - Institución Prestadora de servicios de salud",
+    "definicion": "Hospitales, clínicas y centros de salud que prestan atención a los usuarios.",
+    "categoria": "Salud",
+    "fuenteApa": "Presidencia de la República de Colombia. (1994). Decreto 1298 de 1994, por el cual se expide el Estatuto Orgánico del Sistema General de Seguridad Social en Salud, art. 5, literal i). https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=105885",
+    "fuenteUrl": "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=105885"
+  },
+  {
+    "concepto": "Afiliación al sistema de salud",
+    "definicion": "Vinculación de una persona al sistema de aseguramiento en salud.",
+    "categoria": "Salud",
+    "fuenteApa": "Ministerio de Salud y Protección Social, Viceministerio de Protección Social. (2016, abril). ABECÉ de la afiliación en salud – Decreto 2353 de 2015. https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/COM/abece-afiliacion-salud.pdf",
+    "fuenteUrl": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/COM/abece-afiliacion-salud.pdf"
+  },
+  {
+    "concepto": "Mortalidad",
+    "definicion": "Número de defunciones en una población durante un período determinado.",
+    "categoria": "Salud",
+    "fuenteApa": "Real Academia Española [RAE]. (s.f.). Mortalidad. En Diccionario de la lengua española. https://dle.rae.es/mortalidad",
+    "fuenteUrl": "https://dle.rae.es/mortalidad"
+  },
+  {
+    "concepto": "Morbilidad",
+    "definicion": "Frecuencia de enfermedades o condiciones de salud en una población.",
+    "categoria": "Salud",
+    "fuenteApa": "Real Academia Española [RAE]. (s.f.). Morbilidad. En Diccionario de la lengua española. https://dle.rae.es/morbilidad",
+    "fuenteUrl": "https://dle.rae.es/morbilidad"
+  },
+  {
+    "concepto": "Cobertura en salud",
+    "definicion": "Proporción de personas que tienen acceso al sistema de salud.",
+    "categoria": "Salud",
+    "fuenteApa": "Organización Mundial de la Salud [OMS]. (5 de diciembre de 2025 ). Cobertura sanitaria universal. https://www.who.int/es/news-room/fact-sheets/detail/universal-health-coverage-(uhc) — Cita literal: \"el acceso de todas las personas a toda la gama de servicios de salud de calidad que necesitan, cuando y donde los necesitan, sin tener que sufrir dificultades económicas por ello.\"",
+    "fuenteUrl": "https://www.who.int/es/news-room/fact-sheets/detail/universal-health-coverage-(uhc)"
+  },
+  {
+    "concepto": "Incidencia",
+    "definicion": "En epidemiología, proporción de casos nuevos de una enfermedad en un determinado período de tiempo, respecto a la población expuesta a padecerla.",
+    "categoria": "Salud",
+    "fuenteApa": "Organización Panamericana de la Salud [OPS]. (2018). Indicadores de salud: aspectos conceptuales y operativos (p. 23). https://www.ministeriodesalud.go.cr/index.php/biblioteca-de-archivos-left/documentos-ministerio-de-salud/material-informativo/material-publicado/indicadores-en-salud/1797-indicadores-de-salud-aspectos-conceptuales-y-operativos-2018/file",
+    "fuenteUrl": "https://www.ministeriodesalud.go.cr/index.php/biblioteca-de-archivos-left/documentos-ministerio-de-salud/material-informativo/material-publicado/indicadores-en-salud/1797-indicadores-de-salud-aspectos-conceptuales-y-operativos-2018/file"
+  },
+  {
+    "concepto": "EDA",
+    "definicion": "Enfermedad Diarreica Aguda",
+    "categoria": "Salud",
+    "fuenteApa": "Instituto Nacional de Salud [INS]. (2017). Protocolo de vigilancia en salud pública: enfermedad diarreica aguda (versión 02) (p. 4). https://www.ins.gov.co/BibliotecaDigital/PRO-Enfermedad-diarreica-aguda.pdf",
+    "fuenteUrl": "https://www.ins.gov.co/BibliotecaDigital/PRO-Enfermedad-diarreica-aguda.pdf"
+  },
+  {
+    "concepto": "IRA",
+    "definicion": "Infección Respiratoria Aguda",
+    "categoria": "Salud",
+    "fuenteApa": "Instituto Nacional de Salud [INS]. (2017). Protocolo de vigilancia en salud pública: infección respiratoria aguda (versión 06) (p. 6). https://www.ins.gov.co/BibliotecaDigital/PRO-Infecci%C3%B3n-respiratoria-aguda.pdf",
+    "fuenteUrl": "https://www.ins.gov.co/BibliotecaDigital/PRO-Infecci%C3%B3n-respiratoria-aguda.pdf"
+  },
+  {
+    "concepto": "Mortalidad perinatal",
+    "definicion": "Muerte que se produce desde la semana 22 de gestación hasta los 28 días después del nacimiento. Se estima que su prevalencia es de 1 cada 200 embarazos.",
+    "categoria": "Salud",
+    "fuenteApa": "Instituto Nacional de Salud [INS] / Organización Mundial de la Salud [OMS]. (2017). Protocolo de vigilancia en salud pública: mortalidad perinatal y neonatal tardía [guía operativa]. https://platform.who.int/docs/default-source/mca-documents/policy-documents/operational-guidance/col-mn-98-01-operational-guidance-2017-esp-mortalidad-perinatal-y-neonatal.pdf",
+    "fuenteUrl": "https://platform.who.int/docs/default-source/mca-documents/policy-documents/operational-guidance/col-mn-98-01-operational-guidance-2017-esp-mortalidad-perinatal-y-neonatal.pdf"
+  },
+  {
+    "concepto": "Defectos congénitos",
+    "definicion": "Problema que ocurre mientras se desarrolla el bebé en el cuerpo de la madre. La mayoría de los defectos congénitos ocurren durante los primeros tres meses del embarazo. Uno de cada 33 bebés en los Estados Unidos nace con un defecto congénito.",
+    "categoria": "Salud",
+    "fuenteApa": "Centers for Disease Control and Prevention [CDC]. (25 de feb. del 2026). Sobre los defectos de nacimiento. https://www.cdc.gov/birth-defects/es/about/sobre-los-defectos-de-nacimiento.html",
+    "fuenteUrl": "https://www.cdc.gov/birth-defects/es/about/sobre-los-defectos-de-nacimiento.html"
+  },
+  {
+    "concepto": "Cobertura",
+    "definicion": "Proporción de la población objetivo que recibe un servicio, intervención o programa de salud durante un período determinado.",
+    "categoria": "Salud",
+    "fuenteApa": "World Health Organization: WHO. (2025, 5 diciembre). Universal health coverage (UHC). https://www.who.int/news-room/fact-sheets/detail/universal-health-coverage-(uhc)",
+    "fuenteUrl": "https://www.who.int/news-room/fact-sheets/detail/universal-health-coverage-(uhc)"
+  },
+  {
+    "concepto": "Prevalencia",
+    "definicion": "En epidemiología, proporción de casos de una enfermedad en un período de tiempo, respecto a la población existente en la zona objeto de estudio.",
+    "categoria": "Salud",
+    "fuenteApa": "Organización Panamericana de la Salud [OPS]. (2018). Indicadores de salud: aspectos conceptuales y operativos (p. 25). https://www.ministeriodesalud.go.cr/index.php/biblioteca-de-archivos-left/documentos-ministerio-de-salud/material-informativo/material-publicado/indicadores-en-salud/1797-indicadores-de-salud-aspectos-conceptuales-y-operativos-2018/file",
+    "fuenteUrl": "https://www.ministeriodesalud.go.cr/index.php/biblioteca-de-archivos-left/documentos-ministerio-de-salud/material-informativo/material-publicado/indicadores-en-salud/1797-indicadores-de-salud-aspectos-conceptuales-y-operativos-2018/file"
+  },
+  {
+    "concepto": "Riesgo",
+    "definicion": "Contingencia o proximidad de un daño.",
+    "categoria": "Salud",
+    "fuenteApa": "Real Academia Española [RAE]. (s.f.). Riesgo. En Diccionario de la lengua española. https://dle.rae.es/riesgo",
+    "fuenteUrl": "https://dle.rae.es/riesgo"
+  },
+  {
+    "concepto": "Tamizaje",
+    "definicion": "Definido por la OMS como 'el uso de una prueba sencilla en una población saludable, para identificar a aquellos individuos que tienen alguna patología, pero que todavía no presentan síntomas', y por la U.S. Preventive Services Task Force como acciones preventivas en las cuales una prueba o examen sistematizado se usa para identificar a los pacientes que requieren una intervención especial.",
+    "categoria": "Salud",
+    "fuenteApa": "Ministerio de Salud y Protección Social. (s.f.). Orientaciones para el desarrollo de tamizajes en el marco del Plan de Intervenciones Colectivas (PIC). https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ENT/orientaciones-tamizaje-pic.pdf",
+    "fuenteUrl": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ENT/orientaciones-tamizaje-pic.pdf"
+  },
+  {
+    "concepto": "Tasa",
+    "definicion": "Frecuencia relativa con que se producen ciertos acontecimientos en relación a la población media existente durante el tiempo en que se han registrado tales acontecimientos. Las más conocidas son las tasas de mortalidad y de natalidad.",
+    "categoria": "General",
+    "fuenteApa": "Pérez Díaz, J. (2010; actualización 2018). Cocientes demográficos: tasas, probabilidades, razones y proporciones. Apuntes de Demografía (CSIC). https://apuntesdedemografia.com/curso-de-demografia/cocientes-demograficos-tasas-probabilidades-razones-y-proporciones/",
+    "fuenteUrl": "https://apuntesdedemografia.com/curso-de-demografia/cocientes-demograficos-tasas-probabilidades-razones-y-proporciones/"
+  },
+  {
+    "concepto": "Razón",
+    "definicion": "Cociente que resulta de dividir dos conjuntos o subconjuntos distintos que no tienen elementos comunes (p. ej., los hombres de una población respecto a las mujeres de esa población, la llamada 'razón de masculinidad').",
+    "categoria": "General",
+    "fuenteApa": "Pérez Díaz, J. (2010; actualización 2018). Cocientes demográficos: tasas, probabilidades, razones y proporciones. Apuntes de Demografía (CSIC). https://apuntesdedemografia.com/curso-de-demografia/cocientes-demograficos-tasas-probabilidades-razones-y-proporciones/",
+    "fuenteUrl": "https://apuntesdedemografia.com/curso-de-demografia/cocientes-demograficos-tasas-probabilidades-razones-y-proporciones/"
+  },
+  {
+    "concepto": "Proporción",
+    "definicion": "Relación numérica existente entre las partes y el todo. Así ocurre con la relación entre las personas de sexo femenino y el total de la población, que informa sobre la 'proporción de mujeres' en una determinada población.",
+    "categoria": "General",
+    "fuenteApa": "Pérez Díaz, J. (2010; actualización 2018). Cocientes demográficos: tasas, probabilidades, razones y proporciones. Apuntes de Demografía (CSIC). https://apuntesdedemografia.com/curso-de-demografia/cocientes-demograficos-tasas-probabilidades-razones-y-proporciones/",
+    "fuenteUrl": "https://apuntesdedemografia.com/curso-de-demografia/cocientes-demograficos-tasas-probabilidades-razones-y-proporciones/"
+  },
+  {
+    "concepto": "Tendencia",
+    "definicion": "Patrón de cambio a largo plazo que indica la dirección en la que evolucionan los datos a lo largo del tiempo (hacia arriba, hacia abajo o de forma plana). Se utiliza para resumir información y realizar previsiones.",
+    "categoria": "General",
+    "fuenteApa": "Hyndman, R. J., & Athanasopoulos, G. (s.f.). Pronósticos: principios y práctica (2.ª ed. en español). OTexts. https://otexts.com/fppsp/tspatterns.html",
+    "fuenteUrl": "https://otexts.com/fppsp/tspatterns.html"
+  },
+  {
+    "concepto": "Indice",
+    "definicion": "Medida-resumen que agrega varios indicadores en una sola cifra, con el fin de representar de forma sintética un concepto que no podría observarse a través de una sola variable (por ejemplo, el Índice de Derecho Efectivo a la Salud, que agrega los indicadores de las categorías de justicia, determinantes sociales y salud en una sola medida). Definición elaborada por el equipo de investigación a partir del concepto de \"indicador compuesto\" (ver fuente).",
+    "categoria": "General",
+    "fuenteApa": "Schuschny, A., & Soto, H. (2009). Guía metodológica: diseño de indicadores compuestos de desarrollo sostenible (p. 13). CEPAL, Naciones Unidas. https://repositorio.cepal.org/server/api/core/bitstreams/a627f68b-9902-4fa2-a516-912a903ecf22/content",
+    "fuenteUrl": "https://repositorio.cepal.org/server/api/core/bitstreams/a627f68b-9902-4fa2-a516-912a903ecf22/content"
+  },
+  {
+    "concepto": "Indicador",
+    "definicion": "Expresión cualitativa o cuantitativa observable que permite describir características, comportamientos o fenómenos de la realidad a través de la evolución de una variable o el establecimiento de una relación entre variables, la cual, comparada con períodos anteriores, productos similares o una meta o compromiso, permite evaluar el desempeño y su evolución en el tiempo.",
+    "categoria": "General",
+    "fuenteApa": "Departamento Administrativo Nacional de Estadística [DANE]. (s.f.). Guía para diseño, construcción e interpretación de indicadores (p. 13). https://www.dane.gov.co/files/planificacion/fortalecimiento/cuadernillo/Guia_construccion_interpretacion_indicadores.pdf",
+    "fuenteUrl": "https://www.dane.gov.co/files/planificacion/fortalecimiento/cuadernillo/Guia_construccion_interpretacion_indicadores.pdf"
+  },
+  {
+    "concepto": "Dimension",
+    "definicion": "Componente temático en el que se agrupan los indicadores que comparten un mismo enfoque dentro de un índice compuesto (por ejemplo, la dimensión de justicia, la de determinantes sociales o la de salud), y cuya combinación permite construir el índice general. Definición elaborada por el equipo de investigación a partir del uso operativo de este término en la literatura metodológica consultada (ver fuente); no existe una cita textual que la respalde de forma literal.",
+    "categoria": "General",
+    "fuenteApa": "Se revisaron CEPAL (Schuschny y Soto, 2009), la metodología del Índice de Pobreza Multidimensional para América Latina (CEPAL, 2025) y el Handbook on Constructing Composite Indicators (OCDE/JRC); ninguno define formalmente el término \"dimensión\", solo lo usan de manera operativa (p. ej., CEPAL, 2025, p. 26: \"El índice se estructura en torno a cuatro dimensiones del bienestar —vivienda, salud, educación, y empleo y pensiones—\"). La definición de esta fila es una elaboración propia a partir de ese uso operativo, sin que exista una cita textual que la respalde.",
+    "fuenteUrl": null
+  },
+  {
+    "concepto": "Acceso a la salud pediátrica a través de la justicia",
+    "definicion": "Es la posibilidad que tienen bebés, niños, niñas y adolescentes entre 0 y 18 años, por medio de sus cuidadores y/o representantes legales, de ejercer y exigir el derecho a una atención integral en salud física y mental cuando esta no es garantizada por el sistema de salud.\nEsta atención debe ser oportuna, continua y de calidad, e incluir acciones de promoción, prevención, intervención, control y seguimiento, de acuerdo con las necesidades específicas, la etapa de desarrollo y el contexto de cada niño, niña o adolescente y su red de apoyo.",
+    "categoria": "General",
+    "fuenteApa": "En este proyecto, el punto de partida fue comprender qué significa acceder a la salud pediátrica a través de la justicia. Esta definición fue construida colectivamente durante el Taller 1 y validada en el Taller 2. A partir de ella, se fueron construyendo y precisando los conceptos e indicadores que hacen parte de IDES.",
+    "fuenteUrl": null
+  }
+]
