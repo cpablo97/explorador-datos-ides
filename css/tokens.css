@@ -8,20 +8,30 @@
 
     /*Naranja*/
     --naranja-100: #FDE3D1;
+    --naranja-150: color-mix(in srgb, var(--naranja-100) 50%, var(--naranja-200));
     --naranja-200: #F2986C;
+    --naranja-250: color-mix(in srgb, var(--naranja-200) 50%, var(--naranja-300));
     --naranja-300: #EA5825;
     --naranja-400: #B73508;
 
     /*Azul*/
     --azul-100: #C2D6E0;
+    --azul-150: color-mix(in srgb, var(--azul-100) 50%, var(--azul-200));
     --azul-200: #8BC0C7;
+    --azul-250: color-mix(in srgb, var(--azul-200) 50%, var(--azul-300));
     --azul-300: #5D9EB6;
     --azul-400: #2B72A1;
 
     /*Verde*/
     --verde-100: #D3DEC9;
+    --verde-150: color-mix(in srgb, var(--verde-100) 50%, var(--verde-200));
     --verde-200: #ABC5B5;
+    --verde-250: color-mix(in srgb, var(--verde-200) 50%, var(--verde-300));
     --verde-300: #32814B;
+    /* --verde-400/--verde-500 reservados: fondo del callout de determinantes
+       y anillo compuesto respectivamente (ver css/tokens.css uso en
+       locality-card.js/ficha-dimension.css) — ningún componente nuevo debe
+       usarlos. Para determinantes, el acento más fuerte es --verde-300. */
     --verde-400: #98BC66;
     --verde-500: #7DA450;
 

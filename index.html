@@ -113,6 +113,7 @@
     <script src="js/breadcrumb.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/locality-utils.js"></script>
+    <script src="js/indicator-context.js"></script>
     <script src="js/locality-rose.js"></script>
     <script src="js/fan-chart.js"></script>
     <script src="js/locality-card.js"></script>
@@ -182,7 +183,14 @@
         const { renderLocalityDetail, actualizarLocalityDetail } = window.IDESLocalityDetail;
         const { AÑOS, STEP_DURATION, reproducirEvolucion } = window.IDESTimeline;
 
-        const data = await fetch("data/localidades.json").then((r) => r.json());
+        const [data, fichas, indicadoresDatos] = await Promise.all([
+          fetch("data/localidades.json").then((r) => r.json()),
+          fetch("data/fichas-tecnicas.json").then((r) => r.json()),
+          fetch("data/indicadores-datos-completo.json").then((r) => r.json()),
+        ]);
+        // Cruce único nombre completo de indicador -> id de fichas-tecnicas.json,
+        // reutilizado por cada fila de indicador (ver js/indicator-context.js).
+        const contexto = window.IDESIndicatorContext.crearContexto({ fichas, indicadoresDatos });
 
         renderStatCell({
           markId: "mark-localidades",
@@ -293,7 +301,7 @@
         function mostrarModal(id, año) {
           const localidad = data.find((d) => d.id === id);
           renderLocalityCard(modalContent, localidad, año);
-          renderLocalityDetail(detailContent, data, localidad, año);
+          renderLocalityDetail(detailContent, data, localidad, año, contexto);
           detailSection.classList.add("is-visible");
           chart.highlight(id);
           modal.classList.add("is-visible");
@@ -481,7 +489,7 @@
           // duración (ver idActivo en fan-chart.js).
           if (pinnedId) {
             actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
-            actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
+            actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, STEP_DURATION, contexto);
           }
           chart.transitionToYear(año, STEP_DURATION);
         }
@@ -497,7 +505,7 @@
             onYearStart(año, duration) {
               if (pinnedId) {
                 actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, duration);
-                actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, duration);
+                actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, duration, contexto);
               }
             },
             onYearChange(año) {

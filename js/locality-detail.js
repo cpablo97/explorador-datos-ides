@@ -14,27 +14,52 @@
 // en este repo — no existía antes, así que se agrega acá en vez de
 // "corregir" algo que ya funcionaba. No toca getAñoData ni
 // data/localidades.json.
+//
+// Los tracks de INDICADOR (pestaña "Indicadores", tamaño "compact") son un
+// componente completamente distinto al de los tracks de DIMENSIÓN (pestaña
+// "Dimensiones", tamaño "full") — no SVG con eje/benchmarks, sino HTML/CSS
+// plano, para consumir data/indicadores-datos-completo.json (ver
+// js/indicator-context.js para el cruce nombre completo -> id de
+// fichas-tecnicas.json). Cada fila de indicador (renderTrackIndicador):
+//   - Título (nombre) + subtítulo (interpretación por localidad + año,
+//     con crossfade al cambiar de año).
+//   - Banda 0-100 de 5 tramos de color por dimensión (ver custom
+//     properties --dim-100..--dim-300/--dim-strong en el CSS aislado,
+//     scoped a `.locality-detail__track--compact.locality-detail__track--
+//     <dimKey>` — el color familia sale del MISMO dimKey con el que ya se
+//     arma el wrapper, no del campo "dimension" de fichas-tecnicas.json).
+//   - Marcador circular (score) posicionado por % simple (dominio 0-100 =
+//     rango 0-100%, no hace falta d3.scaleLinear acá).
+//   - Fila de peor/mejor desempeño siempre visible (no hover) — se omite
+//     por completo si el indicador no tiene ese dato (caso documentado:
+//     "Casos de conducta suicida...").
+//   - CTA a ficha.html?id=<fichaId>.
+// Los tracks de DIMENSIÓN (renderTrackDimension) no cambian: siguen siendo
+// SVG con rango real (bottom/top observado) y sus benchmarks completos,
+// porque interpretaciones/peor-mejor no existen a nivel de dimensión.
 
 (function () {
   const { AXES, DIM_LABELS, getAñoData } = window.IDESFanChart;
 
-  // Geometría de cada variante, en unidades de viewBox (el ancho real lo
-  // da el CSS vía width:100% + aspect-ratio — ver css/utilities/locality-detail.css,
-  // mismo patrón que #chart-main en fan-chart.js).
+  // Geometría del track de DIMENSIÓN (SVG, viewBox 760x200 — el ancho real
+  // lo da el CSS vía width:100% + aspect-ratio, ver
+  // css/utilities/locality-detail.css, mismo patrón que #chart-main en
+  // fan-chart.js). Los tracks de INDICADOR son HTML/CSS puro y no usan
+  // esta geometría (ver renderTrackIndicador).
   const GEOM = {
     full: { W: 760, H: 200, padX: 56, axisY: 128, circleR: 34, circleCy: 40, dotR: 5.5, qDotR: 4, tickHalf: 11, centralGap: 6 },
-    compact: { W: 760, H: 116, padX: 44, axisY: 70, circleR: 19, circleCy: 22, dotR: 4, qDotR: 3, tickHalf: 8, centralGap: 5 },
   };
 
   // Bottom/top siempre caen justo en los bordes del dominio de `x`, así
   // que su texto no necesita acomodo. Los cuartiles solo muestran su
-  // etiqueta al hover (ver .locality-detail__cuartil-group en renderTrack),
-  // así que tampoco compiten por espacio. Promedio y mediana sí conviven
-  // siempre visibles y pueden caer muy cerca — su texto nunca se centra
-  // sobre su tick (lo atravesaría por la mitad); cada uno se ancla hacia
-  // el lado contrario al del otro marcador, con un pequeño espacio (`gap`)
-  // para no tocar la línea. El tick queda en la posición real (`tickX`);
-  // el texto se corre `gap` unidades hacia su lado (`textX`).
+  // etiqueta al hover (ver .locality-detail__cuartil-group en
+  // renderTrackDimension), así que tampoco compiten por espacio. Promedio
+  // y mediana sí conviven siempre visibles y pueden caer muy cerca — su
+  // texto nunca se centra sobre su tick (lo atravesaría por la mitad); cada
+  // uno se ancla hacia el lado contrario al del otro marcador, con un
+  // pequeño espacio (`gap`) para no tocar la línea. El tick queda en la
+  // posición real (`tickX`); el texto se corre `gap` unidades hacia su
+  // lado (`textX`).
   function posicionarCentrales(xAvg, xMedian, gap) {
     const avgALaIzquierda = xAvg <= xMedian;
     return {
@@ -59,12 +84,8 @@
     return data.map((loc) => getAñoData(loc, año).dims[dimKey]);
   }
 
-  function valoresVariable(data, año, dimKey, varKey) {
-    return data.map((loc) => entryDeAño(loc, año).indices[dimKey].variables[varKey].valor);
-  }
-
-  // Estadísticas de benchmark sobre un array de 20 valores (dimensión o
-  // variable, no importa) — agnóstico de dónde vienen los números.
+  // Estadísticas de benchmark sobre un array de 20 valores — solo la usan
+  // ya los tracks de DIMENSIÓN (ver nota de cabecera).
   function calcularBenchmarks(valores) {
     const orden = valores.slice().sort(d3.ascending);
     return {
@@ -117,28 +138,57 @@
     el._rafId = requestAnimationFrame(tick);
   }
 
+  // Crossfade de texto de párrafo (el subtítulo interpretativo de los
+  // tracks de indicador): mismo idioma de transición que el resto del
+  // archivo (transición nombrada + d3.easeCubicInOut, ver `mover()` en
+  // actualizarTrack) en vez de introducir una técnica nueva. `duration` ya
+  // llega en 0 cuando el usuario prefiere movimiento reducido (ver
+  // actualizarLocalityDetail).
+  function crossfadeTexto(sel, textoNuevo, duration) {
+    const node = sel.node();
+    if (!node || node.textContent === textoNuevo) return;
+    if (duration <= 0) {
+      sel.text(textoNuevo);
+      return;
+    }
+    const mitad = duration / 2;
+    sel
+      .interrupt("detail-fade")
+      .transition("detail-fade")
+      .duration(mitad)
+      .ease(d3.easeCubicInOut)
+      .style("opacity", 0)
+      .on("end", function () {
+        d3.select(this)
+          .text(textoNuevo)
+          .transition("detail-fade")
+          .duration(mitad)
+          .ease(d3.easeCubicInOut)
+          .style("opacity", 1);
+      });
+  }
+
   function porRol(svg, claseCss, rol) {
     return svg.selectAll(claseCss).filter((d) => d && d.role === rol);
   }
 
-  // Construye un único track (dimensión o variable) dentro de `hostSel`.
-  // El color viene por CSS (clase `--<dimKey>` en el wrapper, ver
-  // .locality-detail__track--salud/--justicia/--determinantes en el CSS
-  // aislado) — ningún elemento SVG necesita una custom property puesta por
-  // JS, así se evita por completo el bug de setAttribute vs .style con
-  // custom properties en SVG.
-  function renderTrack(hostSel, { tipo, dimKey, varKey, label, valores, valorLocalidad, size }) {
-    const g = GEOM[size];
+  // Construye un track de DIMENSIÓN (tamaño "full", pestaña "Dimensiones")
+  // dentro de `hostSel` — comportamiento sin cambios respecto al original:
+  // rango real (bottom/top observado) + banda de cuartiles + promedio/
+  // mediana + cuartiles al hover. El color viene por CSS (clase
+  // `--<dimKey>` en el wrapper, ver .locality-detail__track--salud/
+  // --justicia/--determinantes en el CSS aislado) — ningún elemento SVG
+  // necesita una custom property puesta por JS, así se evita por completo
+  // el bug de setAttribute vs .style con custom properties en SVG.
+  function renderTrackDimension(hostSel, { dimKey, label, valores, valorLocalidad }) {
+    const g = GEOM.full;
     const stats = calcularBenchmarks(valores);
     const x = d3.scaleLinear().domain([stats.bottom, stats.top]).range([g.padX, g.W - g.padX]);
 
     const wrapper = hostSel
       .append("div")
-      .attr(
-        "class",
-        `locality-detail__track locality-detail__track--${size} locality-detail__track--${dimKey}`,
-      )
-      .datum({ tipo, dimKey, varKey });
+      .attr("class", `locality-detail__track locality-detail__track--full locality-detail__track--${dimKey}`)
+      .datum({ tipo: "dimension", dimKey, varKey: null });
 
     const cabecera = wrapper.append("div").attr("class", "locality-detail__track-label");
     cabecera.append("span").attr("class", "locality-detail__track-nombre").text(label);
@@ -332,27 +382,139 @@
       .text(Math.round(valorLocalidad));
   }
 
-  function actualizarTrack(wrapperNode, data, localidad, año, duration) {
+  // Construye una fila de INDICADOR (tamaño "compact", pestaña
+  // "Indicadores") dentro de `hostSel` — ver nota de cabecera del archivo.
+  // HTML/CSS puro (no SVG): la banda es 0-100 siempre, así que la posición
+  // del marcador es directamente el score como porcentaje — no hace falta
+  // d3.scaleLinear ni el GEOM que sí necesitan los tracks de dimensión.
+  function renderTrackIndicador(hostSel, { dimKey, varKey, label, valorLocalidad, localidadNombre, año, contexto }) {
+    const wrapper = hostSel
+      .append("div")
+      .attr("class", `locality-detail__track locality-detail__track--compact locality-detail__track--${dimKey}`)
+      .datum({ tipo: "variable", dimKey, varKey, nombreCompleto: label });
+
+    // 1. Título — sin cambios respecto al resto del componente.
+    wrapper.append("span").attr("class", "locality-detail__track-nombre").text(label);
+
+    // 2. Subtítulo — texto interpretativo por localidad + año (reemplaza
+    // cualquier valor crudo que se mostrara antes acá).
+    wrapper
+      .append("p")
+      .attr("class", "locality-detail__track-subtitulo")
+      .text(contexto.getInterpretacion(label, localidadNombre, año) || "");
+
+    // 3. Banda 0-100 (5 tramos iguales, color por dimensión vía --dim-100.
+    // .--dim-300/--dim-strong, ver CSS) + marcador con el score.
+    const bandaWrap = wrapper.append("div").attr("class", "locality-detail__track-banda-wrap");
+
+    // El marcador ES el círculo (no un wrapper con el círculo adentro): su
+    // centro se posiciona exactamente sobre el borde superior de la banda
+    // (top:0 + translate(-50%,-50%) en CSS, ver .locality-detail__track-
+    // marcador), así la mitad inferior queda superpuesta a la banda — "sobre
+    // la raya", no flotando encima de ella. El tallito corto es un ::before
+    // puramente CSS que cuelga del propio círculo, sin afectar ese centrado.
+    bandaWrap
+      .append("span")
+      .attr("class", "locality-detail__track-marcador")
+      .style("left", `${valorLocalidad}%`)
+      .text(Math.round(valorLocalidad));
+
+    // Los 5 tramos ocupan el 100% del ancho de bandaWrap borde a borde —
+    // los puntos de los extremos van superpuestos por CSS (position:absolute,
+    // left:0%/100%), no como hijos flex con margin negativo: así comparten
+    // exactamente el mismo sistema de coordenadas (0-100% de bandaWrap) que
+    // el marcador, sin el corrimiento que introducía el solape por flex.
+    const banda = bandaWrap.append("div").attr("class", "locality-detail__track-banda");
+    [1, 2, 3, 4, 5].forEach((n) => {
+      banda
+        .append("span")
+        .attr("class", `locality-detail__track-banda-segmento locality-detail__track-banda-segmento--${n}`);
+    });
+    bandaWrap
+      .append("span")
+      .attr("class", "locality-detail__track-banda-punto locality-detail__track-banda-punto--izq");
+    bandaWrap
+      .append("span")
+      .attr("class", "locality-detail__track-banda-punto locality-detail__track-banda-punto--der");
+
+    // 4. Peor/mejor desempeño — siempre visible, no hover. Si el indicador
+    // no tiene el dato (caso documentado: "Casos de conducta suicida..."),
+    // se omite (divisor incluido) en vez de mostrarla vacía o rota.
+    const peorMejor = contexto.getPeorMejor(label);
+    if (peorMejor) {
+      wrapper.append("hr").attr("class", "locality-detail__track-divisor");
+      const fila = wrapper.append("div").attr("class", "locality-detail__track-desempenos");
+      const peor = fila
+        .append("p")
+        .attr("class", "locality-detail__track-desempeno locality-detail__track-desempeno--peor");
+      peor.append("span").attr("class", "locality-detail__track-desempeno-punto");
+      peor.append("span").attr("class", "locality-detail__track-desempeno-texto").text(peorMejor.peor_desempeno);
+      const mejor = fila
+        .append("p")
+        .attr("class", "locality-detail__track-desempeno locality-detail__track-desempeno--mejor");
+      mejor.append("span").attr("class", "locality-detail__track-desempeno-texto").text(peorMejor.mejor_desempeno);
+      mejor.append("span").attr("class", "locality-detail__track-desempeno-punto");
+    }
+
+    // 5. CTA a la ficha técnica del indicador (ficha.html?id=..., mismo
+    // patrón de ruteo que usan ficha-salud/justicia/determinantes.html).
+    const fichaId = contexto.getFichaId(label);
+    if (fichaId) {
+      const cta = wrapper
+        .append("a")
+        .attr("class", "locality-detail__track-cta")
+        .attr("href", `ficha.html?id=${fichaId}`);
+      cta.append("span").attr("class", "locality-detail__track-cta-texto").text("Ver ficha técnica");
+      cta.append("span").attr("class", "locality-detail__track-cta-flecha").attr("aria-hidden", "true").text("→");
+    }
+  }
+
+  // Solo cambia con el año (el año es el único eje de actualización — ver
+  // actualizarLocalityDetail; un cambio de localidad siempre pasa por
+  // renderLocalityDetail completo): puntaje/marcador y el subtítulo
+  // interpretativo (crossfade). Banda, extremos, peor/mejor y CTA son fijos
+  // por indicador y no necesitan tocarse.
+  function actualizarTrackIndicador(wrapperNode, localidad, año, duration, contexto) {
     const wrapper = d3.select(wrapperNode);
     const d = wrapper.datum();
-    const valores =
-      d.tipo === "dimension"
-        ? valoresDimension(data, año, d.dimKey)
-        : valoresVariable(data, año, d.dimKey, d.varKey);
-    const valorLocalidad =
-      d.tipo === "dimension"
-        ? getAñoData(localidad, año).dims[d.dimKey]
-        : entryDeAño(localidad, año).indices[d.dimKey].variables[d.varKey].valor;
+    const vars = entryDeAño(localidad, año).indices[d.dimKey].variables;
+    const valorLocalidad = vars[d.varKey].valor;
+
+    crossfadeTexto(
+      wrapper.select(".locality-detail__track-subtitulo"),
+      contexto.getInterpretacion(d.nombreCompleto, localidad.nombre, año) || "",
+      duration,
+    );
+
+    const marcador = wrapper.select(".locality-detail__track-marcador").interrupt("detail-move");
+    if (duration > 0) {
+      marcador.transition("detail-move").duration(duration).ease(d3.easeCubicInOut).style("left", `${valorLocalidad}%`);
+    } else {
+      marcador.style("left", `${valorLocalidad}%`);
+    }
+    animarNumero(marcador.node(), Math.round(valorLocalidad), duration);
+  }
+
+  function actualizarTrack(wrapperNode, data, localidad, año, duration, contexto) {
+    const wrapper = d3.select(wrapperNode);
+    const d = wrapper.datum();
+
+    if (d.tipo === "variable") {
+      actualizarTrackIndicador(wrapperNode, localidad, año, duration, contexto);
+      return;
+    }
+
+    // Dimensión: comportamiento sin cambios (rango real + benchmarks).
+    const valores = valoresDimension(data, año, d.dimKey);
+    const valorLocalidad = getAñoData(localidad, año).dims[d.dimKey];
     const stats = calcularBenchmarks(valores);
-    const size = wrapper.classed("locality-detail__track--compact") ? "compact" : "full";
-    const g = GEOM[size];
+    const g = GEOM.full;
     const x = d3.scaleLinear().domain([stats.bottom, stats.top]).range([g.padX, g.W - g.padX]);
 
     animarNumero(wrapper.select(".locality-detail__track-valor-num").node(), Math.round(valorLocalidad), duration);
 
     const svg = wrapper.select(".locality-detail__svg").interrupt("detail-move");
     const t = duration > 0 ? svg.transition("detail-move").duration(duration).ease(d3.easeCubicInOut) : null;
-
     function mover(sel, attr, valor) {
       if (t) sel.transition(t).attr(attr, valor);
       else sel.attr(attr, valor);
@@ -365,7 +527,6 @@
     mover(bandSel, "x", x(stats.lowerQ));
     mover(bandSel, "width", Math.max(0, x(stats.upperQ) - x(stats.lowerQ)));
 
-    // Extremos: siempre en los bordes del dominio de `x`.
     [
       { role: "bottom", val: stats.bottom },
       { role: "top", val: stats.top },
@@ -377,7 +538,6 @@
       animarNumero(porRol(svg, ".locality-detail__value-text", p.role).node(), Math.round(p.val), duration);
     });
 
-    // Cuartiles: punto + área de hover + etiqueta (oculta hasta hover).
     [
       { role: "lowerQ", val: stats.lowerQ, lado: -1 },
       { role: "upperQ", val: stats.upperQ, lado: 1 },
@@ -390,7 +550,6 @@
       mover(porRol(svg, ".locality-detail__label-text", p.role), "x", px + p.lado * g.centralGap);
     });
 
-    // Promedio / mediana: recalcula lado de anclaje con la nueva escala.
     const centrales = posicionarCentrales(x(stats.avg), x(stats.median), g.centralGap);
     [
       { role: "avg", val: stats.avg },
@@ -434,7 +593,7 @@
     });
   }
 
-  function renderLocalityDetail(container, data, localidad, año) {
+  function renderLocalityDetail(container, data, localidad, año, contexto) {
     container.innerHTML = `
       <div class="locality-detail__header">
         <h3 class="locality-detail__nombre">${localidad.nombre}</h3>
@@ -468,14 +627,11 @@
     AXES.forEach((axis) => {
       const valores = valoresDimension(data, año, axis.key);
       const valorLocalidad = getAñoData(localidad, año).dims[axis.key];
-      renderTrack(dimHost, {
-        tipo: "dimension",
+      renderTrackDimension(dimHost, {
         dimKey: axis.key,
-        varKey: null,
         label: DIM_LABELS[axis.key],
         valores,
         valorLocalidad,
-        size: "full",
       });
     });
 
@@ -484,22 +640,20 @@
       const varHost = d3.select(container).select(`[data-tracks-variables="${axis.key}"]`);
       const vars = entryLoc.indices[axis.key].variables;
       Object.keys(vars).forEach((varKey) => {
-        const valores = valoresVariable(data, año, axis.key, varKey);
-        const valorLocalidad = vars[varKey].valor;
-        renderTrack(varHost, {
-          tipo: "variable",
+        renderTrackIndicador(varHost, {
           dimKey: axis.key,
           varKey,
           label: vars[varKey].nombre,
-          valores,
-          valorLocalidad,
-          size: "compact",
+          valorLocalidad: vars[varKey].valor,
+          localidadNombre: localidad.nombre,
+          año,
+          contexto,
         });
       });
     });
   }
 
-  function actualizarLocalityDetail(container, data, localidad, año, duration = 0) {
+  function actualizarLocalityDetail(container, data, localidad, año, duration = 0, contexto) {
     const tracks = container.querySelectorAll(".locality-detail__track");
     if (!tracks.length) return;
 
@@ -507,7 +661,7 @@
     if (yearEl) yearEl.textContent = `Comparado con las 20 localidades — Año activo: ${año}`;
 
     const duracionEfectiva = prefiereMovimientoReducido() ? 0 : duration;
-    tracks.forEach((track) => actualizarTrack(track, data, localidad, año, duracionEfectiva));
+    tracks.forEach((track) => actualizarTrack(track, data, localidad, año, duracionEfectiva, contexto));
   }
 
   window.IDESLocalityDetail = { renderLocalityDetail, actualizarLocalityDetail };

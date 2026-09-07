@@ -161,17 +161,6 @@
   opacity: 0.6;
 }
 
-.locality-detail__track--compact .locality-detail__track-nombre {
-  font-size: 1.25rem;
-  font-weight: 400;
-}
-.locality-detail__track--compact .locality-detail__track-valor {
-  font-size: 1.25rem;
-}
-.locality-detail__track--compact .locality-detail__track-label {
-  margin-bottom: 0.1rem;
-}
-
 .locality-detail__svg-wrap {
   width: 100%;
 }
@@ -244,13 +233,6 @@
   opacity: 0.6;
 }
 
-.locality-detail__track--compact .locality-detail__value-text {
-  font-size: 0.72rem;
-}
-.locality-detail__track--compact .locality-detail__label-text {
-  font-size: 0.58rem;
-}
-
 /* Promedio/mediana: suelen caer muy cerca en el eje real, así que su texto
    va más angosto — cuando están cerca cada uno se ancla hacia su propio
    lado en vez de centrarse (ver posicionarCentrales en locality-detail.js). */
@@ -260,12 +242,6 @@
 }
 .locality-detail__label-text--central {
   font-size: 0.68rem;
-}
-.locality-detail__track--compact .locality-detail__value-text--central {
-  font-size: 0.62rem;
-}
-.locality-detail__track--compact .locality-detail__label-text--central {
-  font-size: 0.52rem;
 }
 
 .locality-detail__connector {
@@ -283,6 +259,253 @@
   font: 700 1.4rem/1 var(--font-primary);
   fill: var(--color-text-primary);
 }
-.locality-detail__track--compact .locality-detail__marker-value {
-  font-size: 0.85rem;
+
+/* ================================================================
+   Fila de INDICADOR — rediseño completo (solo tracks "compact",
+   pestaña "Indicadores"). Reemplaza por completo el bloque anterior de
+   esta sección (interpretación en la esquina + tooltips de hover en los
+   extremos) — ver renderTrackIndicador/actualizarTrackIndicador en
+   locality-detail.js. Los tracks de DIMENSIÓN (full, arriba) no tocan
+   nada de este bloque.
+   ================================================================ */
+
+/* --- 1. Título — mismo elemento/clase que el track de dimensión, pero
+   acá necesita display:block (era <span> inline dentro de una fila con
+   el "NN/100"; ahora va apilado arriba del subtítulo) y un tamaño mayor
+   al del subtítulo (1.5rem) para mantener la jerarquía título > subtítulo. */
+.locality-detail__track--compact .locality-detail__track-nombre {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+/* --- 2. Subtítulo interpretativo (por localidad + año) --- */
+.locality-detail__track-subtitulo {
+  margin: 0 0 1.25rem;
+  /* Tamaño tomado de --text-body-primary (ver css/tokens.css) — no se usa
+     el shorthand completo porque su line-height (1.625rem) es demasiado
+     apretado para un párrafo que puede ocupar varias líneas; acá sí
+     importa la lectura en párrafo, no una sola línea de dato. */
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  /* Ancho de línea deliberadamente angosto (por debajo del mínimo de 45
+     caracteres recomendado para prosa larga): el texto más corto entre
+     las 23 indicadores x 21 localidades x 3 años (1449 combinaciones)
+     mide 47 caracteres, así que a 42ch SIEMPRE ocupa 2 líneas o más. */
+  max-width: 42ch;
+  /* 4 líneas a este tamaño/ancho: cabe el texto más largo del set real
+     (107 caracteres, ~3 líneas esperadas) con margen, sin que la fila
+     salte de tamaño al cambiar de localidad/año. */
+  min-height: calc(1.5rem * 1.5 * 4);
+  opacity: 1;
+}
+
+/* --- Custom properties de color por dimensión, SOLO para esta fila ---
+   Distintas de --dim-color/--dim-decoration-color (las sigue usando el
+   track de DIMENSIÓN sin cambios) — acá hacen falta los 5 tramos de la
+   rampa más el acento fuerte. Nunca --verde-400/--verde-500: reservados
+   para el fondo del callout de determinantes y el anillo compuesto — el
+   acento más fuerte de determinantes es --verde-300. */
+.locality-detail__track--compact.locality-detail__track--salud {
+  --dim-100: var(--azul-100);
+  --dim-150: var(--azul-150);
+  --dim-200: var(--azul-200);
+  --dim-250: var(--azul-250);
+  --dim-300: var(--azul-300);
+  --dim-strong: var(--azul-400);
+}
+.locality-detail__track--compact.locality-detail__track--justicia {
+  --dim-100: var(--naranja-100);
+  --dim-150: var(--naranja-150);
+  --dim-200: var(--naranja-200);
+  --dim-250: var(--naranja-250);
+  --dim-300: var(--naranja-300);
+  --dim-strong: var(--naranja-400);
+}
+.locality-detail__track--compact.locality-detail__track--determinantes {
+  --dim-100: var(--verde-100);
+  --dim-150: var(--verde-150);
+  --dim-200: var(--verde-200);
+  --dim-250: var(--verde-250);
+  --dim-300: var(--verde-300);
+  --dim-strong: var(--verde-300);
+}
+
+/* --- 3. Banda 0-100 (5 tramos) + marcador con el score ---
+   Nada de esto es SVG — el dominio es siempre 0-100, así que la posición
+   del marcador es directamente `${score}%` (ver locality-detail.js). El
+   marcador se centra sobre el borde superior de la banda (mitad del
+   círculo por encima, mitad superpuesta a la banda — "sobre la raya", no
+   flotando encima de ella con un tallo largo de por medio). */
+.locality-detail__track-banda-wrap {
+  position: relative;
+  /* Arriba: espacio para la mitad del marcador que sobresale (12px, la
+     mitad de sus 24px de diámetro) más el tallito corto (ver ::before en
+     .track-marcador). Abajo: espacio para la mitad del marcador que cae
+     por debajo del borde superior de la banda. A los lados, 12px — la
+     mitad del diámetro del marcador — para que nunca se recorte al
+     posicionarse sobre el score 0 o 100. */
+  margin: 1.25rem 12px 0.75rem;
+}
+
+.locality-detail__track-banda {
+  display: flex;
+  height: 8px;
+}
+.locality-detail__track-banda-segmento {
+  flex: 1 0 0%;
+  height: 100%;
+}
+.locality-detail__track-banda-segmento--1 { background: var(--dim-100); }
+.locality-detail__track-banda-segmento--2 { background: var(--dim-150); }
+.locality-detail__track-banda-segmento--3 { background: var(--dim-200); }
+.locality-detail__track-banda-segmento--4 { background: var(--dim-250); }
+.locality-detail__track-banda-segmento--5 { background: var(--dim-300); }
+
+/* Puntos de los extremos: superpuestos por posición absoluta a left:0%/
+   100% del MISMO contenedor (.track-banda-wrap) que usa el marcador — no
+   hijos flex de la banda con margin negativo (eso desalineaba el
+   marcador respecto al 0/100 real, porque el solape corría el ancho
+   efectivo de los 5 tramos unos px respecto al 100% que usa el marcador).
+   Centrados en la altura de la banda (top:4px = mitad de sus 8px). */
+.locality-detail__track-banda-punto {
+  position: absolute;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.locality-detail__track-banda-punto--izq {
+  left: 0;
+  background: var(--dim-100);
+}
+.locality-detail__track-banda-punto--der {
+  left: 100%;
+  background: var(--dim-strong);
+}
+
+/* El marcador ES el círculo (el número va directo en su texto) — su
+   centro se ancla al borde superior de la banda (top:0 del wrap, que
+   coincide con el borde superior de .track-banda al ser su primer
+   elemento) con translate(-50%,-50%), así la mitad inferior queda
+   superpuesta a la banda. El tallito es un ::before puramente decorativo
+   que cuelga del propio círculo, sin mover ese centrado. */
+.locality-detail__track-marcador {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--dim-strong);
+  color: var(--crema);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 0.68rem/1 var(--font-primary);
+  transition-property: left;
+  transition-duration: 0s;
+  /* Misma aproximación de d3.easeCubicInOut que .locality-card__bar, para
+     sentirse parte del mismo movimiento cuando cambia el año. */
+  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+.locality-detail__track-marcador::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background: var(--color-callout-border);
+}
+
+/* --- Divisor entre la banda y la fila de peor/mejor desempeño --- */
+.locality-detail__track-divisor {
+  border: none;
+  border-top: 1px solid var(--color-callout-border);
+  margin: 0 0 1rem;
+}
+
+/* --- 4. Peor/mejor desempeño: siempre visible, no es hover ---
+   peor_desempeno anclado a la izquierda (punto + texto, lectura normal
+   hacia la derecha); mejor_desempeno anclado a la derecha (texto
+   alineado a la derecha + punto, para que el texto "cuelgue" hacia la
+   izquierda de su punto) — justify-content:space-between en el
+   contenedor separa ambos hacia los bordes. */
+.locality-detail__track-desempenos {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.locality-detail__track-desempeno {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin: 0;
+  /* Tamaño tomado de --text-caption-source (ver css/tokens.css). */
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  /* Fijo por indicador (23 pares posibles, no 483/1449 como el
+     subtítulo) — calculado sobre el peor/mejor desempeño más largo del
+     set real (200 caracteres) a ~40ch: hasta 5 líneas. */
+  min-height: calc(0.75rem * 1.4 * 5);
+}
+.locality-detail__track-desempeno-texto {
+  max-width: 40ch;
+  min-width: 0;
+}
+.locality-detail__track-desempeno--mejor .locality-detail__track-desempeno-texto {
+  text-align: right;
+}
+.locality-detail__track-desempeno-punto {
+  width: 8px;
+  height: 8px;
+  margin-top: 0.3rem;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.locality-detail__track-desempeno--peor .locality-detail__track-desempeno-punto {
+  background: var(--dim-100);
+}
+.locality-detail__track-desempeno--mejor .locality-detail__track-desempeno-punto {
+  background: var(--dim-strong);
+}
+
+/* --- 5. CTA a la ficha técnica — propia línea, alineado a la derecha ---
+   Mismo glifo/interacción de flecha que .btn-outline__arrow
+   (css/explorador.css), pero sin su caja con borde/relleno: acá es un
+   enlace de texto plano coloreado por dimensión, no un botón. */
+.locality-detail__track-cta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4rem;
+  font: 600 0.85rem/1 var(--font-primary);
+  color: var(--dim-strong);
+  text-decoration: none;
+}
+.locality-detail__track-cta-texto {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 10%;
+  text-underline-offset: 15%;
+}
+.locality-detail__track-cta-flecha {
+  transition: transform 0.2s ease;
+}
+.locality-detail__track-cta:hover .locality-detail__track-cta-flecha,
+.locality-detail__track-cta:focus-visible .locality-detail__track-cta-flecha {
+  transform: translateX(3px);
 }

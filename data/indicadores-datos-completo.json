@@ -1,0 +1,2578 @@
+{
+  "ParticipacionSocial": {
+    "nombre_completo": "Personas que participan en espacios e instancias de Participación Social en Salud por cada 100.000 habitantes",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "29 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "36 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "36 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Barrios Unidos": {
+        "2022": "51 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "15 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "13 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Bosa": {
+        "2022": "26 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "12 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "14 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Chapinero": {
+        "2022": "34 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "243 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "131 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Ciudad Bolívar": {
+        "2022": "18 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "11 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "9 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Engativá": {
+        "2022": "25 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "150 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "143 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Fontibón": {
+        "2022": "48 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "15 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "13 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Kennedy": {
+        "2022": "24 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "9 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "9 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "La Candelaria": {
+        "2022": "130 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "95 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "54 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Los Mártires": {
+        "2022": "31 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "0 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "17 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Puente Aranda": {
+        "2022": "36 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "38 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "46 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "31 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "17 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "14 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "San Cristóbal": {
+        "2022": "32 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "16 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "17 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Santa Fe": {
+        "2022": "31 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "17 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "15 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Suba": {
+        "2022": "17 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "3 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "4 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Sumapaz": {
+        "2022": "1380 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "1350 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "1241 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Teusaquillo": {
+        "2022": "37 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "6 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "7 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Tunjuelito": {
+        "2022": "40 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "19 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "36 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Usaquén": {
+        "2022": "25 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "453 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "611 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Usme": {
+        "2022": "24 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "14 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "15 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      },
+      "Bogotá": {
+        "2022": "54 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2023": "65 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud.",
+        "2024": "74 de cada 100.000 personas participaron en espacios e instancias de Participación Social en Salud."
+      }
+    },
+    "peor_desempeno": "Menor participación en espacios e instancias de Participación Social en Salud, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Mayor participación en espacios e instancias de Participación Social en Salud, representa un mejor desempeño para el indicador."
+  },
+  "Veedores": {
+    "nombre_completo": "Veedores ciudadanos en Salud por cada 100.000 habitantes",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "20 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "20 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "0 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Barrios Unidos": {
+        "2022": "12 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "12 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "3 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Bosa": {
+        "2022": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Chapinero": {
+        "2022": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Ciudad Bolívar": {
+        "2022": "5 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "5 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "7 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Engativá": {
+        "2022": "1 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "1 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "1 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Fontibón": {
+        "2022": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Kennedy": {
+        "2022": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "La Candelaria": {
+        "2022": "112 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "113 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "6 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Los Mártires": {
+        "2022": "8 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "8 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "13 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Puente Aranda": {
+        "2022": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "10 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "10 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "7 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "San Cristóbal": {
+        "2022": "14 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "14 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "7 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Santa Fe": {
+        "2022": "3 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "3 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "3 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Suba": {
+        "2022": "1 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "1 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "1 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Sumapaz": {
+        "2022": "245 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "245 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "91 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Teusaquillo": {
+        "2022": "6 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "6 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Tunjuelito": {
+        "2022": "6 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "6 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "16 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Usaquén": {
+        "2022": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "2 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Usme": {
+        "2022": "7 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "7 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "11 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      },
+      "Bogotá": {
+        "2022": "8 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2023": "7 de cada 100.000 habitantes fueron veedores ciudadanos en salud.",
+        "2024": "4 de cada 100.000 habitantes fueron veedores ciudadanos en salud."
+      }
+    },
+    "peor_desempeno": "Menor número de veedores ciudadanos en salud por cada 100.000 habitantes, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Mayor número de veedores ciudadanos en salud por cada 100.000 habitantes, representa un mejor desempeño para el indicador."
+  },
+  "TasaCongestion": {
+    "nombre_completo": "Tasa de Congestión Judicial de tutelas en Salud en Bogotá",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Barrios Unidos": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Bosa": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Chapinero": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Ciudad Bolívar": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Engativá": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Fontibón": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Kennedy": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "La Candelaria": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Los Mártires": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Puente Aranda": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "San Cristóbal": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Santa Fe": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Suba": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Sumapaz": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Teusaquillo": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Tunjuelito": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Usaquén": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Usme": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      },
+      "Bogotá": {
+        "2022": "La tasa de congestión judicial de tutelas en salud fue de 0.92",
+        "2023": "La tasa de congestión judicial de tutelas en salud fue de 1.10",
+        "2024": "La tasa de congestión judicial de tutelas en salud fue de 1.11"
+      }
+    },
+    "peor_desempeno": "Tasa de congestión superior a 1 indica que el sistema resuelve menos casos frente a su carga total, señalando la existencia de congestión judicial. Representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Tasa de congestión igual a 1 significa que el sistema judicial resuelve la totalidad de su carga anual; es decir, no hay congestión judicial. Representa un mejor desempeño para el indicador."
+  },
+  "TasaResolucion": {
+    "nombre_completo": "Tasa de Resolución de tutelas en Salud en Bogotá",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Barrios Unidos": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Bosa": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Chapinero": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Ciudad Bolívar": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Engativá": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Fontibón": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Kennedy": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "La Candelaria": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Los Mártires": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Puente Aranda": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "San Cristóbal": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Santa Fe": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Suba": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Sumapaz": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Teusaquillo": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Tunjuelito": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Usaquén": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Usme": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      },
+      "Bogotá": {
+        "2022": "La tasa de resolución judicial de tutelas en salud fue de 1.12",
+        "2023": "La tasa de resolución judicial de tutelas en salud fue de 0.94",
+        "2024": "La tasa de resolución judicial de tutelas en salud fue de 0.93"
+      }
+    },
+    "peor_desempeno": "Una tasa de resolución judicial inferior a 1, significa que se resuelven menos casos de los que ingresan. Representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Una tasa de resolución judicial mayor o igual a 1, significa que el sistema judicial resuelve la misma o una mayor cantidad de casos de los que recibe. Representa un mejor desempeño para el indicador."
+  },
+  "TiempoEstimado": {
+    "nombre_completo": "Tiempo estimado de resolución de tutelas en Salud en Bogotá",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Barrios Unidos": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Bosa": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Chapinero": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Ciudad Bolívar": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Engativá": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Fontibón": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Kennedy": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "La Candelaria": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Los Mártires": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Puente Aranda": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "San Cristóbal": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Santa Fe": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Suba": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Sumapaz": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Teusaquillo": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Tunjuelito": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Usaquén": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Usme": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      },
+      "Bogotá": {
+        "2022": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 13.74 días",
+        "2023": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 15.14 días",
+        "2024": "El tiempo estimado de resolución de una tutela en salud en Bogotá fue de 17.97 días"
+      }
+    },
+    "peor_desempeno": "Un tiempo estimado de resolución mayor a  10 días, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Tiempo estimado de resolución de 10 días o menos, representa un mejor desempeño para el indicador."
+  },
+  "Vacunacion": {
+    "nombre_completo": "Cobertura agregada de vacunación para pentavalente y triple viral",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "84.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "83.5% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "73.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Barrios Unidos": {
+        "2022": "95.4% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "115.1% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "130.7% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Bosa": {
+        "2022": "66.2% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "101.9% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "141.7% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Chapinero": {
+        "2022": "64.2% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "96.8% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "100.8% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Ciudad Bolívar": {
+        "2022": "80.9% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "82.3% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "123.9% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Engativá": {
+        "2022": "72.7% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "83.6% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "101.3% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Fontibón": {
+        "2022": "71.5% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "75.4% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "80.3% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Kennedy": {
+        "2022": "72.7% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "76.1% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "69.5% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "La Candelaria": {
+        "2022": "69.9% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "46.8% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "0.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Los Mártires": {
+        "2022": "78.2% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "58.7% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "77.2% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Puente Aranda": {
+        "2022": "87.1% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "89.1% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "77.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "72.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "74.4% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "78.6% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "San Cristóbal": {
+        "2022": "76.3% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "96.2% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "105.7% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Santa Fe": {
+        "2022": "65.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "59.2% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "97.4% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Suba": {
+        "2022": "74.3% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "86.8% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "82.4% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Sumapaz": {
+        "2022": "107.3% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "65.5% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "79.4% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Teusaquillo": {
+        "2022": "43.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "97.9% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "47.6% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Tunjuelito": {
+        "2022": "89.8% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "77.1% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "131.6% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Usaquén": {
+        "2022": "87.0% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "87.5% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "94.7% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Usme": {
+        "2022": "77.9% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "77.3% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "116.1% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      },
+      "Bogotá": {
+        "2022": "74.2% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2023": "85.6% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral",
+        "2024": "88.8% de la población pediátrica completó su esquema de vacunación con pentavalente y triple viral"
+      }
+    },
+    "peor_desempeno": "0% de cobertura de vacunación para pentavalente y triple viral, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "100% de cobertura de vacunación para pentavalente y triple viral, representa el mejor desempeño para el indicador."
+  },
+  "SIN_ID__Casos de conducta suicida por cada 1.000 menores de 18 años": {
+    "nombre_completo": "Casos de conducta suicida por cada 1.000 menores de 18 años",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "10 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "10 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "9 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Barrios Unidos": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "10 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Bosa": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Chapinero": {
+        "2022": "6 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "5 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "6 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Ciudad Bolívar": {
+        "2022": "7 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "9 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Engativá": {
+        "2022": "7 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "7 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Fontibón": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "7 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "7 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Kennedy": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "La Candelaria": {
+        "2022": "19 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "17 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "13 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Los Mártires": {
+        "2022": "12 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "12 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "10 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Puente Aranda": {
+        "2022": "10 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "9 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "9 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "San Cristóbal": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "7 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Santa Fe": {
+        "2022": "11 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Suba": {
+        "2022": "7 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "6 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "7 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Sumapaz": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "13 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "12 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Teusaquillo": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "9 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Tunjuelito": {
+        "2022": "9 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "10 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "9 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Usaquén": {
+        "2022": "6 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "6 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "6 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Usme": {
+        "2022": "7 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "10 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      },
+      "Bogotá": {
+        "2022": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2023": "8 casos de conducta suicida por cada 1.000 menores de 18 años",
+        "2024": "8 casos de conducta suicida por cada 1.000 menores de 18 años"
+      }
+    },
+    "peor_desempeno": null,
+    "mejor_desempeno": null
+  },
+  "Cancer": {
+    "nombre_completo": "Casos confirmados de cáncer por cada 10.000 menores de 18 años",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "5 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "3 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "3 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Barrios Unidos": {
+        "2022": "4 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Bosa": {
+        "2022": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Chapinero": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Ciudad Bolívar": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Engativá": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Fontibón": {
+        "2022": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Kennedy": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "La Candelaria": {
+        "2022": "11 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "4 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "0 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Los Mártires": {
+        "2022": "6 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "3 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Puente Aranda": {
+        "2022": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "San Cristóbal": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Santa Fe": {
+        "2022": "5 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Suba": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Sumapaz": {
+        "2022": "0 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "0 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "0 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Teusaquillo": {
+        "2022": "4 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Tunjuelito": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "3 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Usaquén": {
+        "2022": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Usme": {
+        "2022": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      },
+      "Bogotá": {
+        "2022": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2023": "1 de cada 10.000 menores de 18 años fueron diagnosticados con cancer",
+        "2024": "2 de cada 10.000 menores de 18 años fueron diagnosticados con cancer"
+      }
+    },
+    "peor_desempeno": "Mayor número de casos confirmados de cáncer por cada 10.000 menores de 18 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos confirmados de cáncer por cada 10.000 menores de 18 años, representa el mejor desempeño para el indicador."
+  },
+  "TasaMortalidad": {
+    "nombre_completo": "Tasa de mortalidad por cada 10.000 menores de 20 años",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "12 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "9 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Barrios Unidos": {
+        "2022": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "8 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Bosa": {
+        "2022": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "6 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Chapinero": {
+        "2022": "4 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Ciudad Bolívar": {
+        "2022": "8 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "6 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Engativá": {
+        "2022": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Fontibón": {
+        "2022": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Kennedy": {
+        "2022": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "La Candelaria": {
+        "2022": "11 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "9 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Los Mártires": {
+        "2022": "14 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "15 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "11 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Puente Aranda": {
+        "2022": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "4 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "San Cristóbal": {
+        "2022": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Santa Fe": {
+        "2022": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "11 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "7 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Suba": {
+        "2022": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "4 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Sumapaz": {
+        "2022": "12 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "0 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "0 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Teusaquillo": {
+        "2022": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "9 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Tunjuelito": {
+        "2022": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "7 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Usaquén": {
+        "2022": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "5 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Usme": {
+        "2022": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "7 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      },
+      "Bogotá": {
+        "2022": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2023": "6 de cada 10.000 menores de 20 años fallecieron",
+        "2024": "5 de cada 10.000 menores de 20 años fallecieron"
+      }
+    },
+    "peor_desempeno": "Mayor tasa de mortalidad por cada 10.000 menores de 20 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Tasa de mortalidad de 0 por cada 10.000 menores de 20 años, representa el mejor desempeño para el indicador."
+  },
+  "Camas": {
+    "nombre_completo": "Camas pediátricas habilitadas registradas en REPS por cada 1.000 menores de 18 años",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "2 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "2 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "2 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Barrios Unidos": {
+        "2022": "3 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "3 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "3 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Bosa": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Chapinero": {
+        "2022": "12 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "13 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "12 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Ciudad Bolívar": {
+        "2022": "1 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "1 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "1 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Engativá": {
+        "2022": "1 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "1 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "1 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Fontibón": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Kennedy": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "La Candelaria": {
+        "2022": "39 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "33 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Los Mártires": {
+        "2022": "26 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "25 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "25 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Puente Aranda": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "San Cristóbal": {
+        "2022": "2 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "2 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "1 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Santa Fe": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "2 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Suba": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "1 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "1 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Sumapaz": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Teusaquillo": {
+        "2022": "2 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Tunjuelito": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Usaquén": {
+        "2022": "2 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "3 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "3 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Usme": {
+        "2022": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "0 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "0 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      },
+      "Bogotá": {
+        "2022": "1 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2023": "1 camas pediátricas registradas por cada 1.000 menores de 18 años",
+        "2024": "1 camas pediátricas registradas por cada 1.000 menores de 18 años"
+      }
+    },
+    "peor_desempeno": "0 camas pediátricas habilitadas por cada 1.000 menores de 18 años, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "4.2 o más camas pediátricas habilitadas por cada 1.000 menores de 18 años, correspondiente al valor de referencia de la OCDE, representa un mejor desempeño para el indicador."
+  },
+  "ControlesPrenatales": {
+    "nombre_completo": "Porcentaje de nacidos vivos con 8 o más controles prenatales del total de casos registrados",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "34.2% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "39.8% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "39.9% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Barrios Unidos": {
+        "2022": "47.7% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "49.5% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "48.9% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Bosa": {
+        "2022": "32.2% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "36.4% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "37.9% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Chapinero": {
+        "2022": "67.7% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "64.5% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "67.1% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Ciudad Bolívar": {
+        "2022": "29.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "34.8% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "35.8% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Engativá": {
+        "2022": "44.1% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "44.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "48.6% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Fontibón": {
+        "2022": "50.5% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "51.5% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "56.2% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Kennedy": {
+        "2022": "36.2% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "39.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "41.6% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "La Candelaria": {
+        "2022": "29.6% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "36.4% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "38.2% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Los Mártires": {
+        "2022": "28.2% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "30.7% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "35.7% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Puente Aranda": {
+        "2022": "42.1% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "46.6% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "49.3% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "29.2% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "32.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "34.8% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "San Cristóbal": {
+        "2022": "28.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "31.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "35.5% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Santa Fe": {
+        "2022": "29.9% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "32.7% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "33.3% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Suba": {
+        "2022": "46.5% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "46.4% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "50.0% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Sumapaz": {
+        "2022": "8.7% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "33.3% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "13.3% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Teusaquillo": {
+        "2022": "58.2% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "63.8% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "61.8% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Tunjuelito": {
+        "2022": "31.7% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "35.3% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "38.2% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Usaquén": {
+        "2022": "59.4% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "59.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "59.6% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Usme": {
+        "2022": "29.4% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "32.1% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "35.7% de los nacidos vivos tuvo 8 o más controles prenatales"
+      },
+      "Bogotá": {
+        "2022": "39.0% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2023": "41.5% de los nacidos vivos tuvo 8 o más controles prenatales",
+        "2024": "44.2% de los nacidos vivos tuvo 8 o más controles prenatales"
+      }
+    },
+    "peor_desempeno": "Ningún nacido vivo registrado tuvo 8 o más controles prenatales, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "Todos los nacidos vivos registrados corresponden a madres con 8 o más controles prenatales, representa el mejor desempeño para el indicador."
+  },
+  "MorbilidadMaterna": {
+    "nombre_completo": "Casos de morbilidad materna extrema por cada 1.000 nacidos vivos",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "92 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "90 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "103 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Barrios Unidos": {
+        "2022": "72 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "80 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "78 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Bosa": {
+        "2022": "71 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "78 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "81 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Chapinero": {
+        "2022": "104 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "87 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "91 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Ciudad Bolívar": {
+        "2022": "75 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "76 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "84 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Engativá": {
+        "2022": "68 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "70 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "85 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Fontibón": {
+        "2022": "63 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "68 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "79 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Kennedy": {
+        "2022": "74 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "80 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "84 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "La Candelaria": {
+        "2022": "179 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "182 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "224 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Los Mártires": {
+        "2022": "88 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "116 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "130 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Puente Aranda": {
+        "2022": "72 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "81 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "91 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "76 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "79 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "90 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "San Cristóbal": {
+        "2022": "87 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "90 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "92 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Santa Fe": {
+        "2022": "100 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "101 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "139 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Suba": {
+        "2022": "79 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "82 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "94 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Sumapaz": {
+        "2022": "87 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "22 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "400 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Teusaquillo": {
+        "2022": "79 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "73 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "111 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Tunjuelito": {
+        "2022": "67 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "71 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "75 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Usaquén": {
+        "2022": "69 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "78 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "79 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Usme": {
+        "2022": "73 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "71 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "77 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      },
+      "Bogotá": {
+        "2022": "75 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2023": "80 casos de morbilidad materna extrema por cada 1.000 nacidos vivos.",
+        "2024": "88 casos de morbilidad materna extrema por cada 1.000 nacidos vivos."
+      }
+    },
+    "peor_desempeno": "Un número mayor de casos de morbilidad materna extrema por cada 1.000 nacidos vivos, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos de morbilidad materna extrema por cada 1.000 nacidos vivos, representa el mejor desempeño para el indicador."
+  },
+  "CheUpc": {
+    "nombre_completo": "Razón del UPC con respecto al gasto corriente en salud per cápita (CHE per cápita)",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Barrios Unidos": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Bosa": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Chapinero": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Ciudad Bolívar": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Engativá": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Fontibón": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Kennedy": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "La Candelaria": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Los Mártires": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Puente Aranda": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "San Cristóbal": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Santa Fe": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Suba": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Sumapaz": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Teusaquillo": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Tunjuelito": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Usaquén": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Usme": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      },
+      "Bogotá": {
+        "2022": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.44 pesos colombianos",
+        "2023": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.49 pesos colombianos",
+        "2024": "Por un peso colombiano de gasto corriente en salud, el UPC cubrió 0.51 pesos colombianos"
+      }
+    },
+    "peor_desempeno": "Una razón de 0 entre el UPC y el gasto corriente en salud per cápita (CHE per cápita), representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "Una razón de 1 o más entre el UPC y el gasto corriente en salud per cápita (CHE per cápita), representa un mejor desempeño para el indicador."
+  },
+  "Lactancia": {
+    "nombre_completo": "Porcentaje de menores de seis meses captados en consultas de atención integral con lactancia materna exclusiva al día anterior de la consulta",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "82.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "87.7% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "68.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Barrios Unidos": {
+        "2022": "75.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "82.8% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "58.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Bosa": {
+        "2022": "82.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "87.7% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "76.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Chapinero": {
+        "2022": "77.7% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "81.2% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "64.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Ciudad Bolívar": {
+        "2022": "62.3% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "64.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "57.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Engativá": {
+        "2022": "79.7% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "88.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "61.2% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Fontibón": {
+        "2022": "86.9% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "91.9% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "70.9% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Kennedy": {
+        "2022": "84.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "92.7% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "74.5% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "La Candelaria": {
+        "2022": "81.9% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "87.3% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "63.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Los Mártires": {
+        "2022": "87.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "90.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "56.5% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Puente Aranda": {
+        "2022": "88.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "90.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "67.4% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "79.7% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "85.3% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "62.4% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "San Cristóbal": {
+        "2022": "83.2% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "88.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "64.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Santa Fe": {
+        "2022": "82.4% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "86.7% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "57.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Suba": {
+        "2022": "74.9% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "76.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "57.2% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Sumapaz": {
+        "2022": "74.3% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "75.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "44.4% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Teusaquillo": {
+        "2022": "77.9% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "86.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "61.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Tunjuelito": {
+        "2022": "65.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "70.3% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "55.5% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Usaquén": {
+        "2022": "63.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "72.2% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "45.1% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Usme": {
+        "2022": "67.9% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "68.0% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "55.3% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      },
+      "Bogotá": {
+        "2022": "77.3% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2023": "82.6% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta",
+        "2024": "60.4% de los menores de seis meses captados tuvo lactancia materna exclusiva al día anterior de la consulta"
+      }
+    },
+    "peor_desempeno": "0 % de los menores de seis meses registraron lactancia materna exclusiva al día anterior de la consulta, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "100 % de los menores de seis meses registraron lactancia materna exclusiva al día anterior de la consulta, representa el mejor desempeño para el indicador."
+  },
+  "Pobreza": {
+    "nombre_completo": "Porcentaje de la población en condiciones de pobreza monetaria y pobreza monetaria extrema",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "30.8% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "30.8% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "30.8% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Barrios Unidos": {
+        "2022": "28.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "28.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "28.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Bosa": {
+        "2022": "72.4% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "72.4% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "72.4% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Chapinero": {
+        "2022": "19.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "19.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "19.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Ciudad Bolívar": {
+        "2022": "79.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "79.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "79.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Engativá": {
+        "2022": "33.9% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "33.9% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "33.9% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Fontibón": {
+        "2022": "25.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "25.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "25.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Kennedy": {
+        "2022": "50.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "50.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "50.1% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "La Candelaria": {
+        "2022": "50.4% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "50.4% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "50.4% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Los Mártires": {
+        "2022": "54.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "54.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "54.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Puente Aranda": {
+        "2022": "36.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "36.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "36.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "68.6% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "68.6% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "68.6% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "San Cristóbal": {
+        "2022": "64.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "64.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "64.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Santa Fe": {
+        "2022": "69.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "69.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "69.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Suba": {
+        "2022": "34.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "34.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "34.0% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Sumapaz": {
+        "2022": "62.3% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "62.3% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "62.3% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Teusaquillo": {
+        "2022": "13.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "13.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "13.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Tunjuelito": {
+        "2022": "57.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "57.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "57.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Usaquén": {
+        "2022": "21.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "21.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "21.5% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Usme": {
+        "2022": "75.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "75.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "75.7% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      },
+      "Bogotá": {
+        "2022": "45.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2023": "45.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema",
+        "2024": "45.2% de las personas en condiciones de pobreza monetaria o pobreza monetaria extrema"
+      }
+    },
+    "peor_desempeno": "100 % de la población vive en condiciones de pobreza monetaria y pobreza monetaria extrema,  representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de la población vive en condiciones de pobreza monetaria y pobreza monetaria extrema, representa un mejor desempeño para el indicador."
+  },
+  "Basura": {
+    "nombre_completo": "Porcentaje de personas que afirmaron presentar problemas de  disposición inadecuada de basuras cerca a su vivienda",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "22.8 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "22.8 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "22.8 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Barrios Unidos": {
+        "2022": "18.3 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "18.3 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "18.3 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Bosa": {
+        "2022": "28.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "28.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "28.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Chapinero": {
+        "2022": "11.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "11.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "11.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Ciudad Bolívar": {
+        "2022": "25.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "25.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "25.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Engativá": {
+        "2022": "16.6 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "16.6 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "16.6 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Fontibón": {
+        "2022": "7.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "7.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "7.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Kennedy": {
+        "2022": "24.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "24.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "24.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "La Candelaria": {
+        "2022": "20.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "20.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "20.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Los Mártires": {
+        "2022": "30.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "30.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "30.1 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Puente Aranda": {
+        "2022": "15.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "15.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "15.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "25.4 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "25.4 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "25.4 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "San Cristóbal": {
+        "2022": "23.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "23.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "23.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Santa Fe": {
+        "2022": "25.2 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "25.2 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "25.2 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Suba": {
+        "2022": "21.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "21.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "21.9 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Sumapaz": {
+        "2022": "0.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "0.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "0.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Teusaquillo": {
+        "2022": "6.6 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "6.6 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "6.6 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Tunjuelito": {
+        "2022": "35.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "35.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "35.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Usaquén": {
+        "2022": "5.7 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "5.7 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "5.7 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Usme": {
+        "2022": "42.3 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "42.3 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "42.3 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      },
+      "Bogotá": {
+        "2022": "21.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2023": "21.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda",
+        "2024": "21.0 % personas afirmaron presentar problemas de disposición inadecuada de basuras cerca a su vivienda"
+      }
+    },
+    "peor_desempeno": "100 % de las personas encuestadas afirmaron presentar problemas de disposición inadecuada de basuras cerca de su vivienda, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de las personas encuestadas afirmaron presentar problemas de disposición inadecuada de basuras cerca de su vivienda, representa el mejor desempeño para el indicador."
+  },
+  "SPA": {
+    "nombre_completo": "Casos de consumo abusivo de sustancias psicoactivas por cada 10.000 adolescentes entre 12 y 17 años",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "3 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "11 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "25 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Barrios Unidos": {
+        "2022": "20 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "12 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "28 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Bosa": {
+        "2022": "15 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "16 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "30 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Chapinero": {
+        "2022": "12 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "6 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "26 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Ciudad Bolívar": {
+        "2022": "15 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "11 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "31 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Engativá": {
+        "2022": "11 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "15 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "16 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Fontibón": {
+        "2022": "12 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "6 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "13 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Kennedy": {
+        "2022": "9 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "12 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "21 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "La Candelaria": {
+        "2022": "83 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "22 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "81 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Los Mártires": {
+        "2022": "28 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "13 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "18 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Puente Aranda": {
+        "2022": "6 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "4 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "18 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "25 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "8 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "23 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "San Cristóbal": {
+        "2022": "24 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "20 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "22 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Santa Fe": {
+        "2022": "42 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "23 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "21 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Suba": {
+        "2022": "13 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "8 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "13 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Sumapaz": {
+        "2022": "30 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "32 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "0 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Teusaquillo": {
+        "2022": "61 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "10 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "39 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Tunjuelito": {
+        "2022": "23 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "25 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "23 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Usaquén": {
+        "2022": "13 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "6 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "12 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Usme": {
+        "2022": "17 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "14 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "33 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      },
+      "Bogotá": {
+        "2022": "16 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2023": "12 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas.",
+        "2024": "22 de cada 10.000 adolescentes entre 12 y 17 años presentaron consumo abusivo de sustancias psicoactivas."
+      }
+    },
+    "peor_desempeno": "Un mayor número de casos de consumo abusivo de sustancias psicoactivas por cada 10.000 adolescentes entre 12 y 17 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos de consumo abusivo de sustancias psicoactivas por cada 10.000 adolescentes entre 12 y 17 años, representa un mejor desempeño para el indicador."
+  },
+  "Accidentes": {
+    "nombre_completo": "Accidentes domésticos por cada 1.000 menores de 11 años",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "5 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "9 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "8 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Barrios Unidos": {
+        "2022": "4 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "5 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Bosa": {
+        "2022": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Chapinero": {
+        "2022": "2 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "4 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "12 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Ciudad Bolívar": {
+        "2022": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "9 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Engativá": {
+        "2022": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "4 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Fontibón": {
+        "2022": "2 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Kennedy": {
+        "2022": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "4 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "La Candelaria": {
+        "2022": "9 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "13 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "8 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Los Mártires": {
+        "2022": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "8 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Puente Aranda": {
+        "2022": "4 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "5 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "8 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "8 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "9 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "San Cristóbal": {
+        "2022": "5 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "10 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Santa Fe": {
+        "2022": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "10 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "13 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Suba": {
+        "2022": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "5 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Sumapaz": {
+        "2022": "14 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "29 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "19 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Teusaquillo": {
+        "2022": "3 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "8 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Tunjuelito": {
+        "2022": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "9 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Usaquén": {
+        "2022": "2 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "4 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Usme": {
+        "2022": "5 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "6 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "9 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      },
+      "Bogotá": {
+        "2022": "4 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2023": "5 de cada 1.000 menores de 11 años sufrieron accidentes domésticos",
+        "2024": "7 de cada 1.000 menores de 11 años sufrieron accidentes domésticos"
+      }
+    },
+    "peor_desempeno": "Un mayor número de accidentes domésticos por cada 1.000 menores de 11 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 accidentes domésticos por cada 1.000 menores de 11 años, representa el mejor desempeño para el indicador."
+  },
+  "Violencia": {
+    "nombre_completo": "Casos de violencia contra niños, niñas y adolescentes por cada 1.000 menores de 18 años",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Barrios Unidos": {
+        "2022": "13 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "20 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Bosa": {
+        "2022": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "19 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "22 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Chapinero": {
+        "2022": "10 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "11 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "12 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Ciudad Bolívar": {
+        "2022": "21 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "25 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "27 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Engativá": {
+        "2022": "12 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "14 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Fontibón": {
+        "2022": "11 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "13 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "14 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Kennedy": {
+        "2022": "14 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "17 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "La Candelaria": {
+        "2022": "33 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "29 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "26 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Los Mártires": {
+        "2022": "22 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "23 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "24 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Puente Aranda": {
+        "2022": "12 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "20 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "14 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "17 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "San Cristóbal": {
+        "2022": "15 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "15 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Santa Fe": {
+        "2022": "20 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "17 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "18 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Suba": {
+        "2022": "10 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "13 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "15 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Sumapaz": {
+        "2022": "67 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "58 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "47 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Teusaquillo": {
+        "2022": "12 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "11 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "13 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Tunjuelito": {
+        "2022": "17 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "19 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "20 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Usaquén": {
+        "2022": "8 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "10 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "12 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Usme": {
+        "2022": "18 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "24 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "27 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      },
+      "Bogotá": {
+        "2022": "14 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2023": "16 de cada 1.000 menores de 18 años fueron víctimas de violencia",
+        "2024": "19 de cada 1.000 menores de 18 años fueron víctimas de violencia"
+      }
+    },
+    "peor_desempeno": "Un mayor número de casos de violencia contra niños, niñas y adolescentes por cada 1.000 menores de 18 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos de violencia contra niños, niñas y adolescentes por cada 1.000 menores de 18 años, representa el mejor desempeño para el indicador."
+  },
+  "Malnutricion": {
+    "nombre_completo": "Porcentaje de menores de 18 años captados en consultas de atención integral con malnutrición",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "36.0% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Barrios Unidos": {
+        "2022": "35.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.7% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Bosa": {
+        "2022": "35.4% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.9% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "34.7% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Chapinero": {
+        "2022": "37.0% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.9% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.4% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Ciudad Bolívar": {
+        "2022": "35.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "34.7% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Engativá": {
+        "2022": "37.0% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.8% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.9% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Fontibón": {
+        "2022": "36.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.6% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Kennedy": {
+        "2022": "36.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.8% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "La Candelaria": {
+        "2022": "36.7% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.6% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Los Mártires": {
+        "2022": "36.4% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "36.0% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.9% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Puente Aranda": {
+        "2022": "36.7% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "36.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.8% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "36.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.9% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "36.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "San Cristóbal": {
+        "2022": "36.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.8% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.8% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Santa Fe": {
+        "2022": "35.4% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.7% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Suba": {
+        "2022": "36.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.4% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Sumapaz": {
+        "2022": "36.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "38.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "36.6% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Teusaquillo": {
+        "2022": "35.6% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.5% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Tunjuelito": {
+        "2022": "36.4% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.9% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "36.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Usaquén": {
+        "2022": "35.4% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "34.7% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Usme": {
+        "2022": "35.6% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "34.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.2% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      },
+      "Bogotá": {
+        "2022": "36.0% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2023": "35.1% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición",
+        "2024": "35.3% de la población menor a 18 años captada en consultas de atención integral presentaron malnutrición"
+      }
+    },
+    "peor_desempeno": "100 % de los menores de 18 años captados en consultas de atención integral fueron diagnosticados con malnutrición, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de los menores de 18 años captados en consultas de atención integral fueron diagnosticados con malnutrición, representa el mejor desempeño para el indicador."
+  },
+  "BajoPeso": {
+    "nombre_completo": "Porcentaje de nacidos vivos con bajo peso al nacer",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "13.9% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "14.2% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "16.6% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Barrios Unidos": {
+        "2022": "14.2% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "16.4% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "15.9% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Bosa": {
+        "2022": "14.6% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "16.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "16.7% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Chapinero": {
+        "2022": "13.7% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "15.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "16.0% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Ciudad Bolívar": {
+        "2022": "17.4% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "17.9% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "18.0% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Engativá": {
+        "2022": "13.8% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "15.4% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "15.3% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Fontibón": {
+        "2022": "14.4% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "15.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "13.8% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Kennedy": {
+        "2022": "14.2% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "16.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "16.4% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "La Candelaria": {
+        "2022": "16.8% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "15.2% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "12.5% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Los Mártires": {
+        "2022": "13.9% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "18.2% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "18.2% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Puente Aranda": {
+        "2022": "14.8% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "15.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "14.6% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "16.9% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "15.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "17.8% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "San Cristóbal": {
+        "2022": "18.4% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "18.5% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "17.7% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Santa Fe": {
+        "2022": "16.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "17.0% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "15.5% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Suba": {
+        "2022": "14.8% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "15.6% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "16.7% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Sumapaz": {
+        "2022": "8.7% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "26.7% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "33.3% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Teusaquillo": {
+        "2022": "14.2% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "13.9% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "15.4% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Tunjuelito": {
+        "2022": "15.1% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "16.6% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "15.9% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Usaquén": {
+        "2022": "14.6% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "14.4% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "15.6% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Usme": {
+        "2022": "16.6% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "18.1% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "18.0% de los nacidos vivos presentaron bajo peso al nacer"
+      },
+      "Bogotá": {
+        "2022": "15.2% de los nacidos vivos presentaron bajo peso al nacer",
+        "2023": "16.1% de los nacidos vivos presentaron bajo peso al nacer",
+        "2024": "16.5% de los nacidos vivos presentaron bajo peso al nacer"
+      }
+    },
+    "peor_desempeno": "100 % de nacidos vivos con bajo peso al nacer, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de nacidos vivos con bajo peso al nacer, representa un mejor desempeño para el indicador."
+  },
+  "Tabaco": {
+    "nombre_completo": "Promedio de tipos de exposición al tabaco en menores de 14 años encuestados",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.20 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.18 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.26 tipos de exposición al tabaco"
+      },
+      "Barrios Unidos": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.19 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.14 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.10 tipos de exposición al tabaco"
+      },
+      "Bosa": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.23 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.22 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.23 tipos de exposición al tabaco"
+      },
+      "Chapinero": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.29 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.25 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.19 tipos de exposición al tabaco"
+      },
+      "Ciudad Bolívar": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.28 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.27 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.27 tipos de exposición al tabaco"
+      },
+      "Engativá": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.18 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.15 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.16 tipos de exposición al tabaco"
+      },
+      "Fontibón": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.18 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.17 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.12 tipos de exposición al tabaco"
+      },
+      "Kennedy": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.21 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.23 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.22 tipos de exposición al tabaco"
+      },
+      "La Candelaria": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.27 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.34 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.34 tipos de exposición al tabaco"
+      },
+      "Los Mártires": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.25 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.25 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.22 tipos de exposición al tabaco"
+      },
+      "Puente Aranda": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.24 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.19 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.18 tipos de exposición al tabaco"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.28 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.30 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.31 tipos de exposición al tabaco"
+      },
+      "San Cristóbal": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.42 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.25 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.30 tipos de exposición al tabaco"
+      },
+      "Santa Fe": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.36 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.29 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.35 tipos de exposición al tabaco"
+      },
+      "Suba": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.21 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.23 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.21 tipos de exposición al tabaco"
+      },
+      "Sumapaz": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.14 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.14 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.04 tipos de exposición al tabaco"
+      },
+      "Teusaquillo": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.21 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.16 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.13 tipos de exposición al tabaco"
+      },
+      "Tunjuelito": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.19 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.23 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.25 tipos de exposición al tabaco"
+      },
+      "Usaquén": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.15 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.14 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.22 tipos de exposición al tabaco"
+      },
+      "Usme": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.25 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.29 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.30 tipos de exposición al tabaco"
+      },
+      "Bogotá": {
+        "2022": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.24 tipos de exposición al tabaco",
+        "2023": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.23 tipos de exposición al tabaco",
+        "2024": "En promedio, los menores de 14 años encuestados estuvieron expuestos a 0.24 tipos de exposición al tabaco"
+      }
+    },
+    "peor_desempeno": "Un mayor promedio de tipos de exposición al tabaco en menores de 14 años encuestados, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "En promedio, 0 tipos de exposición al tabaco entre los menores de 14 años encuestados, representa un mejor desempeño para el indicador."
+  },
+  "Colegios": {
+    "nombre_completo": "Porcentaje de colegios distritales clasificados en las categorías (A+, A y B) en las pruebas de Estado",
+    "interpretaciones": {
+      "Antonio Nariño": {
+        "2022": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Barrios Unidos": {
+        "2022": "88.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "88.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Bosa": {
+        "2022": "75.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "75.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "87.1% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Chapinero": {
+        "2022": "33.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "33.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "33.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Ciudad Bolívar": {
+        "2022": "35.1% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "43.2% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "48.6% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Engativá": {
+        "2022": "96.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Fontibón": {
+        "2022": "90.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "90.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "90.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Kennedy": {
+        "2022": "92.7% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "90.2% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "97.6% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "La Candelaria": {
+        "2022": "0.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "0.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "0.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Los Mártires": {
+        "2022": "62.5% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "62.5% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "75.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Puente Aranda": {
+        "2022": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Rafael Uribe Uribe": {
+        "2022": "76.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "76.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "88.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "San Cristóbal": {
+        "2022": "48.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "41.4% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "53.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Santa Fe": {
+        "2022": "37.5% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "37.5% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "37.5% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Suba": {
+        "2022": "82.1% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "82.1% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "89.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Sumapaz": {
+        "2022": "0.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "0.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "0.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Teusaquillo": {
+        "2022": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "100.0% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Tunjuelito": {
+        "2022": "83.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "83.3% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "91.7% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Usaquén": {
+        "2022": "72.7% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "72.7% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "81.8% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Usme": {
+        "2022": "55.9% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "61.8% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "79.4% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      },
+      "Bogotá": {
+        "2022": "71.6% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2023": "72.6% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado",
+        "2024": "80.5% de los colegios distritales fueron clasificados en las categorías A+, A o B en las pruebas de Estado"
+      }
+    },
+    "peor_desempeno": "0 % de colegios distritales fueron clasificados en las categorías A+, A y B en las pruebas de Estado, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "100 % de colegios distritales fueron clasificados en las categorías A+, A y B en las pruebas de Estado, representa el mejor desempeño para el indicador."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "Personas que participan en espacios e instancias de Participación Social en Salud por cada 100.000 habitantes": {
+    "peor_desempeno": "Menor participación en espacios e instancias de Participación Social en Salud, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Mayor participación en espacios e instancias de Participación Social en Salud, representa un mejor desempeño para el indicador."
+  },
+  "Tasa de Resolución de tutelas en Salud en Bogotá": {
+    "peor_desempeno": "Una tasa de resolución judicial inferior a 1, significa que se resuelven menos casos de los que ingresan. Representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Una tasa de resolución judicial mayor o igual a 1, significa que el sistema judicial resuelve la misma o una mayor cantidad de casos de los que recibe. Representa un mejor desempeño para el indicador."
+  },
+  "Tasa de Congestión Judicial de tutelas en Salud en Bogotá": {
+    "peor_desempeno": "Tasa de congestión superior a 1 indica que el sistema resuelve menos casos frente a su carga total, señalando la existencia de congestión judicial. Representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Tasa de congestión igual a 1 significa que el sistema judicial resuelve la totalidad de su carga anual; es decir, no hay congestión judicial. Representa un mejor desempeño para el indicador."
+  },
+  "Veedores ciudadanos en Salud por cada 100.000 habitantes": {
+    "peor_desempeno": "Menor número de veedores ciudadanos en salud por cada 100.000 habitantes, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Mayor número de veedores ciudadanos en salud por cada 100.000 habitantes, representa un mejor desempeño para el indicador."
+  },
+  "Tiempo estimado de resolución de tutelas en Salud en Bogotá": {
+    "peor_desempeno": "Un tiempo estimado de resolución mayor a  10 días, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Tiempo estimado de resolución de 10 días o menos, representa un mejor desempeño para el indicador."
+  },
+  "Tasa de mortalidad por cada 10.000 menores de 20 años": {
+    "peor_desempeno": "Mayor tasa de mortalidad por cada 10.000 menores de 20 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "Tasa de mortalidad de 0 por cada 10.000 menores de 20 años, representa el mejor desempeño para el indicador."
+  },
+  "Casos confirmados de cáncer por cada 10.000 menores de 18 años": {
+    "peor_desempeno": "Mayor número de casos confirmados de cáncer por cada 10.000 menores de 18 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos confirmados de cáncer por cada 10.000 menores de 18 años, representa el mejor desempeño para el indicador."
+  },
+  "Cobertura agregada de vacunación para pentavalente y triple viral": {
+    "peor_desempeno": "0% de cobertura de vacunación para pentavalente y triple viral, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "100% de cobertura de vacunación para pentavalente y triple viral, representa el mejor desempeño para el indicador."
+  },
+  "Camas pediátricas habilitadas registradas en REPS por cada 1.000 menores de 18 años": {
+    "peor_desempeno": "0 camas pediátricas habilitadas por cada 1.000 menores de 18 años, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "4.2 o más camas pediátricas habilitadas por cada 1.000 menores de 18 años, correspondiente al valor de referencia de la OCDE, representa un mejor desempeño para el indicador."
+  },
+  "Porcentaje de nacidos vivos con 8 o más controles prenatales del total de casos registrados": {
+    "peor_desempeno": "Ningún nacido vivo registrado tuvo 8 o más controles prenatales, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "Todos los nacidos vivos registrados corresponden a madres con 8 o más controles prenatales, representa el mejor desempeño para el indicador."
+  },
+  "Casos de morbilidad materna extrema por cada 1.000 nacidos vivos": {
+    "peor_desempeno": "Un número mayor de casos de morbilidad materna extrema por cada 1.000 nacidos vivos, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos de morbilidad materna extrema por cada 1.000 nacidos vivos, representa el mejor desempeño para el indicador."
+  },
+  "Razón del UPC con respecto al gasto corriente en salud per cápita (CHE per cápita)": {
+    "peor_desempeno": "Una razón de 0 entre el UPC y el gasto corriente en salud per cápita (CHE per cápita), representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "Una razón de 1 o más entre el UPC y el gasto corriente en salud per cápita (CHE per cápita), representa un mejor desempeño para el indicador."
+  },
+  "Porcentaje de menores de seis meses captados en consultas de atención integral con lactancia materna exclusiva al día anterior de la consulta": {
+    "peor_desempeno": "0 % de los menores de seis meses registraron lactancia materna exclusiva al día anterior de la consulta, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "100 % de los menores de seis meses registraron lactancia materna exclusiva al día anterior de la consulta, representa el mejor desempeño para el indicador."
+  },
+  "Porcentaje de colegios distritales clasificados en las categorías (A+, A y B) en las pruebas de Estado": {
+    "peor_desempeno": "0 % de colegios distritales fueron clasificados en las categorías A+, A y B en las pruebas de Estado, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "100 % de colegios distritales fueron clasificados en las categorías A+, A y B en las pruebas de Estado, representa el mejor desempeño para el indicador."
+  },
+  "Casos de consumo abusivo de sustancias psicoactivas por cada 10.000 adolescentes entre 12 y 17 años": {
+    "peor_desempeno": "Un mayor número de casos de consumo abusivo de sustancias psicoactivas por cada 10.000 adolescentes entre 12 y 17 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos de consumo abusivo de sustancias psicoactivas por cada 10.000 adolescentes entre 12 y 17 años, representa un mejor desempeño para el indicador."
+  },
+  "Casos de violencia contra niños, niñas y adolescentes por cada 1.000 menores de 18 años": {
+    "peor_desempeno": "Un mayor número de casos de violencia contra niños, niñas y adolescentes por cada 1.000 menores de 18 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 casos de violencia contra niños, niñas y adolescentes por cada 1.000 menores de 18 años, representa el mejor desempeño para el indicador."
+  },
+  "Porcentaje de nacidos vivos con bajo peso al nacer": {
+    "peor_desempeno": "100 % de nacidos vivos con bajo peso al nacer, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de nacidos vivos con bajo peso al nacer, representa un mejor desempeño para el indicador."
+  },
+  "Porcentaje de menores de 18 años captados en consultas de atención integral con malnutrición": {
+    "peor_desempeno": "100 % de los menores de 18 años captados en consultas de atención integral fueron diagnosticados con malnutrición, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de los menores de 18 años captados en consultas de atención integral fueron diagnosticados con malnutrición, representa el mejor desempeño para el indicador."
+  },
+  "Porcentaje de personas que afirmaron presentar problemas de  disposición inadecuada de basuras cerca a su vivienda": {
+    "peor_desempeno": "100 % de las personas encuestadas afirmaron presentar problemas de disposición inadecuada de basuras cerca de su vivienda, representa el menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de las personas encuestadas afirmaron presentar problemas de disposición inadecuada de basuras cerca de su vivienda, representa el mejor desempeño para el indicador."
+  },
+  "Accidentes domésticos por cada 1.000 menores de 11 años": {
+    "peor_desempeno": "Un mayor número de accidentes domésticos por cada 1.000 menores de 11 años, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 accidentes domésticos por cada 1.000 menores de 11 años, representa el mejor desempeño para el indicador."
+  },
+  "Promedio de tipos de exposición al tabaco en menores de 14 años encuestados": {
+    "peor_desempeno": "Un mayor promedio de tipos de exposición al tabaco en menores de 14 años encuestados, representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "En promedio, 0 tipos de exposición al tabaco entre los menores de 14 años encuestados, representa un mejor desempeño para el indicador."
+  },
+  "Porcentaje de la población en condiciones de pobreza monetaria y pobreza monetaria extrema": {
+    "peor_desempeno": "100 % de la población vive en condiciones de pobreza monetaria y pobreza monetaria extrema,  representa un menor desempeño para el indicador.",
+    "mejor_desempeno": "0 % de la población vive en condiciones de pobreza monetaria y pobreza monetaria extrema, representa un mejor desempeño para el indicador."
+  }
+}
