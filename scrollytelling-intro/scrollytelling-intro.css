@@ -1,0 +1,477 @@
+/* scrollytelling-intro.css
+   Acto 0 (portada) + Acto 1 (tres cifras) + Acto 2 (qué es un índice / qué
+   es el IDES) del scrollytelling de entrada. Esta es la página de entrada
+   del sitio, por eso SÍ se conecta con los componentes transversales del
+   resto del proyecto — importa css/explorador.css además de css/tokens.css
+   para heredar el navbar (#nav-real), la miga de pan (.breadcrumb) y el
+   contenedor .page tal cual los usa el resto de páginas.
+
+   Estructura compartida entre actos (.scrolly-grid/.scrolly-visual/
+   .scrolly-narrativa/.scrolly-step/.scrolly-step__texto): el panel sticky
+   + narrativa con scroll normal es el mismo patrón en todos los actos, así
+   que vive en una sola clase en vez de repetirse por acto — cada acto solo
+   aporta su propio contenido visual (.acto1-card, .acto2-diagram, ...)
+   dentro de .scrolly-visual. Esto también es lo que permite que un único
+   Scrollama (ver scrollytelling-intro.js) observe los pasos de todos los
+   actos a la vez, sin instanciar un scroller por acto. */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+}
+
+/* ---------- Acto 0 — Portada ---------- */
+
+.acto0 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.acto0__titular {
+  margin: 0;
+  max-width: 20ch;
+  font: var(--text-heading-1);
+  letter-spacing: var(--text-heading-1-tracking);
+  color: var(--color-text-primary);
+}
+
+.acto0__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid var(--color-callout-border);
+  background: var(--crema);
+  color: var(--color-text-primary);
+  font: var(--text-body-primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.acto0__cta:hover,
+.acto0__cta:focus-visible {
+  background: var(--color-primary-hover);
+  transform: translateY(2px);
+}
+
+/* ---------- Estructura compartida: grid sticky + narrativa ---------- */
+
+.acto1,
+.acto2 {
+  padding: 0 1.5rem 6rem;
+}
+
+.scrolly-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* Panel flotante: sticky dentro de la celda de grid, que es tan alta como
+   la columna narrativa (la más larga) — así se mantiene fijo mientras el
+   texto hace scroll normal a su lado. */
+.scrolly-visual {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrolly-narrativa {
+  display: flex;
+  flex-direction: column;
+}
+
+.scrolly-step {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.scrolly-step__texto {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font: 400 2rem/1.3 var(--font-primary);
+  color: var(--color-text-primary);
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+
+.scrolly-step.is-active .scrolly-step__texto {
+  opacity: 1;
+}
+
+/* ---------- Acto 1 — El problema con contar ---------- */
+
+.acto1-card {
+  display: grid;
+  width: 100%;
+  max-width: 420px;
+  min-height: 220px;
+  background: var(--crema);
+  box-shadow: 0 24px 48px color-mix(in srgb, var(--negro) 15%, transparent);
+}
+
+/* Dos capas superpuestas para el crossfade — controlado desde JS con
+   requestAnimationFrame (ver scrollytelling-intro.js), nunca con una sola
+   capa que cambia de texto de golpe. Se apilan con grid-area (en vez de
+   position:absolute) para que el contenedor crezca según la capa más alta
+   y ninguna cifra larga se salga de la tarjeta. */
+.acto1-card__layer {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.25rem;
+  border-left: 6px solid var(--acento, var(--color-text-decoration-generico));
+  opacity: 0;
+}
+
+.acto1-card__layer[data-layer="a"] {
+  opacity: 1;
+}
+
+.acto1-card__cifra {
+  margin: 0;
+  font: 600 1.65rem/1.35 var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+.acto1-card__fuente {
+  margin: 0;
+  font: var(--text-caption-source);
+  color: color-mix(in srgb, var(--color-text-primary) 60%, transparent);
+}
+
+/* Fuera de .scrolly-grid a propósito (ver index.html): centrado en toda la
+   página, no en la columna de narrativa — así .scrolly-grid (donde vive el
+   panel sticky) termina justo antes y la tarjeta deja de estar fija,
+   subiendo con el resto del scroll en vez de quedarse pegada. */
+.acto1__cierre {
+  max-width: 720px;
+  margin: 6rem auto 8rem;
+  text-align: center;
+  font: 600 2rem/1.4 var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+/* ---------- Acto 2 — Qué es un índice, qué es el IDES ----------
+   Reconstruido a partir de get_design_context real (fileKey
+   HntVnTEmXSgURDwEpAG1oc, frames scrolly-06/07/08/09) — no es un Venn de
+   3 círculos superpuestos, es un anillo (donut) dividido en 3 gajos
+   iguales de 120°: superior-izquierdo Salud (azul), superior-derecho
+   Justicia (naranja), inferior Determinantes Sociales (verde). El anillo
+   NO cambia de forma ni de tamaño entre los pasos 5, 6 y 7 — se construye
+   una sola vez. Lo que cambia paso a paso es: (a) el texto central de 3
+   líneas ("Bogotá/IDES/Pediatría" → "IDES/{{ides}}/100/Pediatría"), y (b)
+   la aparición, solo en el último paso, de un gráfico de barras APARTE
+   del anillo (no una transformación suya) con el valor real de cada
+   dimensión. Dentro de cada gajo hay un racimo de ~10 círculos pequeños
+   decorativos del mismo color (ver agregarRacimoCirculos en
+   scrollytelling-intro.js) — posiciones generadas por trigonometría
+   propia, no las coordenadas exactas de Figma (esas usan container query
+   units en unidades relativas a un layout React/Tailwind que no aplica
+   acá; se preservó sí el conteo aproximado, el color y la superposición
+   con mix-blend-mode:multiply). */
+
+.acto2-diagram {
+  display: grid;
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Estado A (paso 4) y estado B (pasos 5-7) ocupan la misma celda de grid
+   para poder cruzarse en opacidad — mismo truco que .acto1-card__layer.
+   Cada uno trae su propio fondo opaco (--crema, igual que la tarjeta del
+   Acto 1) en vez de compartir uno solo a nivel de .acto2-diagram: como el
+   estado B (anillo + barras) es bastante más alto que el A (3 palabras),
+   un fondo común quedaría del tamaño del más alto aunque solo se vea el
+   más corto. Sin este fondo, los brandmarks decorativos (.dot-mark,
+   opacos y con mix-blend-mode:multiply) se asoman entre los trazos finos
+   y pueden volver ilegible el texto según en qué posición del scroll
+   caiga cada marca. */
+.acto2-palabras,
+.acto2-compuesto {
+  grid-area: 1 / 1;
+  align-self: start;
+  opacity: 0;
+  background: var(--crema);
+  padding: 2rem 1.5rem;
+}
+
+/* ---- Estado A (paso 4): sin anillo todavía, solo texto ---- */
+/* Mismo tratamiento tipográfico real de scrolly-06: cada palabra grande,
+   subrayada en su color de dimensión — técnica de subrayado ya usada en
+   el resto del sitio (ver .header__title en explorador.css), solo que a
+   un tamaño menor para caber en el panel angosto del scrollytelling. */
+.acto2-palabras {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 1;
+}
+
+.acto2-palabra {
+  margin: 0;
+  font: 600 2rem/1.15 var(--font-primary);
+  letter-spacing: -0.06rem;
+  color: var(--color-text-primary);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.acto2-palabra--salud {
+  text-decoration-color: var(--color-text-decoration-salud);
+}
+.acto2-palabra--justicia {
+  text-decoration-color: var(--color-text-decoration-justicia);
+}
+.acto2-palabra--determinantes {
+  text-decoration-color: var(--color-text-decoration-determinantes);
+}
+
+/* ---- Estado B (pasos 5-7): anillo compuesto ---- */
+
+.acto2-compuesto__wrap {
+  position: relative;
+  width: 220px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.acto2-compuesto__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Dos capas de texto central (data-centro="bogota"/"puntaje") superpuestas
+   en la misma celda — se cruzan en opacidad (ver crearActo2Controller),
+   nunca un corte duro entre "Bogotá/IDES/Pediatría" y
+   "IDES/{{ides}}/100/Pediatría". */
+.acto2-compuesto__texto {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  text-align: center;
+  opacity: 0;
+}
+
+.acto2-compuesto__texto[data-centro="bogota"] {
+  opacity: 1;
+}
+
+.acto2-compuesto__linea {
+  font: 400 0.85rem/1.2 var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+/* "IDES" y el puntaje comparten el mismo tratamiento: grande, Sora
+   SemiBold, subrayado en el color genérico de decoración (--verde-200,
+   el mismo #abc5b5 confirmado en Figma) — el puntaje además separa el
+   número (subrayado, bold) del "/100" (sin subrayar, peso liviano), vía
+   los spans .acto2-compuesto__num/__resto que arma renderPuntajeCentro()
+   en JS. */
+.acto2-compuesto__ides,
+.acto2-compuesto__num {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-color: var(--color-text-decoration-generico);
+  text-decoration-thickness: 20%;
+  text-underline-offset: -10%;
+}
+
+.acto2-compuesto__ides {
+  font: 600 1.8rem/1.1 var(--font-primary);
+  letter-spacing: -0.08rem;
+  color: var(--color-text-primary);
+}
+
+.acto2-compuesto__num {
+  font-weight: 700;
+}
+
+.acto2-compuesto__resto {
+  font-weight: 300;
+}
+
+/* ---- Gráfico de barras: elemento APARTE del anillo, solo en el paso 7 ---- */
+
+.acto2-barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  max-width: 360px;
+  margin: 1.75rem auto 0;
+}
+
+.acto2-barras__item {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.acto2-barras__valor {
+  margin: 0;
+  font: 400 1.15rem/1 var(--font-primary);
+  color: var(--color-text-primary);
+  opacity: 0;
+}
+
+.acto2-barras__valor strong {
+  font-weight: 700;
+}
+
+.acto2-barras__pista {
+  width: 100%;
+  height: 96px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.acto2-barras__barra {
+  width: 100%;
+  height: 6%;
+  background: var(--dim-color);
+  border: 1px solid var(--color-callout-border);
+  transition: height 0.5s ease;
+}
+
+.acto2-barras__label {
+  margin: 0;
+  text-align: center;
+  font: 400 0.8rem/1.2 var(--font-primary);
+  color: var(--color-text-primary);
+}
+
+/* ---------- Brandmarks decorativos (js/stats-donuts.js) ---------- */
+/* Monocromáticos (uno por dimensión), regados por todo el largo de la
+   página — cada semicírculo gira sobre su propio eje central a una
+   velocidad y dirección aleatorias distintas (ver scrollytelling-intro.js),
+   atado a la posición de scroll. Se posicionan en el documento (no en el
+   viewport), así van apareciendo a lo largo de todo el scroll. z-index:0,
+   igual que .grid-fondo: .page (z-index:1) siempre queda por encima, así
+   nunca tapan el texto ni la tarjeta. Puramente decorativos: no
+   interceptan clicks (pointer-events:none) y se ocultan en mobile para no
+   competir con el contenido en pantallas angostas. */
+.dot-mark {
+  position: absolute;
+  z-index: 0;
+  opacity: 1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.dot-mark .stat-mark {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .dot-mark {
+    display: none;
+  }
+}
+
+/* ---------- Mobile: panel apilado arriba del texto, nunca a dos columnas ---------- */
+
+@media (max-width: 768px) {
+  /* Se abandona el grid de 2 columnas por un flujo normal en bloque: así
+     .scrolly-visual (sticky, top:0) queda acotado por la altura completa de
+     .scrolly-grid (visual + narrativa) en vez de por su propia fila —
+     sigue apilado arriba y visible mientras el texto hace scroll debajo,
+     nunca a dos columnas. */
+  .scrolly-grid {
+    display: block;
+  }
+
+  .scrolly-visual {
+    height: auto;
+    padding: 1.5rem 0;
+  }
+
+  .acto1-card {
+    max-width: 100%;
+    min-height: 180px;
+  }
+
+  .scrolly-step {
+    min-height: 60vh;
+  }
+
+  .scrolly-step__texto {
+    font-size: 1.5rem;
+  }
+
+  /* A diferencia de desktop (donde el diagrama es más angosto que la
+     columna de texto), en mobile debe cubrir TODO el ancho disponible —
+     igual que .acto1-card arriba — para que su fondo opaco tape por
+     completo el texto centrado que hace scroll detrás mientras el panel
+     está pegado arriba; si quedara más angosto, se asomarían letras
+     sueltas a los lados. */
+  .acto2-diagram {
+    max-width: 100%;
+  }
+
+  .acto2-palabra {
+    font-size: 1.5rem;
+  }
+
+  .acto2-compuesto__wrap {
+    width: 180px;
+  }
+
+  .acto2-barras {
+    max-width: 280px;
+  }
+
+  .acto2-barras__pista {
+    height: 76px;
+  }
+}
+
+/* ---------- Movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .acto0__cta,
+  .scrolly-step__texto,
+  .acto2-barras__barra {
+    transition: none;
+  }
+}

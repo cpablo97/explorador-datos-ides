@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDES Bogotá — Explore el índice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/tokens.css" />
+    <link rel="stylesheet" href="../css/explorador.css" />
+    <link rel="stylesheet" href="scrollytelling-intro.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li class="is-active"><a href="#">Inicio</a></li>
+          <li><a href="../index.html">Explorador de Datos</a></li>
+          <li><a href="../indicadores.html">Indicadores</a></li>
+          <li><a href="../metodologia.html">Metodología</a></li>
+          <li><a href="../preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div id="breadcrumb"></div>
+
+      <!-- Acto 0 — Portada -->
+      <section class="acto0" id="acto0">
+        <h1 class="acto0__titular" id="acto0-titular"></h1>
+        <a class="acto0__cta" id="acto0-cta" href="#acto1"></a>
+      </section>
+
+      <!-- Acto 1 — El problema con contar -->
+      <section class="acto1" id="acto1">
+        <div class="scrolly-grid">
+          <div class="scrolly-visual">
+            <div class="acto1-card" id="acto1-card">
+              <div class="acto1-card__layer" data-layer="a">
+                <p class="acto1-card__cifra"></p>
+                <p class="acto1-card__fuente"></p>
+              </div>
+              <div class="acto1-card__layer" data-layer="b">
+                <p class="acto1-card__cifra"></p>
+                <p class="acto1-card__fuente"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scrolly-narrativa">
+            <div class="scrolly-step" data-act="1" data-step="0">
+              <p class="scrolly-step__texto"></p>
+            </div>
+            <div class="scrolly-step" data-act="1" data-step="1">
+              <p class="scrolly-step__texto"></p>
+            </div>
+            <div class="scrolly-step" data-act="1" data-step="2">
+              <p class="scrolly-step__texto"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fuera del grid de 2 columnas a propósito: al ocupar todo el
+             ancho de la página, el bloque de .scrolly-grid (donde vive el
+             panel sticky) termina justo antes de este párrafo — así, al
+             hacer scroll hasta acá, la tarjeta se despega y sube con el
+             resto del contenido en vez de seguir fija. Esta misma frase
+             es el puente temático hacia el Acto 2 (introduce "un índice"). -->
+        <p class="acto1__cierre" id="acto1-cierre"></p>
+      </section>
+
+      <!-- Acto 2 — Qué es un índice, qué es el IDES -->
+      <section class="acto2" id="acto2">
+        <div class="scrolly-grid">
+          <div class="scrolly-visual">
+            <div class="acto2-diagram" id="acto2-diagram">
+              <!-- Estado A (paso 4): sin anillo todavía — solo las 3 palabras
+                   grandes, cada una subrayada en su color de dimensión
+                   (tratamiento tipográfico real, ver Figma scrolly-06). -->
+              <div class="acto2-palabras" id="acto2-palabras">
+                <p class="acto2-palabra acto2-palabra--salud">Salud</p>
+                <p class="acto2-palabra acto2-palabra--justicia">Justicia</p>
+                <p class="acto2-palabra acto2-palabra--determinantes">Determinantes Sociales</p>
+              </div>
+
+              <!-- Estado B (pasos 5-7): anillo compuesto de 3 gajos de 120°,
+                   fijo en toda su forma (mismo tamaño y colores en los 3
+                   pasos) — lo único que cambia es el texto central y, al
+                   final, la aparición del gráfico de barras aparte (ver
+                   montarAnilloCompuesto en scrollytelling-intro.js). -->
+              <div class="acto2-compuesto" id="acto2-compuesto">
+                <div class="acto2-compuesto__wrap">
+                  <svg class="acto2-compuesto__svg" id="acto2-compuesto-svg" viewBox="0 0 200 200" aria-hidden="true"></svg>
+
+                  <!-- Dos capas de texto central superpuestas (mismo truco de
+                       .acto1-card__layer): se cruzan en opacidad, nunca un
+                       corte duro entre "Bogotá/IDES/Pediatría" y
+                       "IDES/{{ides}}/100/Pediatría". -->
+                  <div class="acto2-compuesto__texto" data-centro="bogota">
+                    <span class="acto2-compuesto__linea">Bogotá</span>
+                    <span class="acto2-compuesto__ides">IDES</span>
+                    <span class="acto2-compuesto__linea">Pediatría</span>
+                  </div>
+                  <div class="acto2-compuesto__texto" data-centro="puntaje">
+                    <span class="acto2-compuesto__linea">IDES</span>
+                    <span class="acto2-compuesto__ides" id="acto2-puntaje"></span>
+                    <span class="acto2-compuesto__linea">Pediatría</span>
+                  </div>
+                </div>
+
+                <!-- Elemento APARTE del anillo (no una transformación suya):
+                     solo aparece en el paso 7. -->
+                <div class="acto2-barras" id="acto2-barras">
+                  <div class="acto2-barras__item" data-dim="salud" style="--dim-color: var(--azul-300)">
+                    <span class="acto2-barras__valor"></span>
+                    <div class="acto2-barras__pista"><div class="acto2-barras__barra"></div></div>
+                    <p class="acto2-barras__label">Salud</p>
+                  </div>
+                  <div class="acto2-barras__item" data-dim="justicia" style="--dim-color: var(--naranja-300)">
+                    <span class="acto2-barras__valor"></span>
+                    <div class="acto2-barras__pista"><div class="acto2-barras__barra"></div></div>
+                    <p class="acto2-barras__label">Justicia</p>
+                  </div>
+                  <div class="acto2-barras__item" data-dim="determinantes" style="--dim-color: var(--verde-400)">
+                    <span class="acto2-barras__valor"></span>
+                    <div class="acto2-barras__pista"><div class="acto2-barras__barra"></div></div>
+                    <p class="acto2-barras__label">Determinantes Sociales</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scrolly-narrativa">
+            <div class="scrolly-step" data-act="2" data-step="0">
+              <p class="scrolly-step__texto"></p>
+            </div>
+            <div class="scrolly-step" data-act="2" data-step="1">
+              <p class="scrolly-step__texto"></p>
+            </div>
+            <div class="scrolly-step" data-act="2" data-step="2">
+              <p class="scrolly-step__texto"></p>
+            </div>
+            <div class="scrolly-step" data-act="2" data-step="3">
+              <p class="scrolly-step__texto"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="../js/breadcrumb.js"></script>
+    <script src="../js/stats-donuts.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <script src="scrollytelling-intro.js"></script>
+    <script>
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [{ label: "Inicio" }]);
+      ScrollytellingIntro.init();
+    </script>
+  </body>
+</html>
