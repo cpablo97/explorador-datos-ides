@@ -81,6 +81,17 @@ p {
   letter-spacing: 2px;
   text-decoration: none;
 }
+/* "Contacto" no tiene todavía una página real detrás — en vez de dejarlo
+   como un enlace muerto (href="#" que no hace nada al hacer click), se
+   deshabilita visualmente: opacidad reducida, sin cursor de link, fuera
+   del tabulado (ver tabindex="-1" + aria-disabled en el HTML). */
+#nav-real li.is-disabled {
+  opacity: 0.45;
+}
+#nav-real li.is-disabled a {
+  cursor: default;
+  pointer-events: none;
+}
 
 /* ---------- Miga de pan ---------- */
 /* Ligada a la estructura de navegación (ver js/breadcrumb.js) — vive bajo
@@ -181,6 +192,13 @@ p {
 .btn-outline:focus-visible {
   outline: 2px solid var(--color-text-primary);
   outline-offset: 3px;
+}
+/* Mismo tratamiento que #nav-real li.is-disabled: para botones que todavía
+   no tienen una acción real detrás (ver ficha.html, "Descarga en PDF"). */
+.btn-outline.is-disabled {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
 }
 
 /* Variante rellena — mismo componente, invierte fondo/borde/texto con un
@@ -307,6 +325,13 @@ p {
 
 /* ---------- Tabs ---------- */
 
+/* background translúcido como respaldo del backdrop-filter: en algunos
+   Chrome (con aceleración por hardware) el backdrop-filter simplemente no
+   pinta nada, sin aviso ni error — sin este respaldo, la barra de tabs
+   queda sin ningún fondo y el contraste con el contenido que scrollea
+   debajo se pierde (mismo bug que en scrollytelling-intro.css, ver
+   .scrolly-backdrop ahí). Con backdrop-filter funcionando se ven
+   combinados; sin él, el tono translúcido solo ya sostiene el contraste. */
 .tabs-row {
   position: sticky;
   top: 0;
@@ -316,6 +341,7 @@ p {
   gap: 1rem;
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--color-callout-border);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
@@ -335,8 +361,12 @@ p {
    la tarjeta — el gráfico ocupa todo el ancho de .page (1280px) y el
    detalle de localidad vive en #locality-modal (ver más abajo). Backup
    de la versión anterior (sidebar fija) en explorador.css.bak-sidebar. */
+/* Mismo respaldo que .tabs-row (ver comentario ahí): background
+   translúcido para que el contraste no dependa solo de que el navegador
+   pinte el backdrop-filter. */
 .dashboard {
   display: block;
+  background: color-mix(in srgb, var(--color-bg) 70%, transparent);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }

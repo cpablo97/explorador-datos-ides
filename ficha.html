@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IDES Bogotá — Ficha técnica del indicador (prototipo)</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>IDES Bogotá — Ficha técnica del indicador</title>
+    <meta name="description" content="Ficha técnica de un indicador del Índice de Derecho a la Salud (IDES): definición, método de cálculo, cobertura y fuente oficial del dato." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,8 +29,8 @@
     <div class="page">
       <div id="nav-real">
         <ul>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="explorador.html">Explorador de Datos</a></li>
           <li class="is-active"><a href="indicadores.html">Indicadores</a></li>
           <li><a href="metodologia.html">Metodología</a></li>
           <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
@@ -102,7 +104,18 @@
         <div class="ficha-detalle-cell ficha-detalle-cell--vacia"></div>
 
         <div class="ficha-detalle-cell ficha-detalle-cell--footer">
-          <a class="btn-outline btn-outline--filled" href="#" id="ficha-pdf-link">
+          <!-- Nunca se conectó a un PDF real (href="#" sin JS detrás) —
+               deshabilitado hasta que exista la generación/descarga real,
+               en vez de dejarlo como un botón que no hace nada al hacer
+               click. -->
+          <a
+            class="btn-outline btn-outline--filled is-disabled"
+            href="#"
+            id="ficha-pdf-link"
+            tabindex="-1"
+            aria-disabled="true"
+            title="Próximamente"
+          >
             ↓ Descarga en PDF
           </a>
         </div>
@@ -175,7 +188,7 @@
         // ficha-tecnica-template.js, ver context/fichas-tecnicas.md).
         const { DIMENSION_SLUGS } = window.IDESFichaTecnicaTemplate;
         IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
-          { label: "Inicio", href: "#" },
+          { label: "Inicio", href: "index.html" },
           { label: "Indicadores", href: "indicadores.html" },
           {
             label: indicador.dimension,

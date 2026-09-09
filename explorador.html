@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>IDES Bogotá — Explorador de Datos</title>
+    <meta name="description" content="Explorador de datos del Índice de Derecho a la Salud (IDES) en Bogotá: compara el desempeño de las 20 localidades en Salud, Justicia y Determinantes Sociales entre 2022 y 2024." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/explorador.css" />
+    <link rel="stylesheet" href="css/utilities/locality-detail.css" />
+  </head>
+  <body>
+    <div class="grid-fondo" id="grid-fondo"></div>
+    <div class="page">
+      <div id="nav-real">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li class="is-active"><a href="#">Explorador de Datos</a></li>
+          <li><a href="indicadores.html">Indicadores</a></li>
+          <li><a href="metodologia.html">Metodología</a></li>
+          <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div id="breadcrumb"></div>
+
+      <header class="header">
+        <div class="header__grid">
+          <div class="header__title-cell">
+            <h1 class="header__title">Índice de Derecho a la Salud – IDES</h1>
+            <p class="header__subtitle">Pediatría Bogotá</p>
+          </div>
+          <div class="header__stat-cell header__stat-cell--mark" id="mark-localidades"></div>
+          <div class="header__stat-cell header__stat-cell--mark" id="mark-indicadores"></div>
+          <div class="header__stat-cell header__stat-cell--mark" id="mark-fuentes"></div>
+          <div class="header__stat-cell" id="info-localidades"></div>
+          <div class="header__stat-cell" id="info-indicadores"></div>
+          <div class="header__stat-cell" id="info-fuentes"></div>
+        </div>
+      </header>
+
+      <main>
+        <div class="tabs-row">
+          <div class="timeline-controls">
+            <div class="view-pills" role="tablist" aria-label="Vista de la visualización">
+              <button class="year-pill is-active" data-vista="abanico" type="button">Abanico</button>
+              <button class="year-pill" data-vista="dispersion" type="button">Dispersión</button>
+            </div>
+            <div class="year-pills" id="year-pills" role="tablist" aria-label="Año seleccionado">
+              <button
+                class="play-btn"
+                id="play-btn"
+                type="button"
+                aria-label="Reproducir evolución"
+                title="Reproducir evolución"
+              >
+                ▶
+              </button>
+            </div>
+            <label class="trail-toggle">
+              <input type="checkbox" id="toggle-estelas" checked />
+              <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
+              <span class="trail-toggle__label">Trayectoria</span>
+            </label>
+            <label class="trail-toggle">
+              <input type="checkbox" id="toggle-rosas" checked />
+              <span class="trail-toggle__track"><span class="trail-toggle__thumb"></span></span>
+              <span class="trail-toggle__label">Dimensiones visibles</span>
+            </label>
+          </div>
+          <select class="tabs-row__filtro" id="filtro-localidad">
+            <option value="">Filtrar por localidad</option>
+          </select>
+        </div>
+
+        <div class="dashboard">
+          <div class="dashboard__chart-col">
+            <div id="chart-main"></div>
+            <div class="chart-scatter-scroll" id="chart-scatter-wrap" hidden>
+              <div id="chart-scatter"></div>
+            </div>
+            <!-- Panel de detalle anclado a la esquina superior derecha del
+                 gráfico — no reserva columna propia, así el gráfico se
+                 queda a todo el ancho. -->
+            <div class="locality-modal" id="locality-modal">
+              <button class="locality-modal__close" id="locality-modal-close" type="button" aria-label="Cerrar">×</button>
+              <div id="locality-modal-content"></div>
+            </div>
+          </div>
+        </div>
+
+        <section class="locality-detail" id="locality-detail">
+          <div class="locality-detail__content" id="locality-detail-content"></div>
+        </section>
+
+        <section class="diagrama-explicativo">
+          <div id="chart-secundario"></div>
+          <div class="diagrama-explicativo__texto">
+            <h2>Cómo leer el gráfico</h2>
+            <p id="explicativo-texto-1"></p>
+            <p id="explicativo-texto-2"></p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/breadcrumb.js"></script>
+    <!-- Versión fijada (antes d3.v7.min.js, solo pineado a major) para que
+         una actualización del CDN no cambie el comportamiento sin aviso. -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script src="js/locality-utils.js"></script>
+    <script src="js/indicator-context.js"></script>
+    <script src="js/locality-rose.js"></script>
+    <script src="js/fan-chart.js"></script>
+    <script src="js/locality-card.js"></script>
+    <script src="js/locality-detail.js"></script>
+    <script src="js/stats-donuts.js"></script>
+    <script src="js/timeline-control.js"></script>
+    <script>
+      // Portado tal cual de scrolly/index.html (montarGridFondo) — mismo
+      // patrón usado como fondo fijo de toda la página.
+      function montarGridFondo(selector) {
+        const contenedor = document.querySelector(selector);
+        if (!contenedor) return;
+        const TILE = 426.5;
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        const defs = document.createElementNS(svgNS, "defs");
+        const pattern = document.createElementNS(svgNS, "pattern");
+        pattern.setAttribute("id", "grid-fondo-pattern");
+        pattern.setAttribute("patternUnits", "userSpaceOnUse");
+        pattern.setAttribute("width", TILE);
+        pattern.setAttribute("height", TILE);
+        function trazo(tag, attrs) {
+          const el = document.createElementNS(svgNS, tag);
+          Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+          el.style.stroke = "var(--color-decorative-grid)";
+          el.style.strokeOpacity = "0.1";
+          el.style.strokeWidth = "1";
+          return el;
+        }
+        pattern.appendChild(trazo("rect", { width: TILE, height: TILE, fill: "none" }));
+        pattern.appendChild(
+          trazo("circle", { cx: TILE / 2, cy: TILE / 2, r: TILE / 2, fill: "none" }),
+        );
+        pattern.appendChild(trazo("line", { x1: 0, y1: 0, x2: TILE, y2: TILE }));
+        pattern.appendChild(trazo("line", { x1: TILE, y1: 0, x2: 0, y2: TILE }));
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+        const fondo = document.createElementNS(svgNS, "rect");
+        fondo.setAttribute("width", "100%");
+        fondo.setAttribute("height", "100%");
+        fondo.setAttribute("fill", "url(#grid-fondo-pattern)");
+        svg.appendChild(fondo);
+        contenedor.appendChild(svg);
+      }
+      montarGridFondo("#grid-fondo");
+
+      IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
+        { label: "Inicio", href: "index.html" },
+        { label: "Explorador de Datos" },
+      ]);
+
+      function renderStatCell({ markId, infoId, valor, etiqueta, colorVar, rotaciones }) {
+        const { renderStatMark } = window.IDESStatsDonuts;
+        renderStatMark(document.getElementById(markId), colorVar, rotaciones);
+        document.getElementById(infoId).innerHTML = `
+          <div class="stat-info">
+            <p class="stat-info__valor">${valor}</p>
+            <p class="stat-info__etiqueta">${etiqueta}</p>
+          </div>`;
+      }
+
+      (async function () {
+        const { crearGraficoAbanico, crearGraficoDispersion, getAñoData } = window.IDESFanChart;
+        const { renderLocalityCard, actualizarLocalityCard } = window.IDESLocalityCard;
+        const { renderLocalityDetail, actualizarLocalityDetail } = window.IDESLocalityDetail;
+        const { AÑOS, STEP_DURATION, reproducirEvolucion } = window.IDESTimeline;
+
+        const [data, fichas, indicadoresDatos] = await Promise.all([
+          fetch("data/localidades.json").then((r) => r.json()),
+          fetch("data/fichas-tecnicas.json").then((r) => r.json()),
+          fetch("data/indicadores-datos-completo.json").then((r) => r.json()),
+        ]);
+        // Cruce único nombre completo de indicador -> id de fichas-tecnicas.json,
+        // reutilizado por cada fila de indicador (ver js/indicator-context.js).
+        const contexto = window.IDESIndicatorContext.crearContexto({ fichas, indicadoresDatos });
+
+        renderStatCell({
+          markId: "mark-localidades",
+          infoId: "info-localidades",
+          valor: data.length,
+          etiqueta: "Localidades analizadas",
+          colorVar: "--naranja-300",
+          rotaciones: [20, 180, 95],
+        });
+        renderStatCell({
+          markId: "mark-indicadores",
+          infoId: "info-indicadores",
+          valor: 30,
+          etiqueta: "Indicadores integrados",
+          colorVar: "--azul-300",
+          rotaciones: [360, 192, 132],
+        });
+        renderStatCell({
+          markId: "mark-fuentes",
+          infoId: "info-fuentes",
+          valor: 5,
+          etiqueta: "Fuentes oficiales de datos",
+          colorVar: "--verde-300",
+          rotaciones: [360, 192, 132],
+        });
+
+        const filtroSelect = document.getElementById("filtro-localidad");
+        data
+          .slice()
+          .sort((a, b) => a.nombre.localeCompare(b.nombre, "es"))
+          .forEach((loc) => {
+            const option = document.createElement("option");
+            option.value = loc.id;
+            option.textContent = loc.nombre;
+            filtroSelect.appendChild(option);
+          });
+
+        const modal = document.getElementById("locality-modal");
+        const modalContent = document.getElementById("locality-modal-content");
+        const modalClose = document.getElementById("locality-modal-close");
+        const chartMainEl = document.getElementById("chart-main");
+        const chartScatterWrapEl = document.getElementById("chart-scatter-wrap");
+        const tabsRowEl = document.querySelector(".tabs-row");
+        const detailSection = document.getElementById("locality-detail");
+        const detailContent = document.getElementById("locality-detail-content");
+
+        let pinnedId = null;
+
+        // Panel arrastrable: se puede mover con el mouse a cualquier parte
+        // del gráfico para destaparlo, dejando ver la visualización debajo.
+        // La posición elegida se mantiene mientras dura la sesión, aunque
+        // se cambie de localidad o se cierre y se vuelva a abrir.
+        let arrastre = null;
+        let acabaDeArrastrar = false;
+        function onDragMove(e) {
+          if (!arrastre) return;
+          const parent = modal.offsetParent;
+          const maxLeft = Math.max(0, parent.clientWidth - modal.offsetWidth);
+          const maxTop = Math.max(0, parent.clientHeight - modal.offsetHeight);
+          const left = Math.min(
+            Math.max(arrastre.origLeft + (e.clientX - arrastre.startX), 0),
+            maxLeft,
+          );
+          const top = Math.min(
+            Math.max(arrastre.origTop + (e.clientY - arrastre.startY), 0),
+            maxTop,
+          );
+          modal.style.left = `${left}px`;
+          modal.style.top = `${top}px`;
+        }
+        function onDragEnd() {
+          arrastre = null;
+          modal.classList.remove("is-dragging");
+          document.removeEventListener("mousemove", onDragMove);
+          document.removeEventListener("mouseup", onDragEnd);
+          // Evita que el click que el navegador dispara justo al soltar
+          // el mouse cierre el panel o seleccione lo que haya debajo,
+          // si el arrastre terminó fuera del panel.
+          acabaDeArrastrar = true;
+          setTimeout(() => {
+            acabaDeArrastrar = false;
+          }, 0);
+        }
+        modal.addEventListener("mousedown", (e) => {
+          if (e.target.closest("#locality-modal-close") || e.target.closest(".locality-card__cta")) {
+            return;
+          }
+          // Primer arrastre: pasa de anclado por "right" a "left" explícito,
+          // usando su posición actual en pantalla como punto de partida.
+          modal.style.left = `${modal.offsetLeft}px`;
+          modal.style.top = `${modal.offsetTop}px`;
+          modal.style.right = "auto";
+          arrastre = {
+            startX: e.clientX,
+            startY: e.clientY,
+            origLeft: modal.offsetLeft,
+            origTop: modal.offsetTop,
+          };
+          modal.classList.add("is-dragging");
+          document.addEventListener("mousemove", onDragMove);
+          document.addEventListener("mouseup", onDragEnd);
+          e.preventDefault();
+        });
+
+        // El panel va anclado por CSS a la esquina superior derecha del
+        // gráfico (ver .locality-modal en explorador.css) — no necesita
+        // reposicionarse por JS, solo mostrar/ocultar y refrescar contenido.
+        function mostrarModal(id, año) {
+          const localidad = data.find((d) => d.id === id);
+          renderLocalityCard(modalContent, localidad, año);
+          renderLocalityDetail(detailContent, data, localidad, año, contexto);
+          detailSection.classList.add("is-visible");
+          chart.highlight(id);
+          modal.classList.add("is-visible");
+        }
+
+        function ocultarModal() {
+          modal.classList.remove("is-visible");
+          detailSection.classList.remove("is-visible");
+          chart.highlight(null);
+        }
+
+        // Fija/despina una localidad — usado tanto al hacer clic sobre una
+        // elipse del gráfico como al elegirla en el dropdown "Filtrar por
+        // localidad", para que ambos caminos repliquen el mismo
+        // comportamiento (panel, atenuado de las demás, estela propia).
+        function seleccionarLocalidad(id) {
+          if (id === null || id === "") {
+            pinnedId = null;
+            chart.setSeleccion(null);
+            ocultarModal();
+            filtroSelect.value = "";
+            return;
+          }
+          pinnedId = pinnedId === id ? null : id;
+          chart.setSeleccion(pinnedId);
+          if (pinnedId) {
+            mostrarModal(pinnedId, chart.getCurrentYear());
+          } else {
+            ocultarModal();
+          }
+          filtroSelect.value = pinnedId || "";
+        }
+
+        // Combina varias instancias de fan-chart.js (misma API pública:
+        // setYear/transitionToYear/highlight/...) en una sola fachada, así
+        // el resto del archivo (mostrarModal, seleccionarLocalidad, los
+        // handlers de año/estelas/rosas más abajo) sigue hablándole a un
+        // único `chart` sin saber que hay dos vistas — cada cambio de
+        // estado se aplica a ambas, estén o no visibles en este momento,
+        // para que cambiar de vista nunca pierda el estado (año, selección,
+        // trayectoria, dimensiones visibles).
+        function combinarCharts(...instancias) {
+          return {
+            setYear(año) {
+              instancias.forEach((c) => c.setYear(año));
+            },
+            transitionToYear(año, duration) {
+              return Promise.all(instancias.map((c) => c.transitionToYear(año, duration)));
+            },
+            highlight(id) {
+              instancias.forEach((c) => c.highlight(id));
+            },
+            getCurrentYear() {
+              return instancias[0].getCurrentYear();
+            },
+            setEstelasActivas(activo) {
+              instancias.forEach((c) => c.setEstelasActivas(activo));
+            },
+            setRosasSiempreVisibles(activo) {
+              instancias.forEach((c) => c.setRosasSiempreVisibles(activo));
+            },
+            setSeleccion(id) {
+              instancias.forEach((c) => c.setSeleccion(id));
+            },
+          };
+        }
+
+        const chartAbanico = crearGraficoAbanico("#chart-main", {
+          data,
+          radioMax: 470,
+          dotRadius: 8,
+          roseRx: 46,
+          roseRy: 46,
+          marginLeft: 265,
+          marginRight: 265,
+          marginTop: 280,
+          marginBottom: 90,
+          interactive: true,
+          incluirBogota: true,
+          onHover(id) {
+            if (pinnedId) return;
+            chart.highlight(id);
+          },
+          onSelect(id) {
+            seleccionarLocalidad(id);
+          },
+        });
+
+        const chartDispersion = crearGraficoDispersion("#chart-scatter", {
+          data,
+          ordenX: "puntaje",
+          interactive: true,
+          onHover(id) {
+            if (pinnedId) return;
+            chart.highlight(id);
+          },
+          onSelect(id) {
+            seleccionarLocalidad(id);
+          },
+        });
+
+        const chart = combinarCharts(chartAbanico, chartDispersion);
+
+        filtroSelect.addEventListener("change", () => {
+          seleccionarLocalidad(filtroSelect.value || null);
+        });
+
+        modalClose.addEventListener("click", () => seleccionarLocalidad(null));
+        // Cierra al hacer clic afuera — pero no cuenta como "afuera" nada
+        // dentro del gráfico, del panel, de la fila de controles
+        // (year-pills, reproducir, toggle de estelas, filtro), ni de la
+        // sección de detalle (sus tabs/sub-tabs), para que esos clics no
+        // despinen la selección.
+        document.addEventListener("click", (e) => {
+          if (acabaDeArrastrar) return;
+          if (!pinnedId) return;
+          if (
+            modal.contains(e.target) ||
+            chartMainEl.contains(e.target) ||
+            chartScatterWrapEl.contains(e.target) ||
+            tabsRowEl.contains(e.target) ||
+            detailSection.contains(e.target)
+          ) {
+            return;
+          }
+          seleccionarLocalidad(null);
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && pinnedId) seleccionarLocalidad(null);
+        });
+
+        crearGraficoAbanico("#chart-secundario", {
+          data,
+          radioMax: 140,
+          dotRadius: 5,
+          roseRx: 22,
+          roseRy: 22,
+          marginLeft: 90,
+          marginRight: 90,
+          marginTop: 90,
+          marginBottom: 35,
+          interactive: false,
+          filterIds: ["usme"],
+          forceRose: true,
+        });
+
+        const usme = data.find((d) => d.id === "usme");
+        const usmeAño = getAñoData(usme, 2024);
+        document.getElementById("explicativo-texto-1").textContent =
+          "Cada punto ocupa un lugar fijo en el abanico —uno por localidad, en orden alfabético— y su distancia al centro representa su Índice de Derecho a la Salud compuesto: el centro equivale a 0 y el borde exterior a 100. Pasa el cursor (o navega con tabulador) sobre cualquier punto para revelar su “rosa”.";
+        document.getElementById("explicativo-texto-2").textContent =
+          `En el ejemplo de Usme (2024): índice compuesto ${usmeAño.indiceCompuesto}/100. Sus tres dimensiones —Justicia ${usmeAño.dims.justicia}, Salud ${usmeAño.dims.salud}, Determinantes Sociales ${usmeAño.dims.determinantes}— se ven en su rosa, cada pétalo escalado contra su propio anillo, nunca contra la escala 0–100 del abanico.`;
+
+        // Los botones de año se generan sobre AÑOS (única fuente de verdad,
+        // viene de timeline-control.js) e insertan antes del botón de
+        // reproducir, que ya vive fijo en el HTML como último hijo del
+        // grupo — así el orden en el DOM queda [2022][2023][2024][▶].
+        const yearPillsContainer = document.getElementById("year-pills");
+        const playBtnEl = document.getElementById("play-btn");
+        const yearButtons = AÑOS.map((año) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "year-pill";
+          btn.textContent = año;
+          btn.dataset.año = año;
+          btn.addEventListener("click", () => seleccionarAño(año));
+          yearPillsContainer.insertBefore(btn, playBtnEl);
+          return btn;
+        });
+
+        function marcarAñoActivo(año) {
+          yearButtons.forEach((btn) =>
+            btn.classList.toggle("is-active", Number(btn.dataset.año) === año),
+          );
+        }
+
+        function seleccionarAño(año) {
+          marcarAñoActivo(año);
+          // Se dispara ANTES/en el mismo tick que chart.transitionToYear(),
+          // no después — así números y barras del panel se mueven en
+          // paralelo con el punto y la rosa, no como una animación que
+          // arranca cuando el gráfico ya terminó. No hace falta volver a
+          // llamar a mostrarModal()/chart.highlight(): el propio render()
+          // de fan-chart.js ya re-sincroniza la rosa fijada con esta misma
+          // duración (ver idActivo en fan-chart.js).
+          if (pinnedId) {
+            actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, STEP_DURATION);
+            actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, STEP_DURATION, contexto);
+          }
+          chart.transitionToYear(año, STEP_DURATION);
+        }
+
+        marcarAñoActivo(AÑOS[AÑOS.length - 1]);
+
+        document.getElementById("play-btn").addEventListener("click", async () => {
+          // Mientras se reproduce la evolución, el panel baja de opacidad
+          // para dejar ver el gráfico moviéndose detrás.
+          modal.classList.add("is-playing");
+          await reproducirEvolucion(chart, {
+            playBtn: document.getElementById("play-btn"),
+            onYearStart(año, duration) {
+              if (pinnedId) {
+                actualizarLocalityCard(modalContent, data.find((d) => d.id === pinnedId), año, duration);
+                actualizarLocalityDetail(detailContent, data, data.find((d) => d.id === pinnedId), año, duration, contexto);
+              }
+            },
+            onYearChange(año) {
+              marcarAñoActivo(año);
+            },
+          });
+          modal.classList.remove("is-playing");
+        });
+
+        document.getElementById("toggle-estelas").addEventListener("change", (e) => {
+          chart.setEstelasActivas(e.target.checked);
+        });
+
+        document.getElementById("toggle-rosas").addEventListener("change", (e) => {
+          chart.setRosasSiempreVisibles(e.target.checked);
+        });
+
+        // Toggle Abanico/Dispersión — ambos charts ya viven montados y
+        // sincronizados (ver combinarCharts arriba), así que cambiar de
+        // vista es solo mostrar/ocultar contenedores, sin re-crear nada ni
+        // perder año/selección/trayectoria/dimensiones visibles.
+        const viewPills = Array.from(document.querySelectorAll(".view-pills .year-pill"));
+        viewPills.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const vista = btn.dataset.vista;
+            viewPills.forEach((b) => b.classList.toggle("is-active", b === btn));
+            chartMainEl.hidden = vista !== "abanico";
+            chartScatterWrapEl.hidden = vista !== "dispersion";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

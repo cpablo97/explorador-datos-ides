@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IDES Bogotá — Fichas técnicas: Justicia (prototipo)</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>IDES Bogotá — Fichas técnicas: Justicia</title>
+    <meta name="description" content="Fichas técnicas de los indicadores de la dimensión Justicia del Índice de Derecho a la Salud (IDES) en Bogotá." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,8 +22,8 @@
     <div class="page ficha-page ficha-page--justicia">
       <div id="nav-real">
         <ul>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="index.html">Explorador de Datos</a></li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="explorador.html">Explorador de Datos</a></li>
           <li class="is-active"><a href="indicadores.html">Indicadores</a></li>
           <li><a href="metodologia.html">Metodología</a></li>
           <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
@@ -88,7 +90,7 @@
       montarGridFondo("#grid-fondo");
 
       IDESBreadcrumb.render(document.getElementById("breadcrumb"), [
-        { label: "Inicio", href: "#" },
+        { label: "Inicio", href: "index.html" },
         { label: "Indicadores", href: "indicadores.html" },
         { label: "Justicia" },
       ]);

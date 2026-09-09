@@ -1,0 +1,62 @@
+{
+  "acto0": {
+    "titular": "La salud en Colombia es un derecho fundamental.",
+    "cta": "Explore el índice ↓"
+  },
+  "acto1": [
+    {
+      "texto": "No basta con saber cuántos centros médicos hay en una localidad.",
+      "cifra": "En Usaquén hay 173 IPS pediátricas activas para el 2025",
+      "fuente": "SaluData"
+    },
+    {
+      "texto": "Ni cuántas veces se tiene que exigir un servicio de salud cuando es negado.",
+      "cifra": "4 de cada 10.000 menores en Bogotá presentaron una tutela por vulneración al derecho a la salud en 2025",
+      "fuente": "SaluData"
+    },
+    {
+      "texto": "Ni las condiciones de vida que rodean ese derecho.",
+      "cifra": "En 2025, cerca del 79% de Ciudad Bolívar vivía con ingresos por debajo de la línea de pobreza",
+      "fuente": "SaluData"
+    }
+  ],
+  "transicion_cierre": "Para entender el derecho a la salud hace falta mirar estas tres cosas al tiempo. Eso es lo que hace un índice.",
+  "explicacion": {
+    "intro": [
+      {
+        "texto": "Para IDES el derecho a la salud se entiende a partir de la relación entre tres dimensiones: Salud, Justicia y Determinantes Sociales."
+      },
+      {
+        "texto": "Un índice es una medición que resume información compleja en un solo número comparable. IDES — Índice de Derecho a la Salud: propone una comprensión integral de cómo se garantiza el derecho a la salud de niñas, niños y adolescentes en cada territorio."
+      },
+      {
+        "texto": "Este valor representa el nivel de garantía del derecho a la salud, construido a partir de la relación entre sus tres dimensiones. En Bogotá, el IDES es de {{ides}}/100."
+      },
+      {
+        "texto": "Se calcula a partir de los indicadores que la componen, en una escala de 0 a 100. Cada dimensión combina sus indicadores mediante una agregación geométrica — no un promedio simple — para que un buen resultado en un indicador no tape uno malo en otro. Cada dimensión tiene su propio índice."
+      }
+    ],
+    "dimensiones": {
+      "salud": {
+        "nombre": "Salud",
+        "definicion_corta": "el acceso, la cobertura y los resultados clínicos que determinan el bienestar físico y mental de niñas, niños y adolescentes",
+        "entrada": "{{dimension}} mide {{definicion}}. Su puntaje es de {{puntaje}}/100 en Bogotá.",
+        "conteo": "La dimensión de {{dimension}} está conformada por {{n}} indicadores."
+      },
+      "justicia": {
+        "nombre": "Justicia",
+        "definicion_corta": "la capacidad del sistema judicial y de participación social para garantizar y exigir el derecho a la salud",
+        "entrada": "{{dimension}} mide {{definicion}}. Su puntaje es de {{puntaje}}/100 en Bogotá.",
+        "conteo": "La dimensión de {{dimension}} está conformada por {{n}} indicadores."
+      },
+      "determinantes": {
+        "nombre": "Determinantes Sociales",
+        "definicion_corta": "las condiciones de vida — vivienda, alimentación, entorno y hábitos — que rodean y afectan el derecho a la salud",
+        "entrada": "{{dimension}} mide {{definicion}}. Su puntaje es de {{puntaje}}/100 en Bogotá.",
+        "conteo": "La dimensión de {{dimension}} está conformada por {{n}} indicadores."
+      }
+    },
+    "cierre": "Cada dimensión tiene su propio índice, y juntas construyen el IDES.",
+    "cta": "Ir al explorador de datos →"
+  }
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Favicon del sitio: la misma "marca de 3 semicírculos" que ya se usa
+       como brandmark decorativo en todo el sitio (ver js/stats-donuts.js,
+       svgBrandMark), acá con los 3 colores de dimensión (Salud/Justicia/
+       Determinantes) en vez de un solo color repetido, para que el ícono
+       de pestaña sea reconocible y consistente con el resto del sitio. -->
+  <g transform="translate(100,100)">
+    <path d="M -100,0 A 100,100 0 0,1 100,0 Z" fill="#5D9EB6" transform="rotate(0)" style="mix-blend-mode:multiply" />
+    <path d="M -100,0 A 100,100 0 0,1 100,0 Z" fill="#EA5825" transform="rotate(120)" style="mix-blend-mode:multiply" />
+    <path d="M -100,0 A 100,100 0 0,1 100,0 Z" fill="#32814B" transform="rotate(240)" style="mix-blend-mode:multiply" />
+  </g>
+</svg>
