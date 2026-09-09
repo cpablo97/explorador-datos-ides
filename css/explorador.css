@@ -81,6 +81,17 @@ p {
   letter-spacing: 2px;
   text-decoration: none;
 }
+/* "Contacto" no tiene todavía una página real detrás — en vez de dejarlo
+   como un enlace muerto (href="#" que no hace nada al hacer click), se
+   deshabilita visualmente: opacidad reducida, sin cursor de link, fuera
+   del tabulado (ver tabindex="-1" + aria-disabled en el HTML). */
+#nav-real li.is-disabled {
+  opacity: 0.45;
+}
+#nav-real li.is-disabled a {
+  cursor: default;
+  pointer-events: none;
+}
 
 /* ---------- Miga de pan ---------- */
 /* Ligada a la estructura de navegación (ver js/breadcrumb.js) — vive bajo
@@ -181,6 +192,13 @@ p {
 .btn-outline:focus-visible {
   outline: 2px solid var(--color-text-primary);
   outline-offset: 3px;
+}
+/* Mismo tratamiento que #nav-real li.is-disabled: para botones que todavía
+   no tienen una acción real detrás (ver ficha.html, "Descarga en PDF"). */
+.btn-outline.is-disabled {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
 }
 
 /* Variante rellena — mismo componente, invierte fondo/borde/texto con un

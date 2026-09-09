@@ -1038,10 +1038,10 @@
       svgBeeswarm && overlaysBeeswarm ? renderBeeswarmPanel(svgBeeswarm, overlaysBeeswarm, contexto) : null;
 
     Promise.all([
-      fetch("scrollytelling-steps.json").then((r) => r.json()),
-      fetch("../data/localidades.json").then((r) => r.json()),
-      fetch("../data/fichas-tecnicas.json").then((r) => r.json()),
-      fetch("../data/interpretaciones-indicadores.json").then((r) => r.json()),
+      fetch("data/scrollytelling-steps.json").then((r) => r.json()),
+      fetch("data/localidades.json").then((r) => r.json()),
+      fetch("data/fichas-tecnicas.json").then((r) => r.json()),
+      fetch("data/interpretaciones-indicadores.json").then((r) => r.json()),
     ]).then(([datos, localidades, fichas, interpretaciones]) => {
       const datosBogota = obtenerDatosBogota(localidades);
       const indicadoresPorDim = construirIndicadores(fichas, localidades, interpretaciones);
