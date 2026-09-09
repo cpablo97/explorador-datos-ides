@@ -1,19 +1,20 @@
 /* scrollytelling-intro.css
-   Acto 0 (portada) + Acto 1 (tres cifras) + Acto 2 (qué es un índice / qué
-   es el IDES) del scrollytelling de entrada. Esta es la página de entrada
-   del sitio, por eso SÍ se conecta con los componentes transversales del
-   resto del proyecto — importa css/explorador.css además de css/tokens.css
-   para heredar el navbar (#nav-real), la miga de pan (.breadcrumb) y el
-   contenedor .page tal cual los usa el resto de páginas.
+   Fundación técnica v2 — reconstrucción completa sobre Scrollama + D3 v7 +
+   GSAP/ScrollTrigger (ver scrollytelling-intro.js). Esta hoja está aislada
+   del CSS legado del repo: importa css/tokens.css (variables de color/
+   tipografía/espaciado) y css/explorador.css (navbar, breadcrumb, .page,
+   .grid-fondo — la integración con el resto del sitio), pero ningún estilo
+   propio de este archivo depende de clases legado fuera de esas dos hojas.
 
-   Estructura compartida entre actos (.scrolly-grid/.scrolly-visual/
-   .scrolly-narrativa/.scrolly-step/.scrolly-step__texto): el panel sticky
-   + narrativa con scroll normal es el mismo patrón en todos los actos, así
-   que vive en una sola clase en vez de repetirse por acto — cada acto solo
-   aporta su propio contenido visual (.acto1-card, .acto2-diagram, ...)
-   dentro de .scrolly-visual. Esto también es lo que permite que un único
-   Scrollama (ver scrollytelling-intro.js) observe los pasos de todos los
-   actos a la vez, sin instanciar un scroller por acto. */
+   Por ahora solo existen Acto 0 (portada) y Acto 1 (tres cifras) — Acto 2
+   en adelante se reconstruye en tareas siguientes, ahí es donde entra
+   d3-force de lleno para los círculos de indicadores/dimensiones.
+
+   Panel visual más protagonista que en el mockup de Figma (que lo confinaba
+   a una columna de 640px sobre un layout de 1280px, 50/50): acá el grid es
+   ~60/40 a favor del panel visual (ver .scrolly-grid) — más cercano a
+   referentes con visualización dominante como
+   https://johnguerra.co/viz/elecciones2026/. */
 
 * {
   box-sizing: border-box;
@@ -33,6 +34,7 @@ body {
 /* ---------- Acto 0 — Portada ---------- */
 
 .acto0 {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -70,28 +72,37 @@ body {
   transform: translateY(2px);
 }
 
-/* ---------- Estructura compartida: grid sticky + narrativa ---------- */
+/* ---------- Estructura compartida: grid sticky + narrativa ----------
+   Reutilizada por todos los actos futuros (mismo patrón sticky panel +
+   scroll narrativo vía Scrollama — ver scrollytelling-intro.js, un solo
+   Scrollama observa los pasos de todos los actos). */
 
 .acto1,
-.acto2 {
+.explicacion {
   padding: 0 1.5rem 6rem;
 }
 
 .scrolly-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
   gap: 3rem;
-  max-width: 1200px;
+  /* 1400px: mismo tope que .page en css/explorador.css — el panel de
+     gráficas de esta pieza usa el mismo ancho máximo que el resto del
+     sitio en vez de un valor propio más angosto. */
+  max-width: 1400px;
   margin-inline: auto;
 }
 
-/* Panel flotante: sticky dentro de la celda de grid, que es tan alta como
-   la columna narrativa (la más larga) — así se mantiene fijo mientras el
-   texto hace scroll normal a su lado. */
+/* Panel flotante: sticky dentro de la celda de grid, tan alta como la
+   columna narrativa (la más larga) — se mantiene fijo mientras el texto
+   hace scroll normal a su lado. min-width:0 evita que un hijo con
+   contenido intrínsecamente ancho fuerce el track del grid a desbordar la
+   página (comportamiento por defecto de los ítems de grid/flex). */
 .scrolly-visual {
   position: sticky;
   top: 0;
   height: 100vh;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,12 +111,14 @@ body {
 .scrolly-narrativa {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .scrolly-step {
   min-height: 90vh;
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .scrolly-step__texto {
@@ -115,9 +128,12 @@ body {
   font: 400 2rem/1.3 var(--font-primary);
   color: var(--color-text-primary);
   opacity: 0.45;
-  transition: opacity 0.3s ease;
 }
 
+/* Estado de reposo/base vía CSS — el paso activo lo anima GSAP (fade+slide,
+   ver animarTexto en scrollytelling-intro.js) fijando opacity/transform
+   inline, que gana por especificidad sobre esta regla. Se deja como
+   respaldo por si JS no llega a cargar. */
 .scrolly-step.is-active .scrolly-step__texto {
   opacity: 1;
 }
@@ -125,37 +141,22 @@ body {
 /* ---------- Acto 1 — El problema con contar ---------- */
 
 .acto1-card {
-  display: grid;
   width: 100%;
-  max-width: 420px;
+  max-width: 480px;
   min-height: 220px;
-  background: var(--crema);
-  box-shadow: 0 24px 48px color-mix(in srgb, var(--negro) 15%, transparent);
-}
-
-/* Dos capas superpuestas para el crossfade — controlado desde JS con
-   requestAnimationFrame (ver scrollytelling-intro.js), nunca con una sola
-   capa que cambia de texto de golpe. Se apilan con grid-area (en vez de
-   position:absolute) para que el contenedor crezca según la capa más alta
-   y ninguna cifra larga se salga de la tarjeta. */
-.acto1-card__layer {
-  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
   padding: 2.25rem;
+  background: var(--crema);
   border-left: 6px solid var(--acento, var(--color-text-decoration-generico));
-  opacity: 0;
-}
-
-.acto1-card__layer[data-layer="a"] {
-  opacity: 1;
+  box-shadow: 0 24px 48px color-mix(in srgb, var(--negro) 15%, transparent);
 }
 
 .acto1-card__cifra {
   margin: 0;
-  font: 600 1.65rem/1.35 var(--font-primary);
+  font: 600 1.85rem/1.35 var(--font-primary);
   color: var(--color-text-primary);
 }
 
@@ -175,57 +176,78 @@ body {
   text-align: center;
   font: 600 2rem/1.4 var(--font-primary);
   color: var(--color-text-primary);
+  opacity: 0.45;
 }
 
-/* ---------- Acto 2 — Qué es un índice, qué es el IDES ----------
-   Reconstruido a partir de get_design_context real (fileKey
-   HntVnTEmXSgURDwEpAG1oc, frames scrolly-06/07/08/09) — no es un Venn de
-   3 círculos superpuestos, es un anillo (donut) dividido en 3 gajos
-   iguales de 120°: superior-izquierdo Salud (azul), superior-derecho
-   Justicia (naranja), inferior Determinantes Sociales (verde). El anillo
-   NO cambia de forma ni de tamaño entre los pasos 5, 6 y 7 — se construye
-   una sola vez. Lo que cambia paso a paso es: (a) el texto central de 3
-   líneas ("Bogotá/IDES/Pediatría" → "IDES/{{ides}}/100/Pediatría"), y (b)
-   la aparición, solo en el último paso, de un gráfico de barras APARTE
-   del anillo (no una transformación suya) con el valor real de cada
-   dimensión. Dentro de cada gajo hay un racimo de ~10 círculos pequeños
-   decorativos del mismo color (ver agregarRacimoCirculos en
-   scrollytelling-intro.js) — posiciones generadas por trigonometría
-   propia, no las coordenadas exactas de Figma (esas usan container query
-   units en unidades relativas a un layout React/Tailwind que no aplica
-   acá; se preservó sí el conteo aproximado, el color y la superposición
-   con mix-blend-mode:multiply). */
+/* ---------- Explicación — Acto 2+3+4: qué es el IDES, sus dimensiones,
+   sus indicadores ----------
+   El beeswarm (.beeswarm-panel__svg) lo construye renderBeeswarmPanel() en
+   scrollytelling-intro.js con D3 + d3-force: cada localidad es un nodo de
+   una simulación de fuerzas (forceX hacia su valor en la escala, forceY
+   hacia el centro de su fila, forceCollide para que no se encimen) — nunca
+   posiciones fijas. Los nombres de fila y las anotaciones de Bogotá son
+   overlays HTML (.beeswarm-panel__overlays) posicionados por JS encima del
+   <svg>, no texto SVG, para que el subrayado tipográfico se vea nítido bajo
+   el scale() del zoom entre dimensiones. */
 
-.acto2-diagram {
+.explicacion-diagram {
   display: grid;
   width: 100%;
-  max-width: 360px;
+  /* 800px (antes 640px): usa casi todo el ancho disponible de la columna
+     visual de .scrolly-grid (3fr de 1400px) en vez de topear muy por
+     debajo de ella — la gráfica de cada indicador es la protagonista de
+     esta sección, se agranda para leerse como tal. */
+  max-width: 800px;
 }
 
-/* Estado A (paso 4) y estado B (pasos 5-7) ocupan la misma celda de grid
-   para poder cruzarse en opacidad — mismo truco que .acto1-card__layer.
-   Cada uno trae su propio fondo opaco (--crema, igual que la tarjeta del
-   Acto 1) en vez de compartir uno solo a nivel de .acto2-diagram: como el
-   estado B (anillo + barras) es bastante más alto que el A (3 palabras),
-   un fondo común quedaría del tamaño del más alto aunque solo se vea el
-   más corto. Sin este fondo, los brandmarks decorativos (.dot-mark,
-   opacos y con mix-blend-mode:multiply) se asoman entre los trazos finos
-   y pueden volver ilegible el texto según en qué posición del scroll
-   caiga cada marca. */
+/* Estado A (palabras, paso 0 de intro) y estado B (beeswarm, paso 1 en
+   adelante) ocupan la misma celda de grid para poder cruzarse en opacidad
+   (crossfade vía GSAP). Ninguno de los dos lleva fondo de color, ni
+   sólido ni translúcido: la "placa" que los separa de los brandmarks
+   decorativos del fondo (ver .scrolly-backdrop más abajo) es pura
+   difuminación (backdrop-filter, sin background) con un mask-image radial
+   que la desvanece hacia los bordes — nunca se ve un color detrás, solo
+   el resto de la página emborronada. */
 .acto2-palabras,
-.acto2-compuesto {
+.beeswarm-panel {
+  position: relative;
   grid-area: 1 / 1;
   align-self: start;
   opacity: 0;
-  background: var(--crema);
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 2rem;
 }
 
-/* ---- Estado A (paso 4): sin anillo todavía, solo texto ---- */
-/* Mismo tratamiento tipográfico real de scrolly-06: cada palabra grande,
-   subrayada en su color de dimensión — técnica de subrayado ya usada en
-   el resto del sitio (ver .header__title en explorador.css), solo que a
-   un tamaño menor para caber en el panel angosto del scrollytelling. */
+/* mask-image y backdrop-filter van juntos en el MISMO elemento —
+   probado a mano: separarlos en dos elementos (mask en un contenedor,
+   blur en su hijo) NO funciona en ningún navegador, el hijo no pinta
+   nada. El transform que GSAP dejaba pegado en el panel sticky ancestro
+   (.scrolly-visual) tampoco era la causa completa: en Chrome real (con
+   aceleración por hardware) el backdrop-filter puede simplemente no
+   pintar nada, sin previo aviso ni error — ver animarEntradaPanel en
+   scrollytelling-intro.js para el fix de ese transform, que sigue siendo
+   correcto pero no alcanza por sí solo.
+   Por eso esta placa NUNCA depende solo del blur para el contraste: lleva
+   además un fondo translúcido (mismo degradado radial que el mask, para
+   que se vean como una sola forma) que garantiza contraste igual si el
+   navegador no llega a pintar el backdrop-filter. Donde el blur sí
+   funciona, ambos se ven combinados; donde no, el tono translúcido solo
+   ya sostiene la legibilidad. */
+.scrolly-backdrop {
+  position: absolute;
+  inset: -2.5rem;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    color-mix(in srgb, var(--color-bg) 70%, transparent) 55%,
+    transparent 100%
+  );
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, #000 55%, transparent 100%);
+}
+
+/* ---- Estado A: sin beeswarm todavía, solo texto (conservado del Acto 2 anterior) ---- */
 .acto2-palabras {
   display: flex;
   flex-direction: column;
@@ -235,7 +257,7 @@ body {
 
 .acto2-palabra {
   margin: 0;
-  font: 600 2rem/1.15 var(--font-primary);
+  font: 600 2.25rem/1.15 var(--font-primary);
   letter-spacing: -0.06rem;
   color: var(--color-text-primary);
   text-decoration-line: underline;
@@ -246,147 +268,237 @@ body {
 }
 
 .acto2-palabra--salud {
-  text-decoration-color: var(--color-text-decoration-salud);
+  text-decoration-color: var(--azul-300);
 }
 .acto2-palabra--justicia {
-  text-decoration-color: var(--color-text-decoration-justicia);
+  text-decoration-color: var(--naranja-300);
 }
 .acto2-palabra--determinantes {
-  text-decoration-color: var(--color-text-decoration-determinantes);
+  text-decoration-color: var(--verde-400);
 }
 
-/* ---- Estado B (pasos 5-7): anillo compuesto ---- */
+/* ---- Estado B: panel de beeswarm (1 o 3 filas) ---- */
 
-.acto2-compuesto__wrap {
+.beeswarm-panel {
   position: relative;
-  width: 220px;
-  aspect-ratio: 1;
-  margin-inline: auto;
+  width: 100%;
+  /* Mismas proporciones que el viewBox del <svg> (ver ANCHO_VIEWBOX/
+     ALTO_VIEWBOX en JS) — así los overlays HTML (posicionados en % sobre
+     este contenedor) caen exactamente sobre las coordenadas del <svg>,
+     sin necesidad de recalcular en cada resize. */
+  aspect-ratio: 640 / 460;
 }
 
-.acto2-compuesto__svg {
+.beeswarm-panel__svg {
   width: 100%;
   height: 100%;
   display: block;
+  overflow: visible;
 }
 
-/* Dos capas de texto central (data-centro="bogota"/"puntaje") superpuestas
-   en la misma celda — se cruzan en opacidad (ver crearActo2Controller),
-   nunca un corte duro entre "Bogotá/IDES/Pediatría" y
-   "IDES/{{ides}}/100/Pediatría". */
-.acto2-compuesto__texto {
+.beeswarm-eje-linea {
+  stroke: var(--color-callout-border);
+  stroke-width: 1;
+}
+
+.beeswarm-eje-marca {
+  fill: var(--color-callout-border);
+}
+
+.beeswarm-eje-texto {
+  /* 0.75rem: mismo tamaño que --text-caption-source (css/tokens.css),
+     el token que usa el resto del sitio para texto de apoyo/caption. */
+  font: 400 0.75rem/1 var(--font-primary);
+  fill: color-mix(in srgb, var(--color-text-primary) 55%, transparent);
+}
+
+/* Nodo de localidad: color de fila translúcido salvo Bogotá, que se pinta
+   sólido con el tono oscuro de la fila (ver COLOR_FILA en JS) y lleva
+   trazo para distinguirse incluso cuando la fila está comprimida (zoom). */
+.beeswarm-nodo {
+  mix-blend-mode: multiply;
+  cursor: pointer;
+  outline: none;
+}
+
+.beeswarm-nodo--bogota {
+  mix-blend-mode: normal;
+  stroke: var(--crema);
+  stroke-width: 1.5;
+}
+
+/* Hover/foco: cada elipse es una localidad — este trazo es la única pista
+   visual de que responde a hover (el tooltip, ver .beeswarm-tooltip, trae
+   el nombre y el valor). */
+.beeswarm-nodo:hover,
+.beeswarm-nodo:focus-visible {
+  stroke: var(--color-text-primary);
+  stroke-width: 2;
+}
+
+/* Overlays HTML posicionados por JS (top/left calculados desde las
+   coordenadas del <svg>, ver posicionarOverlays en scrollytelling-intro.js) —
+   position:absolute sobre .beeswarm-panel, nunca dentro del <svg>. */
+.beeswarm-panel__overlays {
   position: absolute;
   inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
+  pointer-events: none;
+}
+
+/* El punto (left/top) que fija posicionarOverlay() es el ancla de la
+   etiqueta: para la fila (arriba de los nodos) el ancla es su borde
+   inferior-centro, para que el texto crezca hacia arriba sin desplazar el
+   punto; para la anotación de Bogotá (debajo de su nodo) el ancla es su
+   borde superior-centro. */
+.beeswarm-fila__label {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  margin: 0;
+  width: max-content;
+  max-width: 340px;
   text-align: center;
-  opacity: 0;
-}
-
-.acto2-compuesto__texto[data-centro="bogota"] {
-  opacity: 1;
-}
-
-.acto2-compuesto__linea {
-  font: 400 0.85rem/1.2 var(--font-primary);
+  /* 1.5rem (antes 1.1rem): el nombre de la fila es el título de esa
+     mini-gráfica, se agranda para pesar como tal — mismo criterio de
+     escala que .header__subtitle en css/explorador.css. */
+  font: 600 1.5rem/1.2 var(--font-primary);
+  letter-spacing: -0.02rem;
   color: var(--color-text-primary);
-}
-
-/* "IDES" y el puntaje comparten el mismo tratamiento: grande, Sora
-   SemiBold, subrayado en el color genérico de decoración (--verde-200,
-   el mismo #abc5b5 confirmado en Figma) — el puntaje además separa el
-   número (subrayado, bold) del "/100" (sin subrayar, peso liviano), vía
-   los spans .acto2-compuesto__num/__resto que arma renderPuntajeCentro()
-   en JS. */
-.acto2-compuesto__ides,
-.acto2-compuesto__num {
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-skip-ink: none;
-  text-decoration-color: var(--color-text-decoration-generico);
   text-decoration-thickness: 20%;
   text-underline-offset: -10%;
 }
 
-.acto2-compuesto__ides {
-  font: 600 1.8rem/1.1 var(--font-primary);
-  letter-spacing: -0.08rem;
+.beeswarm-anotacion {
+  position: absolute;
+  transform: translate(-50%, 0);
+  max-width: 220px;
+  margin: 0;
+  text-align: center;
+  /* 0.95rem: mismo tamaño que .stat-info__etiqueta en css/explorador.css
+     (la etiqueta bajo el valor destacado del header del Explorador). */
+  font: 400 0.95rem/1.4 var(--font-primary);
   color: var(--color-text-primary);
 }
 
-.acto2-compuesto__num {
+.beeswarm-anotacion strong {
   font-weight: 700;
 }
 
-.acto2-compuesto__resto {
-  font-weight: 300;
-}
-
-/* ---- Gráfico de barras: elemento APARTE del anillo, solo en el paso 7 ---- */
-
-.acto2-barras {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.75rem;
-  max-width: 360px;
-  margin: 1.75rem auto 0;
-}
-
-.acto2-barras__item {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.acto2-barras__valor {
-  margin: 0;
-  font: 400 1.15rem/1 var(--font-primary);
+/* Tooltip de nodo — "pon hover en todas las elipses para saber qué
+   representan": cada círculo del beeswarm es una localidad, este tooltip
+   es la única forma de leer cuál. Mismo lenguaje visual que .tabs-row/
+   .dashboard en css/explorador.css (fondo translúcido + blur, sin
+   border-radius — ver memoria del proyecto: nada en el sitio lleva
+   esquinas redondeadas). Posicionado por JS (ver mostrarTooltipMouse/
+   mostrarTooltipNodo en scrollytelling-intro.js), nunca por CSS. */
+.beeswarm-tooltip {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 14px));
+  z-index: 2;
+  pointer-events: none;
+  max-width: 220px;
+  padding: 0.5rem 0.75rem;
+  background: color-mix(in srgb, var(--crema) 94%, transparent);
+  border: 1px solid var(--color-callout-border);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  text-align: center;
+  font: 400 0.95rem/1.3 var(--font-primary);
   color: var(--color-text-primary);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.beeswarm-tooltip.is-visible {
+  opacity: 1;
+}
+
+.beeswarm-tooltip strong {
+  display: block;
+  font-weight: 700;
+}
+
+/* Badge persistente "Salud · indicador 4 de 8" — solo durante los pasos de
+   indicador (ver setProgreso en JS). */
+.explicacion-progreso {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font: 600 0.9rem/1 var(--font-primary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text-primary) 65%, transparent);
   opacity: 0;
 }
 
-.acto2-barras__valor strong {
-  font-weight: 700;
-}
+/* ---- Paso de indicador (3.c): bloque de texto rico ---- */
 
-.acto2-barras__pista {
+.indicador-step {
   width: 100%;
-  height: 96px;
-  display: flex;
-  align-items: flex-end;
 }
 
-.acto2-barras__barra {
-  width: 100%;
-  height: 6%;
-  background: var(--dim-color);
-  border: 1px solid var(--color-callout-border);
-  transition: height 0.5s ease;
-}
-
-.acto2-barras__label {
-  margin: 0;
-  text-align: center;
-  font: 400 0.8rem/1.2 var(--font-primary);
+.indicador-step__nombre {
+  margin: 0 0 0.85rem;
+  /* 1.75rem: mismo tamaño que .header__subtitle en css/explorador.css. */
+  font: 600 1.75rem/1.3 var(--font-primary);
   color: var(--color-text-primary);
 }
 
-/* ---------- Brandmarks decorativos (js/stats-donuts.js) ---------- */
-/* Monocromáticos (uno por dimensión), regados por todo el largo de la
-   página — cada semicírculo gira sobre su propio eje central a una
-   velocidad y dirección aleatorias distintas (ver scrollytelling-intro.js),
-   atado a la posición de scroll. Se posicionan en el documento (no en el
-   viewport), así van apareciendo a lo largo de todo el scroll. z-index:0,
-   igual que .grid-fondo: .page (z-index:1) siempre queda por encima, así
-   nunca tapan el texto ni la tarjeta. Puramente decorativos: no
-   interceptan clicks (pointer-events:none) y se ocultan en mobile para no
-   competir con el contenido en pantallas angostas. */
+.indicador-step__interpretacion {
+  margin: 0 0 1.1rem;
+  /* --text-body-primary: el mismo token de cuerpo de texto que usa el
+     resto del sitio (css/tokens.css), en vez de un tamaño propio. */
+  font: var(--text-body-primary);
+  color: var(--color-text-primary);
+}
+
+.indicador-step__relevancia {
+  margin: 0 0 1.25rem;
+  font: 400 1.05rem/1.6 var(--font-primary);
+  color: color-mix(in srgb, var(--color-text-primary) 75%, transparent);
+}
+
+/* Igual que .ficha-detalle-cell--formula en css/ficha-tecnica.css: KaTeX
+   puede desbordar una fórmula larga por encima del ancho de la columna de
+   narrativa si no se le da su propio scroll horizontal contenido. */
+.indicador-step__formula {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.indicador-step__formula .katex-display {
+  margin: 0;
+}
+
+.indicador-step__formula .katex {
+  font-size: 1.1rem;
+}
+
+/* ---- CTA de cierre ---- */
+
+.explicacion-cta {
+  display: flex;
+  width: fit-content;
+  margin: 3rem auto 0;
+  opacity: 0;
+}
+
+/* ---------- Brandmarks decorativos (js/stats-donuts.js) ----------
+   Monocromáticos (uno por dimensión), regados por todo el largo de la
+   página — cada uno son 3 semicírculos que giran cada uno sobre su propio
+   eje a velocidad y dirección propias (ver animarMarcaDecorativa en
+   scrollytelling-intro.js: antes esto se movía con un listener de scroll +
+   rAF manual, ahora son tweens GSAP infinitos, así que la pieza se siente
+   viva incluso sin que el usuario esté haciendo scroll). Además, cada marca
+   se desplaza verticalmente a su propia fracción de la velocidad real de
+   scroll (ScrollTrigger con scrub) — ese desfase entre marcas es lo que
+   lee como profundidad, no solo decoración plana.
+   z-index:0, igual que .grid-fondo: .page (z-index:1) siempre queda por
+   encima, así nunca tapan el texto ni la tarjeta. Puramente decorativas:
+   no interceptan clicks (pointer-events:none) y se ocultan en mobile para
+   no competir con el contenido en pantallas angostas. */
 .dot-mark {
   position: absolute;
   z-index: 0;
@@ -395,8 +507,11 @@ body {
   pointer-events: none;
 }
 
-.dot-mark .stat-mark {
+.dot-mark svg {
   width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -408,16 +523,17 @@ body {
 /* ---------- Mobile: panel apilado arriba del texto, nunca a dos columnas ---------- */
 
 @media (max-width: 768px) {
-  /* Se abandona el grid de 2 columnas por un flujo normal en bloque: así
-     .scrolly-visual (sticky, top:0) queda acotado por la altura completa de
-     .scrolly-grid (visual + narrativa) en vez de por su propia fila —
-     sigue apilado arriba y visible mientras el texto hace scroll debajo,
-     nunca a dos columnas. */
   .scrolly-grid {
     display: block;
   }
 
   .scrolly-visual {
+    /* position:static a propósito: sin esto, el panel sigue con
+       position:sticky heredado de la regla base y queda flotando encima
+       del texto narrativo mientras se hace scroll por toda la sección
+       (en vez de quedarse arriba, quieto, como un bloque normal) —
+       tapándolo o mezclándose con él. */
+    position: static;
     height: auto;
     padding: 1.5rem 0;
   }
@@ -425,6 +541,11 @@ body {
   .acto1-card {
     max-width: 100%;
     min-height: 180px;
+    padding: 1.75rem;
+  }
+
+  .acto1-card__cifra {
+    font-size: 1.5rem;
   }
 
   .scrolly-step {
@@ -435,13 +556,12 @@ body {
     font-size: 1.5rem;
   }
 
-  /* A diferencia de desktop (donde el diagrama es más angosto que la
-     columna de texto), en mobile debe cubrir TODO el ancho disponible —
-     igual que .acto1-card arriba — para que su fondo opaco tape por
-     completo el texto centrado que hace scroll detrás mientras el panel
-     está pegado arriba; si quedara más angosto, se asomarían letras
-     sueltas a los lados. */
-  .acto2-diagram {
+  .acto1__cierre {
+    font-size: 1.5rem;
+    margin: 3rem auto 5rem;
+  }
+
+  .explicacion-diagram {
     max-width: 100%;
   }
 
@@ -449,29 +569,27 @@ body {
     font-size: 1.5rem;
   }
 
-  .acto2-compuesto__wrap {
-    width: 180px;
+  .beeswarm-fila__label {
+    font-size: 0.9rem;
   }
 
-  .acto2-barras {
-    max-width: 280px;
+  .indicador-step__nombre {
+    font-size: 1.2rem;
   }
 
-  .acto2-barras__pista {
-    height: 76px;
+  .indicador-step__interpretacion {
+    font-size: 1rem;
   }
 }
 
-/* ---------- Movimiento reducido ---------- */
-
+/* ---------- Movimiento reducido ----------
+   Respaldo CSS de bajo nivel (scroll instantáneo). El grueso del ajuste de
+   prefers-reduced-motion vive en JS: gsap.matchMedia() desactiva el drift
+   continuo del fondo y cambia los tweens de pop/fade por estados
+   instantáneos (gsap.set) en vez de animados — ver
+   crearContextoMovimiento() en scrollytelling-intro.js. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .acto0__cta,
-  .scrolly-step__texto,
-  .acto2-barras__barra {
-    transition: none;
   }
 }

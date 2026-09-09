@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="../css/tokens.css" />
     <link rel="stylesheet" href="../css/explorador.css" />
     <link rel="stylesheet" href="scrollytelling-intro.css" />
+
+    <!-- KaTeX: renderiza formula_calculo_latex de data/fichas-tecnicas.json
+         (LaTeX real, no texto plano) en los pasos de indicador — mismo
+         patrón que ficha.html / js/ficha-tecnica-template.js. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
   </head>
   <body>
     <div class="grid-fondo" id="grid-fondo"></div>
@@ -42,14 +47,8 @@
         <div class="scrolly-grid">
           <div class="scrolly-visual">
             <div class="acto1-card" id="acto1-card">
-              <div class="acto1-card__layer" data-layer="a">
-                <p class="acto1-card__cifra"></p>
-                <p class="acto1-card__fuente"></p>
-              </div>
-              <div class="acto1-card__layer" data-layer="b">
-                <p class="acto1-card__cifra"></p>
-                <p class="acto1-card__fuente"></p>
-              </div>
+              <p class="acto1-card__cifra"></p>
+              <p class="acto1-card__fuente"></p>
             </div>
           </div>
 
@@ -75,89 +74,69 @@
         <p class="acto1__cierre" id="acto1-cierre"></p>
       </section>
 
-      <!-- Acto 2 — Qué es un índice, qué es el IDES -->
-      <section class="acto2" id="acto2">
+      <!-- Explicación — Acto 2+3+4 fusionados: qué es el IDES, sus 3
+           dimensiones, y cada indicador real que las compone. Una sola
+           sección/.scrolly-visual/.scrolly-narrativa (ver [[project-scrollytelling-acto2-continuidad]]:
+           un solo Scrollama observa data-step correlativo de TODA la
+           página) para que el zoom "3 filas → 1 dimensión → siguiente
+           dimensión → 3 filas" sea una transición real, no un corte. Los
+           ~34 pasos de .scrolly-narrativa se generan en JS (ver
+           construirPasosExplicacion en scrollytelling-intro.js) porque su
+           contenido sale 100% de data/fichas-tecnicas.json +
+           data/interpretaciones-indicadores.json — no tiene sentido
+           escribirlos a mano acá. -->
+      <section class="explicacion" id="explicacion">
         <div class="scrolly-grid">
           <div class="scrolly-visual">
-            <div class="acto2-diagram" id="acto2-diagram">
-              <!-- Estado A (paso 4): sin anillo todavía — solo las 3 palabras
-                   grandes, cada una subrayada en su color de dimensión
-                   (tratamiento tipográfico real, ver Figma scrolly-06). -->
+            <div class="explicacion-diagram" id="explicacion-diagram">
+              <!-- Estado A (paso 0 de intro): sin beeswarm todavía — solo las 3
+                   palabras grandes, cada una subrayada en su color de
+                   dimensión. Conservado tal cual del Acto 2 anterior. -->
               <div class="acto2-palabras" id="acto2-palabras">
+                <!-- Placa de fondo difuminada (backdrop-filter + mask-image
+                     en el mismo elemento, ver css) — separarlos en dos
+                     elementos se probó y no funciona en ningún navegador. -->
+                <div class="scrolly-backdrop" aria-hidden="true"></div>
                 <p class="acto2-palabra acto2-palabra--salud">Salud</p>
                 <p class="acto2-palabra acto2-palabra--justicia">Justicia</p>
                 <p class="acto2-palabra acto2-palabra--determinantes">Determinantes Sociales</p>
               </div>
 
-              <!-- Estado B (pasos 5-7): anillo compuesto de 3 gajos de 120°,
-                   fijo en toda su forma (mismo tamaño y colores en los 3
-                   pasos) — lo único que cambia es el texto central y, al
-                   final, la aparición del gráfico de barras aparte (ver
-                   montarAnilloCompuesto en scrollytelling-intro.js). -->
-              <div class="acto2-compuesto" id="acto2-compuesto">
-                <div class="acto2-compuesto__wrap">
-                  <svg class="acto2-compuesto__svg" id="acto2-compuesto-svg" viewBox="0 0 200 200" aria-hidden="true"></svg>
-
-                  <!-- Dos capas de texto central superpuestas (mismo truco de
-                       .acto1-card__layer): se cruzan en opacidad, nunca un
-                       corte duro entre "Bogotá/IDES/Pediatría" y
-                       "IDES/{{ides}}/100/Pediatría". -->
-                  <div class="acto2-compuesto__texto" data-centro="bogota">
-                    <span class="acto2-compuesto__linea">Bogotá</span>
-                    <span class="acto2-compuesto__ides">IDES</span>
-                    <span class="acto2-compuesto__linea">Pediatría</span>
-                  </div>
-                  <div class="acto2-compuesto__texto" data-centro="puntaje">
-                    <span class="acto2-compuesto__linea">IDES</span>
-                    <span class="acto2-compuesto__ides" id="acto2-puntaje"></span>
-                    <span class="acto2-compuesto__linea">Pediatría</span>
-                  </div>
-                </div>
-
-                <!-- Elemento APARTE del anillo (no una transformación suya):
-                     solo aparece en el paso 7. -->
-                <div class="acto2-barras" id="acto2-barras">
-                  <div class="acto2-barras__item" data-dim="salud" style="--dim-color: var(--azul-300)">
-                    <span class="acto2-barras__valor"></span>
-                    <div class="acto2-barras__pista"><div class="acto2-barras__barra"></div></div>
-                    <p class="acto2-barras__label">Salud</p>
-                  </div>
-                  <div class="acto2-barras__item" data-dim="justicia" style="--dim-color: var(--naranja-300)">
-                    <span class="acto2-barras__valor"></span>
-                    <div class="acto2-barras__pista"><div class="acto2-barras__barra"></div></div>
-                    <p class="acto2-barras__label">Justicia</p>
-                  </div>
-                  <div class="acto2-barras__item" data-dim="determinantes" style="--dim-color: var(--verde-400)">
-                    <span class="acto2-barras__valor"></span>
-                    <div class="acto2-barras__pista"><div class="acto2-barras__barra"></div></div>
-                    <p class="acto2-barras__label">Determinantes Sociales</p>
-                  </div>
-                </div>
+              <!-- Estado B (paso 1 de intro en adelante): panel de beeswarm
+                   genérico (renderBeeswarmPanel, D3 + d3-force, ver
+                   scrollytelling-intro.js) — un <svg> con 1 o 3 filas de 21
+                   nodos (localidades) cada una, más overlays HTML posicionados
+                   encima para los nombres de fila (subrayado Sora SemiBold) y
+                   las anotaciones de Bogotá. -->
+              <div class="beeswarm-panel" id="beeswarm-panel">
+                <div class="scrolly-backdrop" aria-hidden="true"></div>
+                <svg class="beeswarm-panel__svg" id="beeswarm-svg" viewBox="0 0 640 460" aria-hidden="true"></svg>
+                <div class="beeswarm-panel__overlays" id="beeswarm-overlays"></div>
               </div>
+
+              <!-- Badge persistente "Salud · indicador 4 de 8" — solo visible
+                   durante los pasos de indicador (ver setProgreso en JS). -->
+              <p class="explicacion-progreso" id="explicacion-progreso"></p>
             </div>
           </div>
 
-          <div class="scrolly-narrativa">
-            <div class="scrolly-step" data-act="2" data-step="0">
-              <p class="scrolly-step__texto"></p>
-            </div>
-            <div class="scrolly-step" data-act="2" data-step="1">
-              <p class="scrolly-step__texto"></p>
-            </div>
-            <div class="scrolly-step" data-act="2" data-step="2">
-              <p class="scrolly-step__texto"></p>
-            </div>
-            <div class="scrolly-step" data-act="2" data-step="3">
-              <p class="scrolly-step__texto"></p>
-            </div>
-          </div>
+          <div class="scrolly-narrativa" id="explicacion-narrativa"></div>
         </div>
+
+        <a class="btn-outline explicacion-cta" id="explicacion-cta" href="../index.html">
+          <span id="explicacion-cta-texto"></span>
+        </a>
       </section>
     </div>
 
     <script src="../js/breadcrumb.js"></script>
     <script src="../js/stats-donuts.js"></script>
     <script src="https://unpkg.com/scrollama"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
     <script src="scrollytelling-intro.js"></script>
     <script>
       IDESBreadcrumb.render(document.getElementById("breadcrumb"), [{ label: "Inicio" }]);
